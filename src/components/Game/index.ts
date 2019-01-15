@@ -12,6 +12,7 @@ class Game {
   cellSize: number;
   elementsCanvas: HTMLCanvasElement;
   gridCanvas: HTMLCanvasElement;
+  blocksCanvas: HTMLCanvasElement;
 
   constructor(level = 1, score = 0) {
     this.level = JSON.parse(JSON.stringify(LEVELS.filter((item: ILevel) => item.id === level)[0]));

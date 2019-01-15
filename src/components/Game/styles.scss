@@ -12,7 +12,7 @@
     z-index: 1;
   }
 
-  .gridContainer {
+  .gameBoard {
     position: absolute;
     top: 0;
     left: 0;
@@ -30,10 +30,27 @@
       z-index: 2;
     }
 
-    .-grid-canvas {
+    .gridContainer {
+      position: relative;
       width: calc(#{$cellSize * 10});
       height: calc(#{$cellSize * 12});
-      z-index: 2;
+
+      .-grid-canvas,
+      .-blocks-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(#{$cellSize * 10});
+        height: calc(#{$cellSize * 12});
+      }
+
+      .-grid-canvas {
+        z-index: 2;
+      }
+
+      .-blocks-canvas {
+        z-index: 3;
+      }
     }
   }
 }

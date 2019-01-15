@@ -1,0 +1,28 @@
+{
+  "name": "puzznic",
+  "version": "1.0.0",
+  "description": "Puzznic is a tile-matching puzzle arcade game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Arfeo.net",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "browserify": "^16.2.3",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-babel-minify": "^0.5.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-tslint": "^8.1.3",
+    "gulp-watch": "^5.0.1",
+    "tsify": "^4.0.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.2",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}

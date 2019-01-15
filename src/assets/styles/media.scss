@@ -1,0 +1,5 @@
+@media screen and (orientation:portrait) and (max-device-width: 900px) {
+  body {
+    transform: rotate(90deg);
+  }
+}

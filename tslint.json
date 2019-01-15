@@ -1,0 +1,67 @@
+{
+  "rules": {
+    "linebreak-style": false,
+    "arrow-body-style": [
+      0,
+      "always"
+    ],
+    "comma-dangle": [
+      2,
+      "always-multiline"
+    ],
+    "func-style": [
+      2,
+      "declaration",
+      { "allowArrowFunctions": true }
+    ],
+    "max-line-length": [
+      true,
+      120
+    ],
+    "object-literal-sort-keys": false,
+    "object-shorthand-properties-first": false,
+    "variable-name": [true, "ban-keywords"],
+    "import-name": false,
+    "member-access": false,
+    "align": false,
+    "ordered-imports": false,
+    "class-name": false,
+    "prefer-array-literal": false,
+    "newline-before-return": true,
+    "adjacent-overload-signatures": true,
+    "no-inferrable-types": true,
+    "no-parameter-reassignment": true,
+    "unified-signatures": true,
+    "curly": true,
+    "no-console": [true, "warning"],
+    "no-duplicate-switch-case": true,
+    "no-return-await": true,
+    "no-switch-case-fall-through": true,
+    "prefer-conditional-expression": true,
+    "prefer-object-spread": true,
+    "switch-default": true,
+    "cyclomatic-complexity": false,
+    "max-file-line-count": [true, 300],
+    "no-default-export": false,
+    "no-duplicate-imports": true,
+    "prefer-const": [true, { "destructuring": "all" }],
+    "arrow-return-shorthand": true,
+    "binary-expression-operand-order": true,
+    "callable-types": true,
+    "interface-over-type-literal": true,
+    "newline-per-chained-call": false,
+    "no-consecutive-blank-lines": true,
+    "no-unnecessary-callback-wrapper": false,
+    "prefer-method-signature": true,
+    "prefer-switch": true,
+    "prefer-template": true,
+    "type-literal-delimiter": true,
+    "ban": [
+      true,
+      {
+        "name": "$",
+        "message": "don`t use jQuery"
+      }
+    ]
+  }
+}

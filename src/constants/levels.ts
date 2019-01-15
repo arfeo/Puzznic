@@ -25,6 +25,14 @@ export const LEVELS: ILevel[] = [
       [0, 0, 0, 0, 2, 2, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ],
+    blocks: [
+      { id: 1, type: 1, position: [5, 3] },
+      { id: 2, type: 2, position: [5, 4] },
+      { id: 3, type: 2, position: [8, 3] },
+      { id: 4, type: 2, position: [9, 4] },
+      { id: 5, type: 1, position: [9, 5] },
+      { id: 6, type: 1, position: [8, 6] },
+    ],
     bonus: 700,
   }
 ];

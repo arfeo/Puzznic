@@ -16,5 +16,5 @@ export const calculateVMin = (): number => {
  * or cell size given in the app settings
  */
 export const setCellSize = (): number => {
-  return APP.cellSize > 0 ? APP.cellSize : Math.round(calculateVMin() * 7  / 10) * 10;
+  return APP.cellSize > 0 ? APP.cellSize : Math.round(calculateVMin() * 6  / 10) * 10;
 };

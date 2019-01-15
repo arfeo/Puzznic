@@ -1,3 +1,5 @@
+@import '../../assets/styles/variables';
+
 .gameWindow {
   position: relative;
   display: flex;
@@ -5,6 +7,8 @@
   justify-content: space-between;
 
   .-background-canvas {
+    width: calc(#{$cellSize * 14});
+    height: calc(#{$cellSize * 12});
     z-index: 1;
   }
 
@@ -15,7 +19,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    height: 100%;
+    width: calc(#{$cellSize * 14});
+    height: calc(#{$cellSize * 12});
+
+    .-elements-canvas {
+      background-color: white;
+      margin-left: 3vmin;
+      width: calc(#{$cellSize * 3});
+      height: calc(#{$cellSize * 11});
+      z-index: 2;
+    }
+
+    .-grid-canvas {
+      width: calc(#{$cellSize * 10});
+      height: calc(#{$cellSize * 12});
+      z-index: 2;
+    }
   }
 }

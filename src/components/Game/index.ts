@@ -1,6 +1,6 @@
 import { LEVELS } from '../../constants/levels';
 
-import { renderGameWindow } from './render';
+import { renderGameWindow, renderLevelMap } from './render';
 import { setCellSize } from './utils';
 
 import { ILevel } from '../../types/game';
@@ -25,6 +25,7 @@ class Game {
 
   render() {
     renderGameWindow.call(this);
+    renderLevelMap.call(this);
   }
 
   destroy() {

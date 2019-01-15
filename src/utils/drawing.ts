@@ -173,6 +173,32 @@ function drawStrokeRectangle(
   ctx.strokeRect(left, top, width, height);
 }
 
+/**
+ * Function draws a filled triangle at the given coordinates
+ *
+ * @param ctx
+ * @param c1
+ * @param c2
+ * @param c3
+ * @param fillStyle
+ */
+function drawFilledTriangle(
+  ctx: CanvasRenderingContext2D,
+  c1: number[],
+  c2: number[],
+  c3: number[],
+  fillStyle?: string,
+) {
+  ctx.fillStyle = fillStyle || 'transparent';
+
+  ctx.beginPath();
+  ctx.moveTo(c1[0], c1[1]);
+  ctx.lineTo(c2[0], c2[1]);
+  ctx.lineTo(c3[0], c3[1]);
+  ctx.closePath();
+  ctx.fill();
+}
+
 export {
   drawCircle,
   drawSector,
@@ -180,4 +206,5 @@ export {
   drawLineToAngle,
   drawFilledRectangle,
   drawStrokeRectangle,
+  drawFilledTriangle,
 };

@@ -55,4 +55,19 @@ function checkBlockPosition(x: number, y: number): IBlock | boolean {
   return !!block && block.length > 0 ? block[0] : false;
 }
 
-export { checkTargetMove, checkBlockPosition };
+/**
+ * Function returns true if a cell at the specified position contains something besides
+ * an empty cell (i.e., wall or block)
+ *
+ * @param x
+ * @param y
+ */
+function checkObstacle(x: number, y: number): boolean {
+  return this.level.map[y][x] !== 1 || checkBlockPosition.call(this, x, y);
+}
+
+export {
+  checkTargetMove,
+  checkBlockPosition,
+  checkObstacle,
+};

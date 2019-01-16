@@ -5,7 +5,7 @@ import { renderGameWindow, renderLevel } from './render';
 import { setCellSize } from './utils';
 import { removeEventHandlers, setUpEventHandlers } from './events';
 
-import { IKeysDown, ILevel } from '../../types/game';
+import { IBlock, IKeysDown, ILevel } from '../../types/game';
 
 class Game {
   level: ILevel;
@@ -19,6 +19,7 @@ class Game {
   targetCanvas: HTMLCanvasElement;
   animateTarget: number;
   targetBlinkDelay: number;
+  currentBlock: IBlock;
 
   constructor(level = 1, score = 0) {
     this.level = JSON.parse(JSON.stringify(LEVELS.filter((item: ILevel) => item.id === level)[0]));
@@ -28,6 +29,8 @@ class Game {
     this.cellSize = setCellSize();
 
     this.targetBlinkDelay = TARGET_BLINK_DELAY;
+
+    this.currentBlock = null;
 
     this.render();
   }

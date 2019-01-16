@@ -1,7 +1,8 @@
 import { APP } from '../../constants/global';
 import { FunctionalKeys, TARGET_BLINK_DELAY } from '../../constants/game';
 
-import { checkBlockPosition, checkTargetMove } from './actions';
+import { checkBlockPosition, checkObstacle, checkTargetMove } from './actions';
+import { animateBlockMove } from './animations';
 
 /**
  * Function creates all game's event listeners
@@ -38,7 +39,9 @@ function keyDownHandler(event: KeyboardEvent) {
     case FunctionalKeys.Catch: {
       key = 'catch';
 
-      if (checkBlockPosition.call(this, this.level.target[1], this.level.target[0]) !== false) {
+      this.currentBlock = checkBlockPosition.call(this, this.level.target[1], this.level.target[0]);
+
+      if (this.currentBlock !== false) {
         this.targetBlinkDelay = TARGET_BLINK_DELAY / 3;
       }
       break;
@@ -52,10 +55,17 @@ function keyDownHandler(event: KeyboardEvent) {
       break;
     }
     case FunctionalKeys.Right: {
+      const nextX: number = this.level.target[1] + 1;
+      const nextY: number = this.level.target[0];
+
       key = 'right';
 
       if (!this.keysDown.catch && checkTargetMove.call(this, key)) {
-        this.level.target = [this.level.target[0], this.level.target[1] + 1];
+        this.level.target = [nextY, nextX];
+      } else {
+        if (!checkObstacle.call(this, nextX, nextY)) {
+          animateBlockMove.call(this, this.currentBlock, nextX, nextY);
+        }
       }
       break;
     }
@@ -68,10 +78,17 @@ function keyDownHandler(event: KeyboardEvent) {
       break;
     }
     case FunctionalKeys.Left: {
+      const nextX: number = this.level.target[1] - 1;
+      const nextY: number = this.level.target[0];
+
       key = 'left';
 
       if (!this.keysDown.catch && checkTargetMove.call(this, key)) {
-        this.level.target = [this.level.target[0], this.level.target[1] - 1];
+        this.level.target = [nextY, nextX];
+      } else {
+        if (!checkObstacle.call(this, nextX, nextY)) {
+          animateBlockMove.call(this, this.currentBlock, nextX, nextY);
+        }
       }
       break;
     }
@@ -90,6 +107,7 @@ function keyUpHandler() {
   setActiveKey.call(this);
 
   this.targetBlinkDelay = TARGET_BLINK_DELAY;
+  this.currentBlock = null;
 }
 
 /**

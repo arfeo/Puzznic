@@ -303,4 +303,4 @@ function renderTarget(color: string) {
   );
 }
 
-export { renderGameWindow, renderLevel, renderTarget };
+export { renderGameWindow, renderLevel, renderBlock, renderTarget };

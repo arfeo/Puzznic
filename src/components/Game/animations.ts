@@ -77,7 +77,9 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
       return animateBlockMove.call(this, block, nextX, nextY + 1);
     }
 
-    checkBlockGroups.call(this);
+    if (this.blocksMoving.length === 0) {
+      checkBlockGroups.call(this);
+    }
   } else {
     let frame: number;
     let step = 0;
@@ -96,7 +98,9 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
           return item !== block.id;
         });
 
-        checkBlockGroups.call(this);
+        if (this.blocksMoving.length === 0) {
+          checkBlockGroups.call(this);
+        }
 
         return;
       }
@@ -156,6 +160,8 @@ function animateBlocksElimination(blockIds: number[]) {
       });
     }
   });
+
+  checkBlocksToFall.call(this);
 }
 
 export { animateTarget, animateBlockMove, animateBlocksElimination };

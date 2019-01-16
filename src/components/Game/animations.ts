@@ -1,6 +1,7 @@
-import { ELEMENTS_COLORS } from '../../constants/game';
+import { BLOCK_FALL_SPEED, ELEMENTS_COLORS } from '../../constants/game';
 
 import { renderBlock, renderTarget } from './render';
+import { checkObstacle } from './actions';
 
 import { IBlock } from '../../types/game';
 
@@ -40,9 +41,22 @@ function animateTarget() {
  * @param nextY
  */
 function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
+  if (block.position === undefined) {
+    return;
+  }
+
   const ctx: CanvasRenderingContext2D = this.blocksCanvas.getContext('2d');
   const isInstant: boolean = nextY === block.position[0];
-  const blockCloned: IBlock = JSON.parse(JSON.stringify(block));
+
+  this.level.blocks = [
+    ...this.level.blocks.filter((item: IBlock) => item.id !== block.id),
+    {
+      ...block,
+      position: [nextY, nextX],
+    },
+  ];
+
+  this.level.target = [nextY, nextX];
 
   if (isInstant) {
     ctx.clearRect(
@@ -59,14 +73,44 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
       this.cellSize * nextY,
     );
 
-    blockCloned.position = [nextY, nextX];
+    if (!checkObstacle.call(this, nextX, nextY + 1)) {
+      animateBlockMove.call(this, block, nextX, nextY + 1);
+    }
+  } else {
+    let frame: number;
+    let step = 0;
 
-    this.level.blocks = [
-      ...this.level.blocks.filter((item: IBlock) => item.id !== block.id),
-      blockCloned,
-    ];
+    const animate = () => {
+      if (step > BLOCK_FALL_SPEED) {
+        cancelAnimationFrame(frame);
 
-    this.level.target = [nextY, nextX];
+        if (!checkObstacle.call(this, nextX, nextY + 1)) {
+          return animateBlockMove.call(this, block, nextX, nextY + 1);
+        }
+
+        return;
+      }
+
+      ctx.clearRect(
+        this.cellSize * nextX,
+        this.cellSize * (nextY - 1 - step / BLOCK_FALL_SPEED),
+        this.cellSize,
+        this.cellSize + this.cellSize * step / BLOCK_FALL_SPEED,
+      );
+
+      renderBlock.call(
+        this,
+        block.type,
+        this.cellSize * nextX,
+        this.cellSize * (nextY - 1 + step / BLOCK_FALL_SPEED),
+      );
+
+      step += 1;
+
+      frame = requestAnimationFrame(animate);
+    };
+
+    frame = requestAnimationFrame(animate);
   }
 }
 

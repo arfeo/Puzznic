@@ -34,3 +34,5 @@ export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
 };
 
 export const TARGET_BLINK_DELAY = 300;
+
+export const BLOCK_FALL_SPEED = 10;

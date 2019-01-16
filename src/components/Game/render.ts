@@ -53,21 +53,19 @@ function renderGameWindow() {
  * for the current level, including initial block states and the target
  */
 function renderLevel() {
-  if (!this.level.map) {
+  const { map, blocks } = this.level;
+
+  if (!map || !blocks) {
     return;
   }
 
-  for (let y = 0; y < this.level.map.length; y += 1) {
-    for (let x = 0; x < this.level.map[y].length; x += 1) {
+  for (let y = 0; y < map.length; y += 1) {
+    for (let x = 0; x < map[y].length; x += 1) {
       renderMapElement.call(this, x, y);
     }
   }
 
-  if (!this.level.blocks) {
-    return;
-  }
-
-  for (const block of this.level.blocks) {
+  for (const block of blocks) {
     const top: number = this.cellSize * block.position[0];
     const left: number = this.cellSize * block.position[1];
 

@@ -1,6 +1,6 @@
 import { LEVELS } from '../../constants/levels';
 
-import { renderGameWindow, renderLevelMap } from './render';
+import { renderGameWindow, renderLevel } from './render';
 import { setCellSize } from './utils';
 
 import { ILevel } from '../../types/game';
@@ -14,6 +14,7 @@ class Game {
   gridCanvas: HTMLCanvasElement;
   blocksCanvas: HTMLCanvasElement;
   targetCanvas: HTMLCanvasElement;
+  animateTarget: number;
 
   constructor(level = 1, score = 0) {
     this.level = JSON.parse(JSON.stringify(LEVELS.filter((item: ILevel) => item.id === level)[0]));
@@ -27,11 +28,11 @@ class Game {
 
   render() {
     renderGameWindow.call(this);
-    renderLevelMap.call(this);
+    renderLevel.call(this);
   }
 
   destroy() {
-    // ...
+    cancelAnimationFrame(this.animateTarget);
   }
 }
 

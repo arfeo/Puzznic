@@ -1,6 +1,7 @@
 export interface ILevel {
   id: number;
   map: number[][];
+  target: number[];
   blocks: IBlock[];
   bonus: number;
   password?: string;

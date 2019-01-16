@@ -1,6 +1,7 @@
 import { ELEMENTS_COLORS, MapDefinitions } from '../../constants/game';
 
 import { drawRectangle, drawTriangle, drawLineToAngle } from '../../utils/drawing';
+import { animateTarget } from './animations';
 
 /**
  * Function creates game window element, game panel and all needed canvases
@@ -49,9 +50,9 @@ function renderGameWindow() {
 
 /**
  * Function renders game board as described in `constants/levels`
- * for the current level, including initial block states
+ * for the current level, including initial block states and the target
  */
-function renderLevelMap() {
+function renderLevel() {
   if (!this.level.map) {
     return;
   }
@@ -72,6 +73,8 @@ function renderLevelMap() {
 
     renderBlock.call(this, block.type, left, top);
   }
+
+  animateTarget.call(this);
 }
 
 /**
@@ -241,4 +244,58 @@ function renderBlock(type: number, left: number, top: number) {
   );
 }
 
-export { renderGameWindow, renderLevelMap };
+/**
+ * Function renders the target -- a border with rectangle shape in the specified color
+ *
+ * @param color
+ */
+function renderTarget(color: string) {
+  const ctx: CanvasRenderingContext2D = this.targetCanvas.getContext('2d');
+  const top: number = this.cellSize * this.level.target[0];
+  const left: number = this.cellSize * this.level.target[1];
+
+  drawRectangle(
+    ctx,
+    left + this.cellSize / 12,
+    top + this.cellSize / 12,
+    this.cellSize - this.cellSize / 6,
+    this.cellSize - this.cellSize / 6,
+    null,
+    this.cellSize / 6,
+    color,
+  );
+  drawRectangle(
+    ctx,
+    left,
+    top,
+    this.cellSize / 12,
+    this.cellSize / 12,
+    ELEMENTS_COLORS.empty.background,
+  );
+  drawRectangle(
+    ctx,
+    left + this.cellSize - this.cellSize / 12,
+    top,
+    this.cellSize / 12,
+    this.cellSize / 12,
+    ELEMENTS_COLORS.empty.background,
+  );
+  drawRectangle(
+    ctx,
+    left + this.cellSize - this.cellSize / 12,
+    top + this.cellSize - this.cellSize / 12,
+    this.cellSize / 12,
+    this.cellSize / 12,
+    ELEMENTS_COLORS.empty.background,
+  );
+  drawRectangle(
+    ctx,
+    left,
+    top + this.cellSize - this.cellSize / 12,
+    this.cellSize / 12,
+    this.cellSize / 12,
+    ELEMENTS_COLORS.empty.background,
+  );
+}
+
+export { renderGameWindow, renderLevel, renderTarget };

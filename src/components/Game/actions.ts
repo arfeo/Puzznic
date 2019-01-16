@@ -1,3 +1,5 @@
+import { animateBlockMove } from './animations';
+
 import { IBlock } from '../../types/game';
 
 /**
@@ -66,8 +68,29 @@ function checkObstacle(x: number, y: number): boolean {
   return this.level.map[y][x] !== 1 || checkBlockPosition.call(this, x, y);
 }
 
+/**
+ * Function checks which blocks have no obstacle below and have to fall
+ */
+function checkBlocksToFall() {
+  const { blocks } = this.level;
+
+  if (!blocks) {
+    return;
+  }
+
+  blocks.map((block: IBlock) => {
+    const x: number = block.position[1];
+    const y: number = block.position[0];
+
+    if (!checkObstacle.call(this, x, y + 1) && this.blocksMoving.indexOf(block.id) === -1) {
+      animateBlockMove.call(this, block, x, y + 1);
+    }
+  });
+}
+
 export {
   checkTargetMove,
   checkBlockPosition,
   checkObstacle,
+  checkBlocksToFall,
 };

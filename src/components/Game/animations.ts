@@ -1,7 +1,7 @@
 import { BLOCK_FALL_SPEED, ELEMENTS_COLORS } from '../../constants/game';
 
 import { renderBlock, renderTarget } from './render';
-import { checkObstacle } from './actions';
+import { checkBlocksToFall, checkObstacle } from './actions';
 
 import { IBlock } from '../../types/game';
 
@@ -80,6 +80,8 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
     let frame: number;
     let step = 0;
 
+    this.blocksMoving.push(block.id);
+
     const animate = () => {
       if (step > BLOCK_FALL_SPEED) {
         cancelAnimationFrame(frame);
@@ -87,6 +89,10 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
         if (!checkObstacle.call(this, nextX, nextY + 1)) {
           return animateBlockMove.call(this, block, nextX, nextY + 1);
         }
+
+        this.blocksMoving = this.blocksMoving.filter((item: number) => {
+          return item !== block.id;
+        });
 
         return;
       }
@@ -112,6 +118,8 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
 
     frame = requestAnimationFrame(animate);
   }
+
+  checkBlocksToFall.call(this);
 }
 
 export { animateTarget, animateBlockMove };

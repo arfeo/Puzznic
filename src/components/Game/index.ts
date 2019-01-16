@@ -20,6 +20,7 @@ class Game {
   animateTarget: number;
   targetBlinkDelay: number;
   currentBlock: IBlock;
+  blocksMoving: number[];
 
   constructor(level = 1, score = 0) {
     this.level = JSON.parse(JSON.stringify(LEVELS.filter((item: ILevel) => item.id === level)[0]));
@@ -31,6 +32,7 @@ class Game {
     this.targetBlinkDelay = TARGET_BLINK_DELAY;
 
     this.currentBlock = null;
+    this.blocksMoving = [];
 
     this.render();
   }

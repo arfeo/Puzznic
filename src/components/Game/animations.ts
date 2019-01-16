@@ -1,4 +1,4 @@
-import { ELEMENTS_COLORS, TARGET_BLINK_DELAY } from '../../constants/game';
+import { ELEMENTS_COLORS } from '../../constants/game';
 import { renderTarget } from './render';
 
 /**
@@ -9,7 +9,7 @@ function animateTarget() {
   let state = 1;
 
   const animate = (time: number) => {
-    if (time - start >= TARGET_BLINK_DELAY) {
+    if (time - start >= this.targetBlinkDelay) {
       start = time;
 
       state += 1;

@@ -1,7 +1,7 @@
 import { APP } from '../../constants/global';
-import { FunctionalKeys } from '../../constants/game';
+import { FunctionalKeys, TARGET_BLINK_DELAY } from '../../constants/game';
 
-import { checkTargetMove } from './actions';
+import { checkBlockPosition, checkTargetMove } from './actions';
 
 /**
  * Function creates all game's event listeners
@@ -37,13 +37,17 @@ function keyDownHandler(event: KeyboardEvent) {
   switch (event.key) {
     case FunctionalKeys.Catch: {
       key = 'catch';
+
+      if (checkBlockPosition.call(this, this.level.target[1], this.level.target[0])) {
+        this.targetBlinkDelay = TARGET_BLINK_DELAY / 3;
+      }
       break;
     }
     case FunctionalKeys.Up: {
       key = 'up';
 
       if (checkTargetMove.call(this, key)) {
-        this.level.target = [ this.level.target[ 0 ] - 1, this.level.target[ 1 ] ];
+        this.level.target = [this.level.target[0] - 1, this.level.target[1]];
       }
       break;
     }
@@ -59,7 +63,7 @@ function keyDownHandler(event: KeyboardEvent) {
       key = 'down';
 
       if (checkTargetMove.call(this, key)) {
-        this.level.target = [ this.level.target[ 0 ] + 1, this.level.target[ 1 ] ];
+        this.level.target = [this.level.target[0] + 1, this.level.target[1]];
       }
       break;
     }
@@ -84,6 +88,8 @@ function keyDownHandler(event: KeyboardEvent) {
  */
 function keyUpHandler() {
   setActiveKey.call(this);
+
+  this.targetBlinkDelay = TARGET_BLINK_DELAY;
 }
 
 /**

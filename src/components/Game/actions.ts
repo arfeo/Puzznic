@@ -1,3 +1,5 @@
+import { IBlock } from '../../types/game';
+
 /**
  * Function returns false if the target can not move in the specified direction
  * (if the next and/or the cell after the next does not contain any map objects);
@@ -39,4 +41,18 @@ function checkTargetMove(direction: string): boolean {
   return !!nextCell && !!afterNextCell;
 }
 
-export { checkTargetMove };
+/**
+ * Function returns true if a block exists at the given position; otherwise it returns false
+ *
+ * @param x
+ * @param y
+ */
+function checkBlockPosition(x: number, y: number): boolean {
+  const block: IBlock[] = this.level.blocks.filter((item: IBlock) => {
+    return item.position[0] === y && item.position[1] === x;
+  });
+
+  return !!block && block.length > 0;
+}
+
+export { checkTargetMove, checkBlockPosition };

@@ -1,4 +1,5 @@
 import { LEVELS } from '../../constants/levels';
+import { TARGET_BLINK_DELAY } from '../../constants/game';
 
 import { renderGameWindow, renderLevel } from './render';
 import { setCellSize } from './utils';
@@ -17,6 +18,7 @@ class Game {
   blocksCanvas: HTMLCanvasElement;
   targetCanvas: HTMLCanvasElement;
   animateTarget: number;
+  targetBlinkDelay: number;
 
   constructor(level = 1, score = 0) {
     this.level = JSON.parse(JSON.stringify(LEVELS.filter((item: ILevel) => item.id === level)[0]));
@@ -24,6 +26,8 @@ class Game {
     this.moves = 0;
 
     this.cellSize = setCellSize();
+
+    this.targetBlinkDelay = TARGET_BLINK_DELAY;
 
     this.render();
   }

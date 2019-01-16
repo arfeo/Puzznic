@@ -41,7 +41,7 @@
     "prefer-object-spread": true,
     "switch-default": true,
     "cyclomatic-complexity": false,
-    "max-file-line-count": [true, 300],
+    "max-file-line-count": false,
     "no-default-export": false,
     "no-duplicate-imports": true,
     "prefer-const": [true, { "destructuring": "all" }],

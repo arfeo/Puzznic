@@ -188,25 +188,16 @@ function drawTriangle(
   edgingColor?: string,
 ) {
   ctx.fillStyle = fillStyle || 'transparent';
+  ctx.lineWidth = edgingWidth || 0;
+  ctx.strokeStyle = edgingColor || 'transparent';
 
   ctx.beginPath();
   ctx.moveTo(c1[0], c1[1]);
   ctx.lineTo(c2[0], c2[1]);
   ctx.lineTo(c3[0], c3[1]);
   ctx.closePath();
-
-  if (fillStyle) {
-    ctx.fillStyle = fillStyle || 'transparent';
-
-    ctx.fill();
-  }
-
-  if (edgingWidth) {
-    ctx.lineWidth = edgingWidth || 0;
-    ctx.strokeStyle = edgingColor || 'transparent';
-
-    ctx.stroke();
-  }
+  ctx.fill();
+  ctx.stroke();
 }
 
 export {

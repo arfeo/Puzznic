@@ -1,4 +1,4 @@
-import { ELEMENTS_COLORS, MapDefinitions } from '../../constants/game';
+import { BLOCK_LABEL_FONT, ELEMENTS_COLORS, MapDefinitions } from '../../constants/game';
 
 import { drawRectangle, drawTriangle, drawLineToAngle } from '../../utils/drawing';
 import { animateTarget } from './animations';
@@ -239,6 +239,24 @@ function renderBlock(type: number, left: number, top: number) {
     this.cellSize / 12,
     this.cellSize / 12,
     ELEMENTS_COLORS.empty.background,
+  );
+
+  ctx.font = BLOCK_LABEL_FONT;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  ctx.fillStyle = ELEMENTS_COLORS.block.labelShadow;
+  ctx.fillText(
+    type.toString(),
+    left + this.cellSize /2 + this.cellSize / 12,
+    top + this.cellSize /2 + this.cellSize / 12,
+  );
+
+  ctx.fillStyle = ELEMENTS_COLORS.block.label;
+  ctx.fillText(
+    type.toString(),
+    left + this.cellSize /2,
+    top + this.cellSize /2,
   );
 }
 

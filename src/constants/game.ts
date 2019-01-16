@@ -4,7 +4,7 @@ export enum MapDefinitions {
 }
 
 export enum FunctionalKeys {
-  Catch = ' ',
+  Catch = 'Shift',
   Up = 'ArrowUp',
   Right = 'ArrowRight',
   Down = 'ArrowDown',
@@ -25,6 +25,8 @@ export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
     border: 'rgb(0, 0, 0)',
     background: 'rgb(96, 95, 96)',
     highlight: 'rgb(187, 186, 188)',
+    label: 'rgb(255, 255, 255)',
+    labelShadow: 'rgb(0, 0, 0)',
   },
   target: {
     state1: 'rgb(190, 188, 191)',
@@ -36,3 +38,5 @@ export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
 export const TARGET_BLINK_DELAY = 300;
 
 export const BLOCK_FALL_SPEED = 10;
+
+export const BLOCK_LABEL_FONT = '3vmin Helvetica, Arial';

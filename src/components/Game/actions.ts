@@ -1,4 +1,4 @@
-import { animateBlockMove } from './animations';
+import { animateBlockMove, animateBlocksElimination } from './animations';
 
 import { IBlock } from '../../types/game';
 
@@ -88,9 +88,57 @@ function checkBlocksToFall() {
   });
 }
 
+/**
+ * Function checks which blocks form groups (neighbours by X and Y axises)
+ */
+function checkBlockGroups() {
+  const { blocks } = this.level;
+  const neighbours: number[] = [];
+
+  if (!blocks) {
+    return;
+  }
+
+  blocks.map((block: IBlock) => {
+    const nextToRight: IBlock[] = blocks.filter((item: IBlock) => {
+      return item.position[0] === block.position[0] + 1 &&
+        item.position[1] === block.position[1] &&
+        item.type === block.type;
+    });
+    const nextToBottom: IBlock[] = blocks.filter((item: IBlock) => {
+      return item.position[1] === block.position[1] + 1 &&
+        item.position[0] === block.position[0] &&
+        item.type === block.type;
+    });
+
+    if (nextToRight && nextToRight.length > 0) {
+      if (neighbours.indexOf(block.id) === -1) {
+        neighbours.push(block.id);
+      }
+
+      if (neighbours.indexOf(nextToRight[0].id) === -1) {
+        neighbours.push(nextToRight[0].id);
+      }
+    }
+
+    if (nextToBottom && nextToBottom.length > 0) {
+      if (neighbours.indexOf(block.id) === -1) {
+        neighbours.push(block.id);
+      }
+
+      if (neighbours.indexOf(nextToBottom[0].id) === -1) {
+        neighbours.push(nextToBottom[0].id);
+      }
+    }
+  });
+
+  animateBlocksElimination.call(this, neighbours);
+}
+
 export {
   checkTargetMove,
   checkBlockPosition,
   checkObstacle,
   checkBlocksToFall,
+  checkBlockGroups,
 };

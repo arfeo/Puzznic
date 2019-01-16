@@ -1,7 +1,7 @@
 import { BLOCK_FALL_SPEED, ELEMENTS_COLORS } from '../../constants/game';
 
 import { renderBlock, renderTarget } from './render';
-import { checkBlocksToFall, checkObstacle } from './actions';
+import { checkBlockGroups, checkBlocksToFall, checkObstacle } from './actions';
 
 import { IBlock } from '../../types/game';
 
@@ -74,8 +74,10 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
     );
 
     if (!checkObstacle.call(this, nextX, nextY + 1)) {
-      animateBlockMove.call(this, block, nextX, nextY + 1);
+      return animateBlockMove.call(this, block, nextX, nextY + 1);
     }
+
+    checkBlockGroups.call(this);
   } else {
     let frame: number;
     let step = 0;
@@ -93,6 +95,8 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
         this.blocksMoving = this.blocksMoving.filter((item: number) => {
           return item !== block.id;
         });
+
+        checkBlockGroups.call(this);
 
         return;
       }
@@ -122,4 +126,36 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
   checkBlocksToFall.call(this);
 }
 
-export { animateTarget, animateBlockMove };
+/**
+ * Function animates the elimination of specified blocks
+ *
+ * @param blockIds
+ */
+function animateBlocksElimination(blockIds: number[]) {
+  if (blockIds.length === 0) {
+    return;
+  }
+
+  const ctx: CanvasRenderingContext2D = this.blocksCanvas.getContext('2d');
+
+  blockIds.map((id: number) => {
+    const block: IBlock[] = this.level.blocks.filter((item: IBlock) => {
+      return item.id === id;
+    });
+
+    if (block && block.length > 0) {
+      ctx.clearRect(
+        this.cellSize * block[0].position[1],
+        this.cellSize * block[0].position[0],
+        this.cellSize,
+        this.cellSize,
+      );
+
+      this.level.blocks = this.level.blocks.filter((item: IBlock) => {
+        return item.id !== id;
+      });
+    }
+  });
+}
+
+export { animateTarget, animateBlockMove, animateBlocksElimination };

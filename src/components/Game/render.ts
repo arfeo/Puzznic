@@ -1,6 +1,6 @@
 import { ELEMENTS_COLORS, MapDefinitions } from '../../constants/game';
 
-import { drawFilledRectangle, drawFilledTriangle, drawLineToAngle } from '../../utils/drawing';
+import { drawRectangle, drawTriangle, drawLineToAngle } from '../../utils/drawing';
 
 /**
  * Function creates game window element, game panel and all needed canvases
@@ -83,7 +83,7 @@ function renderMapElement(x: number, y: number) {
 
   switch (elementType) {
     case MapDefinitions.Empty: {
-      drawFilledRectangle(
+      drawRectangle(
         ctx,
         left,
         top,
@@ -94,7 +94,7 @@ function renderMapElement(x: number, y: number) {
       break;
     }
     case MapDefinitions.Wall: {
-      drawFilledRectangle(
+      drawRectangle(
         ctx,
         left,
         top,
@@ -102,14 +102,14 @@ function renderMapElement(x: number, y: number) {
         this.cellSize,
         ELEMENTS_COLORS.wall.border,
       );
-      drawFilledTriangle(
+      drawTriangle(
         ctx,
         [left + this.cellSize / 12, top + this.cellSize / 12],
         [left + this.cellSize - this.cellSize / 6, top + this.cellSize / 12],
         [left + this.cellSize / 12, top + this.cellSize - this.cellSize / 6],
         ELEMENTS_COLORS.wall.background,
       );
-      drawFilledTriangle(
+      drawTriangle(
         ctx,
         [left + this.cellSize / 12, top + this.cellSize - this.cellSize / 6],
         [left + this.cellSize - this.cellSize / 6, top + this.cellSize / 12],
@@ -150,7 +150,7 @@ function renderMapElement(x: number, y: number) {
 function renderBlock(type: number, left: number, top: number) {
   const ctx: CanvasRenderingContext2D = this.blocksCanvas.getContext('2d');
 
-  drawFilledRectangle(
+  drawRectangle(
     ctx,
     left,
     top,
@@ -158,7 +158,7 @@ function renderBlock(type: number, left: number, top: number) {
     this.cellSize,
     ELEMENTS_COLORS.block.border,
   );
-  drawFilledRectangle(
+  drawRectangle(
     ctx,
     left + this.cellSize / 6,
     top + this.cellSize / 6,
@@ -202,7 +202,7 @@ function renderBlock(type: number, left: number, top: number) {
     ELEMENTS_COLORS.block.background,
     this.cellSize / 12,
   );
-  drawFilledRectangle(
+  drawRectangle(
     ctx,
     left,
     top,
@@ -210,7 +210,7 @@ function renderBlock(type: number, left: number, top: number) {
     this.cellSize / 12,
     ELEMENTS_COLORS.empty.background,
   );
-  drawFilledRectangle(
+  drawRectangle(
     ctx,
     left + this.cellSize - this.cellSize / 12,
     top,
@@ -218,7 +218,7 @@ function renderBlock(type: number, left: number, top: number) {
     this.cellSize / 12,
     ELEMENTS_COLORS.empty.background,
   );
-  drawFilledRectangle(
+  drawRectangle(
     ctx,
     left + this.cellSize - this.cellSize / 12,
     top + this.cellSize - this.cellSize / 12,
@@ -226,7 +226,7 @@ function renderBlock(type: number, left: number, top: number) {
     this.cellSize / 12,
     ELEMENTS_COLORS.empty.background,
   );
-  drawFilledRectangle(
+  drawRectangle(
     ctx,
     left,
     top + this.cellSize - this.cellSize / 12,

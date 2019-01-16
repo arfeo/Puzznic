@@ -38,7 +38,7 @@ function keyDownHandler(event: KeyboardEvent) {
     case FunctionalKeys.Catch: {
       key = 'catch';
 
-      if (checkBlockPosition.call(this, this.level.target[1], this.level.target[0])) {
+      if (checkBlockPosition.call(this, this.level.target[1], this.level.target[0]) !== false) {
         this.targetBlinkDelay = TARGET_BLINK_DELAY / 3;
       }
       break;

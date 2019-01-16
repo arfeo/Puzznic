@@ -42,17 +42,17 @@ function checkTargetMove(direction: string): boolean {
 }
 
 /**
- * Function returns true if a block exists at the given position; otherwise it returns false
+ * Function returns an object if a block exists at the given position; otherwise it returns false
  *
  * @param x
  * @param y
  */
-function checkBlockPosition(x: number, y: number): boolean {
+function checkBlockPosition(x: number, y: number): IBlock | boolean {
   const block: IBlock[] = this.level.blocks.filter((item: IBlock) => {
     return item.position[0] === y && item.position[1] === x;
   });
 
-  return !!block && block.length > 0;
+  return !!block && block.length > 0 ? block[0] : false;
 }
 
 export { checkTargetMove, checkBlockPosition };

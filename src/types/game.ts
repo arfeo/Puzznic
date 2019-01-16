@@ -15,8 +15,8 @@ export interface IBlock {
 
 export interface IKeysDown {
   catch: boolean;
+  up: boolean;
   right: boolean;
-  left: boolean;
-  top: boolean;
   down: boolean;
+  left: boolean;
 }

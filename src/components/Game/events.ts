@@ -1,6 +1,8 @@
 import { APP } from '../../constants/global';
 import { FunctionalKeys } from '../../constants/game';
 
+import { checkTargetMove } from './actions';
+
 /**
  * Function creates all game's event listeners
  */
@@ -30,40 +32,50 @@ function removeEventHandlers() {
  * @param event
  */
 function keyDownHandler(event: KeyboardEvent) {
+  let key = '';
+
   switch (event.key) {
     case FunctionalKeys.Catch: {
-      setActiveKey.call(this, 'catch');
+      key = 'catch';
+      break;
+    }
+    case FunctionalKeys.Up: {
+      key = 'up';
+
+      if (checkTargetMove.call(this, key)) {
+        this.level.target = [ this.level.target[ 0 ] - 1, this.level.target[ 1 ] ];
+      }
       break;
     }
     case FunctionalKeys.Right: {
-      if (!this.keysDown.catch) {
+      key = 'right';
+
+      if (!this.keysDown.catch && checkTargetMove.call(this, key)) {
         this.level.target = [this.level.target[0], this.level.target[1] + 1];
       }
-
-      setActiveKey.call(this, 'right');
-      break;
-    }
-    case FunctionalKeys.Left: {
-      if (!this.keysDown.catch) {
-        this.level.target = [this.level.target[0], this.level.target[1] - 1];
-      }
-
-      setActiveKey.call(this, 'left');
-      break;
-    }
-    case FunctionalKeys.Top: {
-      this.level.target = [this.level.target[0] - 1, this.level.target[1]];
-
-      setActiveKey.call(this, 'top');
       break;
     }
     case FunctionalKeys.Down: {
-      this.level.target = [this.level.target[0] + 1, this.level.target[1]];
+      key = 'down';
 
-      setActiveKey.call(this, 'down');
+      if (checkTargetMove.call(this, key)) {
+        this.level.target = [ this.level.target[ 0 ] + 1, this.level.target[ 1 ] ];
+      }
+      break;
+    }
+    case FunctionalKeys.Left: {
+      key = 'left';
+
+      if (!this.keysDown.catch && checkTargetMove.call(this, key)) {
+        this.level.target = [this.level.target[0], this.level.target[1] - 1];
+      }
       break;
     }
     default: break;
+  }
+
+  if (this.keysDown.hasOwnProperty(key)) {
+    setActiveKey.call(this, key);
   }
 }
 
@@ -83,10 +95,10 @@ function keyUpHandler() {
 function setActiveKey(type?: string) {
   this.keysDown = {
     catch: false,
+    up: false,
     right: false,
-    left: false,
-    top: false,
     down: false,
+    left: false,
   };
 
   if (type) {

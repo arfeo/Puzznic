@@ -5,10 +5,10 @@ export enum MapDefinitions {
 
 export enum FunctionalKeys {
   Catch = ' ',
+  Up = 'ArrowUp',
   Right = 'ArrowRight',
-  Left = 'ArrowLeft',
-  Top = 'ArrowUp',
   Down = 'ArrowDown',
+  Left = 'ArrowLeft',
 }
 
 export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {

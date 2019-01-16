@@ -1,0 +1,42 @@
+/**
+ * Function returns false if the target can not move in the specified direction
+ * (if the next and/or the cell after the next does not contain any map objects);
+ * otherwise it returns true
+ *
+ * @param direction
+ */
+function checkTargetMove(direction: string): boolean {
+  const { map } = this.level;
+  const x: number = this.level.target[1];
+  const y: number = this.level.target[0];
+  let nextCell: number;
+  let afterNextCell: number;
+
+  switch (direction) {
+    case 'up': {
+      nextCell = map[y - 1][x];
+      afterNextCell = map[y - 2][x];
+      break;
+    }
+    case 'right': {
+      nextCell = map[y][x + 1];
+      afterNextCell = map[y][x + 2];
+      break;
+    }
+    case 'down': {
+      nextCell = map[y + 1][x];
+      afterNextCell = map[y + 2][x];
+      break;
+    }
+    case 'left': {
+      nextCell = map[y][x - 1];
+      afterNextCell = map[y][x - 2];
+      break;
+    }
+    default: break;
+  }
+
+  return !!nextCell && !!afterNextCell;
+}
+
+export { checkTargetMove };

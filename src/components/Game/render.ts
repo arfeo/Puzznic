@@ -15,6 +15,7 @@ function renderGameWindow() {
   this.elementsCanvas = document.createElement('canvas');
   this.gridCanvas = document.createElement('canvas');
   this.blocksCanvas = document.createElement('canvas');
+  this.targetCanvas = document.createElement('canvas');
 
   gameWindow.className = 'gameWindow';
   backgroundCanvas.className = '-background-canvas';
@@ -23,6 +24,7 @@ function renderGameWindow() {
   this.elementsCanvas.className = '-elements-canvas';
   this.gridCanvas.className = '-grid-canvas';
   this.blocksCanvas.className = '-blocks-canvas';
+  this.targetCanvas.className = '-target-canvas';
 
   backgroundCanvas.width = this.cellSize * 14;
   backgroundCanvas.height = this.cellSize * 12;
@@ -32,6 +34,8 @@ function renderGameWindow() {
   this.gridCanvas.height = this.cellSize * 12;
   this.blocksCanvas.width = this.cellSize * 10;
   this.blocksCanvas.height = this.cellSize * 12;
+  this.targetCanvas.width = this.cellSize * 10;
+  this.targetCanvas.height = this.cellSize * 12;
 
   appRoot.appendChild(gameWindow);
   gameWindow.appendChild(backgroundCanvas);
@@ -40,6 +44,7 @@ function renderGameWindow() {
   gameBoard.appendChild(gridContainer);
   gridContainer.appendChild(this.gridCanvas);
   gridContainer.appendChild(this.blocksCanvas);
+  gridContainer.appendChild(this.targetCanvas);
 }
 
 /**

@@ -12,3 +12,11 @@ export interface IBlock {
   type: number;
   position: number[];
 }
+
+export interface IKeysDown {
+  catch: boolean;
+  right: boolean;
+  left: boolean;
+  top: boolean;
+  down: boolean;
+}

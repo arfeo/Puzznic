@@ -3,6 +3,14 @@ export enum MapDefinitions {
   Wall = 2,
 }
 
+export enum FunctionalKeys {
+  Catch = ' ',
+  Right = 'ArrowRight',
+  Left = 'ArrowLeft',
+  Top = 'ArrowUp',
+  Down = 'ArrowDown',
+}
+
 export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
   empty: {
     background: 'rgb(255, 255, 255)',
@@ -22,7 +30,7 @@ export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
     state1: 'rgb(190, 188, 191)',
     state2: 'rgb(96, 95, 96)',
     state3: 'rgb(255, 255, 255)',
-  }
+  },
 };
 
 export const TARGET_BLINK_DELAY = 300;

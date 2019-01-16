@@ -2,14 +2,16 @@ import { LEVELS } from '../../constants/levels';
 
 import { renderGameWindow, renderLevel } from './render';
 import { setCellSize } from './utils';
+import { removeEventHandlers, setUpEventHandlers } from './events';
 
-import { ILevel } from '../../types/game';
+import { IKeysDown, ILevel } from '../../types/game';
 
 class Game {
   level: ILevel;
   score: number;
   moves: number;
   cellSize: number;
+  keysDown: IKeysDown;
   elementsCanvas: HTMLCanvasElement;
   gridCanvas: HTMLCanvasElement;
   blocksCanvas: HTMLCanvasElement;
@@ -29,9 +31,13 @@ class Game {
   render() {
     renderGameWindow.call(this);
     renderLevel.call(this);
+
+    setUpEventHandlers.call(this);
   }
 
   destroy() {
+    removeEventHandlers.call(this);
+
     cancelAnimationFrame(this.animateTarget);
   }
 }

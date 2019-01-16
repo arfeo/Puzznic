@@ -254,6 +254,13 @@ function renderTarget(color: string) {
   const top: number = this.cellSize * this.level.target[0];
   const left: number = this.cellSize * this.level.target[1];
 
+  ctx.clearRect(
+    left - this.cellSize * 2,
+    top - this.cellSize * 2,
+    this.cellSize * 5,
+    this.cellSize * 5,
+  );
+
   drawRectangle(
     ctx,
     left + this.cellSize / 12,

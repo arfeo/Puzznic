@@ -54,8 +54,8 @@ export const TARGET_BLINK_DELAY = 300;
 
 export const BLOCK_FALL_SPEED = 10;
 
-export const ELEMENTS_LIST_FONT = '5vmin Helvetica, Arial';
+export const ELEMENTS_LIST_FONT = '5vmin Courier';
 
-export const BLOCK_LABEL_FONT = '3vmin Helvetica, Arial';
+export const BLOCK_LABEL_FONT = '3vmin Courier';
 
-export const SCORE_SCREEN_FONT = '5vmin Helvetica, Arial';
+export const SCORE_SCREEN_FONT = '5vmin Courier';

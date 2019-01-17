@@ -78,8 +78,8 @@ function renderBackground(ctx: CanvasRenderingContext2D, width: number, height: 
 
   for (let y = 0; y <= yCount; y += 1) {
     for (let x = 0; x <= xCount; x += 1) {
-      const left: number = brickWidth * x - (y % 2 === 0 ? brickWidth / 2 : 0);
-      const top: number = brickHeight * y;
+      const left: number = brickWidth * x - (y % 2 === 0 ? brickWidth / 2 : 0) + borderWidth / 2;
+      const top: number = brickHeight * y + borderWidth / 2;
 
       drawRectangle(
         ctx,

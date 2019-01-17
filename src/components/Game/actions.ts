@@ -13,28 +13,28 @@ function checkTargetMove(direction: string): boolean {
   const { map } = this.level;
   const x: number = this.level.target[1];
   const y: number = this.level.target[0];
-  let nextCell: number;
-  let afterNextCell: number;
+  let nextCell: number = null;
+  let afterNextCell: number = null;
 
   switch (direction) {
     case 'up': {
-      nextCell = map[y - 1][x];
-      afterNextCell = map[y - 2][x];
+      nextCell = map[y - 1] ? map[y - 1][x] : null;
+      afterNextCell = map[y - 2] ? map[y - 2][x] : null;
       break;
     }
     case 'right': {
-      nextCell = map[y][x + 1];
-      afterNextCell = map[y][x + 2];
+      nextCell = map[y] ? map[y][x + 1] : null;
+      afterNextCell = map[y] ? map[y][x + 2] : null;
       break;
     }
     case 'down': {
-      nextCell = map[y + 1][x];
-      afterNextCell = map[y + 2][x];
+      nextCell = map[y + 1] ? map[y + 1][x] : null;
+      afterNextCell = map[y + 2] ? map[y + 2][x] : null;
       break;
     }
     case 'left': {
-      nextCell = map[y][x - 1];
-      afterNextCell = map[y][x - 2];
+      nextCell = map[y] ? map[y][x - 1] : null;
+      afterNextCell = map[y] ? map[y][x - 2] : null;
       break;
     }
     default: break;

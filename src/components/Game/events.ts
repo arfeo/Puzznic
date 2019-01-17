@@ -94,12 +94,14 @@ function keyDownHandler(event: KeyboardEvent) {
       break;
     }
     case FunctionalKeys.Continue: {
-      if (!this.isGameOver) {
-        this.destroy();
+      if (this.isLevelCompleted) {
+        if (!this.isGameOver) {
+          this.destroy();
 
-        APP.pageInstance = new Game(this.level.id + 1, this.score);
-      } else {
-        alert('Congratulations!');
+          APP.pageInstance = new Game(this.level.id + 1, this.score);
+        } else {
+          alert('Congratulations!');
+        }
       }
       break;
     }

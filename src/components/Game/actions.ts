@@ -134,6 +134,10 @@ function checkBlockGroups() {
   });
 
   if (neighbours.length > 0) {
+    if (neighbours.length >= 4) {
+      this.clearBonus += 1000;
+    }
+
     Promise.all(neighbours.map((id: number) => animateBlockElimination.call(this, id))).then(() => {
       if (this.level.blocks.length === 0) {
         window.setTimeout(renderScoreScreen.bind(this), 1000);

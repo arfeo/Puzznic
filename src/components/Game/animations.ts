@@ -1,4 +1,4 @@
-import { BLOCK_FALL_SPEED, ELEMENTS_COLORS } from '../../constants/game';
+import { BLOCK_ELIMINATION_DELAY, BLOCK_FALL_SPEED, ELEMENTS_COLORS } from '../../constants/game';
 
 import { renderBlock, renderElementsList, renderTarget } from './render';
 import { checkBlockGroups, checkBlocksToFall, checkObstacle } from './actions';
@@ -19,7 +19,6 @@ function animateTarget() {
 
     if (time - start >= this.targetBlinkDelay) {
       start = time;
-
       state += 1;
 
       if (state === 4) {
@@ -151,12 +150,13 @@ function animateBlockElimination(blockId: number): Promise<void> {
     if (block && block.length > 0) {
       const left: number = this.cellSize * block[0].position[1];
       const top: number = this.cellSize * block[0].position[0];
+      const type: number = block[0].type;
       let start: number = performance.now();
       let frame: number;
       let step = 1;
 
       const animate = (time: number) => {
-        if (step === 5) {
+        if (step === 6) {
           ctx.clearRect(
             left,
             top,
@@ -175,7 +175,20 @@ function animateBlockElimination(blockId: number): Promise<void> {
           return resolve();
         }
 
-        if (time - start > 200) {
+        if (time - start > BLOCK_ELIMINATION_DELAY) {
+          ctx.clearRect(
+            left,
+            top,
+            this.cellSize,
+            this.cellSize,
+          );
+
+          ctx.globalAlpha = step % 2 === 0 ? 1 : 0.5;
+
+          renderBlock.call(this, ctx, type, left, top);
+
+          ctx.globalAlpha = 1;
+
           start = time;
           step += 1;
         }

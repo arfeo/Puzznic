@@ -7,6 +7,7 @@ const tsify = require('tsify');
 const tslint = require('gulp-tslint');
 const sass = require('gulp-sass');
 const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
 const browserSync = require('browser-sync').create();
 
 function clean() {
@@ -72,6 +73,7 @@ function ts() {
     })
     .pipe(source('app.js'))
     .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest('./dist'));
 }
 

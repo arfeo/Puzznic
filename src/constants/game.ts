@@ -35,7 +35,12 @@ export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
   },
   elementsList: {
     text: 'rgb(0, 0, 0)',
-  }
+  },
+  brick: {
+    border: 'rgb(0, 0, 0)',
+    background: 'rgb(95, 94, 95)',
+    highlight: 'rgb(191, 189, 191)',
+  },
 };
 
 export const TARGET_BLINK_DELAY = 300;

@@ -53,6 +53,80 @@ function renderGameWindow() {
   gridContainer.appendChild(this.gridCanvas);
   gridContainer.appendChild(this.blocksCanvas);
   gridContainer.appendChild(this.targetCanvas);
+
+  renderBackground.call(
+    this,
+    backgroundCanvas.getContext('2d'),
+    backgroundCanvas.width,
+    backgroundCanvas.height,
+  );
+}
+
+/**
+ * Function renders the game window background (brick wall)
+ *
+ * @param ctx
+ * @param width
+ * @param height
+ */
+function renderBackground(ctx: CanvasRenderingContext2D, width: number, height: number) {
+  const brickWidth: number = this.cellSize * 2 / 3;
+  const brickHeight: number = this.cellSize / 3;
+  const borderWidth: number = this.cellSize / 12;
+  const xCount: number = width / brickWidth;
+  const yCount: number = height / (this.cellSize / 3);
+
+  for (let y = 0; y <= yCount; y += 1) {
+    for (let x = 0; x <= xCount; x += 1) {
+      const left: number = brickWidth * x - (y % 2 === 0 ? brickWidth / 2 : 0);
+      const top: number = brickHeight * y;
+
+      drawRectangle(
+        ctx,
+        left,
+        top,
+        brickWidth,
+        brickHeight,
+        ELEMENTS_COLORS.brick.background,
+      );
+      drawLineToAngle(
+        ctx,
+        left,
+        top,
+        brickHeight,
+        90,
+        ELEMENTS_COLORS.brick.highlight,
+        borderWidth,
+      );
+      drawLineToAngle(
+        ctx,
+        left,
+        top,
+        brickWidth,
+        0,
+        ELEMENTS_COLORS.brick.highlight,
+        borderWidth,
+      );
+      drawLineToAngle(
+        ctx,
+        left,
+        top + brickHeight - borderWidth,
+        brickWidth,
+        0,
+        ELEMENTS_COLORS.brick.border,
+        borderWidth,
+      );
+      drawLineToAngle(
+        ctx,
+        left + brickWidth - borderWidth,
+        top,
+        brickHeight,
+        90,
+        ELEMENTS_COLORS.brick.border,
+        borderWidth,
+      );
+    }
+  }
 }
 
 /**

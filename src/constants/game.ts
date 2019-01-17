@@ -54,6 +54,8 @@ export const TARGET_BLINK_DELAY = 300;
 
 export const BLOCK_FALL_SPEED = 10;
 
+export const SCORE_ANIMATION_SPEED = 50;
+
 export const ELEMENTS_LIST_FONT = '5vmin Courier';
 
 export const BLOCK_LABEL_FONT = '3vmin Courier';

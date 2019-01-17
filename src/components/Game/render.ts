@@ -3,6 +3,7 @@ import {
   ELEMENTS_COLORS,
   ELEMENTS_LIST_FONT,
   SCORE_SCREEN_FONT,
+  SCORE_ANIMATION_SPEED,
   MapDefinitions,
 } from '../../constants/game';
 import { LEVELS } from '../../constants/levels';
@@ -464,9 +465,12 @@ function renderScoreScreen() {
   const ctx: CanvasRenderingContext2D = this.scoreCanvas.getContext('2d');
   const nextLevel: ILevel[] = LEVELS.filter((level: ILevel) => level.id === this.level.id + 1);
   const password: string = nextLevel && nextLevel.length > 0 ? nextLevel[0].password : null;
+  let scoreCloned: number = this.score;
+  let start: number = performance.now();
 
   this.isLevelCompleted = true;
   this.clearBonus += this.level.bonus;
+  this.score += this.clearBonus;
 
   drawRectangle(
     ctx,
@@ -495,9 +499,9 @@ function renderScoreScreen() {
   ctx.fillStyle = ELEMENTS_COLORS.scoreScreen.text;
 
   ctx.fillText('SCORE', this.cellSize * 7, this.cellSize * 2);
-  ctx.fillText(this.score, this.cellSize * 7, this.cellSize * 4 - this.cellSize / 2);
+  ctx.fillText(scoreCloned.toString().padStart(8, '0'), this.cellSize * 7, this.cellSize * 4 - this.cellSize / 2);
   ctx.fillText('CLEAR BONUS', this.cellSize * 7, this.cellSize * 6);
-  ctx.fillText(this.clearBonus, this.cellSize * 7, this.cellSize * 8 - this.cellSize / 2);
+  ctx.fillText(this.clearBonus.toString().padStart(8, '0'), this.cellSize * 7, this.cellSize * 8 - this.cellSize / 2);
 
   if (password) {
     ctx.fillText(
@@ -508,6 +512,55 @@ function renderScoreScreen() {
   } else {
     this.isGameOver = true;
   }
+
+  const animate = (time: number) => {
+    if (this.clearBonus === 0) {
+      return cancelAnimationFrame(this.animateScore);
+    }
+
+    if (time - start > SCORE_ANIMATION_SPEED) {
+      scoreCloned += 50;
+      this.clearBonus -= 50;
+
+      drawRectangle(
+        ctx,
+        this.cellSize,
+        this.cellSize * 4 - this.cellSize * 3 / 2,
+        this.cellSize * 14 - this.cellSize * 2,
+        this.cellSize * 2,
+        ELEMENTS_COLORS.scoreScreen.background,
+      );
+      drawRectangle(
+        ctx,
+        this.cellSize,
+        this.cellSize * 8 - this.cellSize * 3 / 2,
+        this.cellSize * 14 - this.cellSize * 2,
+        this.cellSize * 2,
+        ELEMENTS_COLORS.scoreScreen.background,
+      );
+
+      ctx.fillStyle = ELEMENTS_COLORS.scoreScreen.text;
+
+      ctx.fillText(
+        scoreCloned.toString().padStart(8, '0'),
+        this.cellSize * 7,
+        this.cellSize * 4 - this.cellSize / 2,
+      );
+      ctx.fillText(
+        this.clearBonus.toString().padStart(8, '0'),
+        this.cellSize * 7,
+        this.cellSize * 8 - this.cellSize / 2,
+      );
+
+      start = time;
+    }
+
+    this.animateScore = requestAnimationFrame(animate);
+  };
+
+  window.setTimeout(() => {
+    this.animateScore = requestAnimationFrame(animate);
+  }, 1000);
 }
 
 export {

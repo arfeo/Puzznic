@@ -19,6 +19,7 @@ class Game {
   targetCanvas: HTMLCanvasElement;
   scoreCanvas: HTMLCanvasElement;
   animateTarget: number;
+  animateScore: number;
   targetBlinkDelay: number;
   currentBlock: IBlock;
   blocksMoving: number[];
@@ -56,6 +57,7 @@ class Game {
     removeEventHandlers.call(this);
 
     cancelAnimationFrame(this.animateTarget);
+    cancelAnimationFrame(this.animateScore);
   }
 }
 

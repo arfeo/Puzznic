@@ -3,7 +3,11 @@
     "baseUrl": "..",
     "module": "commonjs",
     "target": "es5",
-    "lib": ["es6", "dom"],
+    "lib": [
+      "es2017",
+      "es6",
+      "dom"
+    ],
     "sourceMap": true,
     "allowJs": true,
     "moduleResolution": "node",

@@ -13,6 +13,10 @@ function animateTarget() {
   let state = 1;
 
   const animate = (time: number) => {
+    if (this.isLevelCompleted) {
+      return cancelAnimationFrame(this.animateTarget);
+    }
+
     if (time - start >= this.targetBlinkDelay) {
       start = time;
 

@@ -38,57 +38,67 @@ function keyDownHandler(event: KeyboardEvent) {
 
   switch (event.key) {
     case FunctionalKeys.Catch: {
-      key = 'catch';
+      if (!this.isLevelCompleted) {
+        key = 'catch';
 
-      this.currentBlock = checkBlockPosition.call(this, this.level.target[1], this.level.target[0]);
+        this.currentBlock = checkBlockPosition.call(this, this.level.target[1], this.level.target[0]);
 
-      if (this.currentBlock !== false) {
-        this.targetBlinkDelay = TARGET_BLINK_DELAY / 3;
+        if (this.currentBlock !== false) {
+          this.targetBlinkDelay = TARGET_BLINK_DELAY / 3;
+        }
       }
       break;
     }
     case FunctionalKeys.Up: {
-      key = 'up';
+      if (!this.isLevelCompleted) {
+        key = 'up';
 
-      if (checkTargetMove.call(this, key)) {
-        this.level.target = [this.level.target[0] - 1, this.level.target[1]];
+        if (checkTargetMove.call(this, key)) {
+          this.level.target = [this.level.target[0] - 1, this.level.target[1]];
+        }
       }
       break;
     }
     case FunctionalKeys.Right: {
-      const nextX: number = this.level.target[1] + 1;
-      const nextY: number = this.level.target[0];
+      if (!this.isLevelCompleted) {
+        const nextX: number = this.level.target[1] + 1;
+        const nextY: number = this.level.target[0];
 
-      key = 'right';
+        key = 'right';
 
-      if (!this.keysDown.catch && checkTargetMove.call(this, key)) {
-        this.level.target = [nextY, nextX];
-      } else {
-        if (!checkObstacle.call(this, nextX, nextY)) {
-          animateBlockMove.call(this, this.currentBlock, nextX, nextY);
+        if (!this.keysDown.catch && checkTargetMove.call(this, key)) {
+          this.level.target = [nextY, nextX];
+        } else {
+          if (!checkObstacle.call(this, nextX, nextY)) {
+            animateBlockMove.call(this, this.currentBlock, nextX, nextY);
+          }
         }
       }
       break;
     }
     case FunctionalKeys.Down: {
-      key = 'down';
+      if (!this.isLevelCompleted) {
+        key = 'down';
 
-      if (checkTargetMove.call(this, key)) {
-        this.level.target = [this.level.target[0] + 1, this.level.target[1]];
+        if (checkTargetMove.call(this, key)) {
+          this.level.target = [this.level.target[0] + 1, this.level.target[1]];
+        }
       }
       break;
     }
     case FunctionalKeys.Left: {
-      const nextX: number = this.level.target[1] - 1;
-      const nextY: number = this.level.target[0];
+      if (!this.isLevelCompleted) {
+        const nextX: number = this.level.target[1] - 1;
+        const nextY: number = this.level.target[0];
 
-      key = 'left';
+        key = 'left';
 
-      if (!this.keysDown.catch && checkTargetMove.call(this, key)) {
-        this.level.target = [nextY, nextX];
-      } else {
-        if (!checkObstacle.call(this, nextX, nextY)) {
-          animateBlockMove.call(this, this.currentBlock, nextX, nextY);
+        if (!this.keysDown.catch && checkTargetMove.call(this, key)) {
+          this.level.target = [nextY, nextX];
+        } else {
+          if (!checkObstacle.call(this, nextX, nextY)) {
+            animateBlockMove.call(this, this.currentBlock, nextX, nextY);
+          }
         }
       }
       break;

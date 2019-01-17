@@ -1,4 +1,5 @@
-import { animateBlockMove, animateBlocksElimination } from './animations';
+import { animateBlockMove, animateBlockElimination } from './animations';
+import { renderScoreScreen } from './render';
 
 import { IBlock } from '../../types/game';
 
@@ -132,7 +133,15 @@ function checkBlockGroups() {
     }
   });
 
-  animateBlocksElimination.call(this, neighbours);
+  if (neighbours.length > 0) {
+    Promise.all(neighbours.map((id: number) => animateBlockElimination.call(this, id))).then(() => {
+      if (this.level.blocks.length === 0) {
+        window.setTimeout(renderScoreScreen.bind(this), 1000);
+      } else {
+        checkBlocksToFall.call(this);
+      }
+    });
+  }
 }
 
 export {

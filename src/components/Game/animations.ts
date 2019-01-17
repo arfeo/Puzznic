@@ -1,6 +1,6 @@
 import { BLOCK_FALL_SPEED, ELEMENTS_COLORS } from '../../constants/game';
 
-import { renderBlock, renderElementsList, renderScoreScreen, renderTarget } from './render';
+import { renderBlock, renderElementsList, renderTarget } from './render';
 import { checkBlockGroups, checkBlocksToFall, checkObstacle } from './actions';
 
 import { IBlock } from '../../types/game';
@@ -137,43 +137,55 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
 }
 
 /**
- * Function animates the elimination of specified blocks
+ * Function animates elimination of the specified block
  *
- * @param blockIds
+ * @param blockId
  */
-function animateBlocksElimination(blockIds: number[]) {
-  if (blockIds.length === 0) {
-    return;
-  }
-
-  const ctx: CanvasRenderingContext2D = this.blocksCanvas.getContext('2d');
-
-  blockIds.map((id: number) => {
+function animateBlockElimination(blockId: number): Promise<void> {
+  return new Promise((resolve) => {
+    const ctx: CanvasRenderingContext2D = this.blocksCanvas.getContext('2d');
     const block: IBlock[] = this.level.blocks.filter((item: IBlock) => {
-      return item.id === id;
+      return item.id === blockId;
     });
 
     if (block && block.length > 0) {
-      ctx.clearRect(
-        this.cellSize * block[0].position[1],
-        this.cellSize * block[0].position[0],
-        this.cellSize,
-        this.cellSize,
-      );
+      const left: number = this.cellSize * block[0].position[1];
+      const top: number = this.cellSize * block[0].position[0];
+      let start: number = performance.now();
+      let frame: number;
+      let step = 1;
 
-      this.level.blocks = this.level.blocks.filter((item: IBlock) => {
-        return item.id !== id;
-      });
+      const animate = (time: number) => {
+        if (step === 5) {
+          ctx.clearRect(
+            left,
+            top,
+            this.cellSize,
+            this.cellSize,
+          );
 
-      renderElementsList.call(this);
+          this.level.blocks = this.level.blocks.filter((item: IBlock) => {
+            return item.id !== blockId;
+          });
 
-      if (this.level.blocks.length === 0) {
-        window.setTimeout(renderScoreScreen.bind(this), 1000);
-      }
+          renderElementsList.call(this);
+
+          cancelAnimationFrame(frame);
+
+          return resolve();
+        }
+
+        if (time - start > 200) {
+          start = time;
+          step += 1;
+        }
+
+        frame = requestAnimationFrame(animate);
+      };
+
+      frame = requestAnimationFrame(animate);
     }
   });
-
-  checkBlocksToFall.call(this);
 }
 
-export { animateTarget, animateBlockMove, animateBlocksElimination };
+export { animateTarget, animateBlockMove, animateBlockElimination };

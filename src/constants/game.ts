@@ -33,10 +33,15 @@ export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
     state2: 'rgb(96, 95, 96)',
     state3: 'rgb(255, 255, 255)',
   },
+  elementsList: {
+    text: 'rgb(0, 0, 0)',
+  }
 };
 
 export const TARGET_BLINK_DELAY = 300;
 
 export const BLOCK_FALL_SPEED = 10;
+
+export const ELEMENTS_LIST_FONT = '5vmin Helvetica, Arial';
 
 export const BLOCK_LABEL_FONT = '3vmin Helvetica, Arial';

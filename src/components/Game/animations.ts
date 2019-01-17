@@ -1,6 +1,6 @@
 import { BLOCK_FALL_SPEED, ELEMENTS_COLORS } from '../../constants/game';
 
-import { renderBlock, renderTarget } from './render';
+import { renderBlock, renderElementsList, renderTarget } from './render';
 import { checkBlockGroups, checkBlocksToFall, checkObstacle } from './actions';
 
 import { IBlock } from '../../types/game';
@@ -68,6 +68,7 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
 
     renderBlock.call(
       this,
+      ctx,
       block.type,
       this.cellSize * nextX,
       this.cellSize * nextY,
@@ -114,6 +115,7 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
 
       renderBlock.call(
         this,
+        ctx,
         block.type,
         this.cellSize * nextX,
         this.cellSize * (nextY - 1 + step / BLOCK_FALL_SPEED),
@@ -158,6 +160,8 @@ function animateBlocksElimination(blockIds: number[]) {
       this.level.blocks = this.level.blocks.filter((item: IBlock) => {
         return item.id !== id;
       });
+
+      renderElementsList.call(this);
     }
   });
 

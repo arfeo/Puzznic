@@ -1,7 +1,14 @@
-import { BLOCK_LABEL_FONT, ELEMENTS_COLORS, MapDefinitions } from '../../constants/game';
+import {
+  BLOCK_LABEL_FONT,
+  ELEMENTS_COLORS,
+  ELEMENTS_LIST_FONT,
+  MapDefinitions,
+} from '../../constants/game';
 
 import { drawRectangle, drawTriangle, drawLineToAngle } from '../../utils/drawing';
 import { animateTarget } from './animations';
+
+import { IBlock } from '../../types/game';
 
 /**
  * Function creates game window element, game panel and all needed canvases
@@ -69,10 +76,12 @@ function renderLevel() {
     const top: number = this.cellSize * block.position[0];
     const left: number = this.cellSize * block.position[1];
 
-    renderBlock.call(this, block.type, left, top);
+    renderBlock.call(this, this.blocksCanvas.getContext('2d'), block.type, left, top);
   }
 
   animateTarget.call(this);
+
+  renderElementsList.call(this);
 }
 
 /**
@@ -149,13 +158,12 @@ function renderMapElement(x: number, y: number) {
 /**
  * Function renders a single block at the given coordinates
  *
+ * @param ctx
  * @param type
  * @param left
  * @param top
  */
-function renderBlock(type: number, left: number, top: number) {
-  const ctx: CanvasRenderingContext2D = this.blocksCanvas.getContext('2d');
-
+function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, top: number) {
   drawRectangle(
     ctx,
     left,
@@ -321,4 +329,55 @@ function renderTarget(color: string) {
   );
 }
 
-export { renderGameWindow, renderLevel, renderBlock, renderTarget };
+/**
+ * Function renders the list of currently available blocks (grouped by types) and their count
+ */
+function renderElementsList() {
+  const { blocks } = this.level;
+
+  if (!blocks) {
+    return;
+  }
+
+  const ctx: CanvasRenderingContext2D = this.elementsCanvas.getContext('2d');
+  let index = 1;
+
+  ctx.clearRect(0, 0, this.cellSize * 3, this.cellSize * 11);
+
+  for (let i = 1; i <= 8; i += 1) {
+    const elements: IBlock[] = blocks.filter((block: IBlock) => {
+      return block.type === i;
+    });
+
+    if (elements && elements.length > 0) {
+      renderBlock.call(
+        this,
+        ctx,
+        elements[0].type,
+        this.cellSize / 3,
+        this.cellSize * (index - 1) + this.cellSize * (index - 1) / 3 + this.cellSize / 3,
+      );
+
+      ctx.font = ELEMENTS_LIST_FONT;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'bottom';
+      ctx.fillStyle = ELEMENTS_COLORS.elementsList.text;
+
+      ctx.fillText(
+        `X${elements.length}`,
+        this.cellSize / 2 + this.cellSize,
+        this.cellSize * (index - 1) + this.cellSize * (index - 1) / 3 + this.cellSize / 3 + this.cellSize,
+      );
+
+      index += 1;
+    }
+  }
+}
+
+export {
+  renderGameWindow,
+  renderLevel,
+  renderBlock,
+  renderTarget,
+  renderElementsList,
+};

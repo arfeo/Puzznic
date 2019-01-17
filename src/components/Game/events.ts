@@ -1,9 +1,10 @@
+import { Game } from './index';
+
 import { APP } from '../../constants/global';
 import { FunctionalKeys, TARGET_BLINK_DELAY } from '../../constants/game';
 
 import { checkBlockPosition, checkObstacle, checkTargetMove } from './actions';
 import { animateBlockMove } from './animations';
-
 /**
  * Function creates all game's event listeners
  */
@@ -89,6 +90,16 @@ function keyDownHandler(event: KeyboardEvent) {
         if (!checkObstacle.call(this, nextX, nextY)) {
           animateBlockMove.call(this, this.currentBlock, nextX, nextY);
         }
+      }
+      break;
+    }
+    case FunctionalKeys.Continue: {
+      if (!this.isGameOver) {
+        this.destroy();
+
+        APP.pageInstance = new Game(this.level.id + 1, this.score);
+      } else {
+        alert('Congratulations!');
       }
       break;
     }

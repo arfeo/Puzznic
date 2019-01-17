@@ -22,6 +22,9 @@ class Game {
   targetBlinkDelay: number;
   currentBlock: IBlock;
   blocksMoving: number[];
+  clearBonus: number;
+  isLevelCompleted: boolean;
+  isGameOver: boolean;
 
   constructor(level = 1, score = 0) {
     this.level = JSON.parse(JSON.stringify(LEVELS.filter((item: ILevel) => item.id === level)[0]));
@@ -34,6 +37,10 @@ class Game {
 
     this.currentBlock = null;
     this.blocksMoving = [];
+    this.clearBonus = 0;
+
+    this.isLevelCompleted = false;
+    this.isGameOver = false;
 
     this.render();
   }

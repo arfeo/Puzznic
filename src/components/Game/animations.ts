@@ -1,6 +1,6 @@
 import { BLOCK_FALL_SPEED, ELEMENTS_COLORS } from '../../constants/game';
 
-import { renderBlock, renderElementsList, renderTarget } from './render';
+import { renderBlock, renderElementsList, renderScoreScreen, renderTarget } from './render';
 import { checkBlockGroups, checkBlocksToFall, checkObstacle } from './actions';
 
 import { IBlock } from '../../types/game';
@@ -162,6 +162,10 @@ function animateBlocksElimination(blockIds: number[]) {
       });
 
       renderElementsList.call(this);
+
+      if (this.level.blocks.length === 0) {
+        window.setTimeout(renderScoreScreen.bind(this), 1000);
+      }
     }
   });
 

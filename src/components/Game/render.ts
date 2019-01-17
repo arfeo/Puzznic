@@ -2,13 +2,15 @@ import {
   BLOCK_LABEL_FONT,
   ELEMENTS_COLORS,
   ELEMENTS_LIST_FONT,
+  SCORE_SCREEN_FONT,
   MapDefinitions,
 } from '../../constants/game';
+import { LEVELS } from '../../constants/levels';
 
 import { drawRectangle, drawTriangle, drawLineToAngle } from '../../utils/drawing';
 import { animateTarget } from './animations';
 
-import { IBlock } from '../../types/game';
+import { IBlock, ILevel } from '../../types/game';
 
 /**
  * Function creates game window element, game panel and all needed canvases
@@ -48,6 +50,8 @@ function renderGameWindow() {
   this.targetCanvas.height = this.cellSize * 12;
   this.scoreCanvas.width = this.cellSize * 14;
   this.scoreCanvas.height = this.cellSize * 12;
+
+  appRoot.innerHTML = '';
 
   appRoot.appendChild(gameWindow);
   gameWindow.appendChild(backgroundCanvas);
@@ -453,10 +457,64 @@ function renderElementsList() {
   }
 }
 
+/**
+ * ...
+ */
+function renderScoreScreen() {
+  const ctx: CanvasRenderingContext2D = this.scoreCanvas.getContext('2d');
+  const nextLevel: ILevel[] = LEVELS.filter((level: ILevel) => level.id === this.level.id + 1);
+  const password: string = nextLevel && nextLevel.length > 0 ? nextLevel[0].password : null;
+
+  this.isLevelCompleted = true;
+  this.clearBonus += this.level.bonus;
+
+  drawRectangle(
+    ctx,
+    0,
+    0,
+    this.cellSize * 14,
+    this.cellSize * 12,
+    ELEMENTS_COLORS.scoreScreen.background,
+    this.cellSize / 3,
+    ELEMENTS_COLORS.scoreScreen.outerBorder,
+  );
+  drawRectangle(
+    ctx,
+    this.cellSize / 6,
+    this.cellSize / 6,
+    this.cellSize * 14 - this.cellSize / 3,
+    this.cellSize * 12 - this.cellSize / 3,
+    ELEMENTS_COLORS.scoreScreen.background,
+    this.cellSize / 12,
+    ELEMENTS_COLORS.scoreScreen.innerBorder,
+  );
+
+  ctx.font = SCORE_SCREEN_FONT;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = ELEMENTS_COLORS.scoreScreen.text;
+
+  ctx.fillText('SCORE', this.cellSize * 7, this.cellSize * 2);
+  ctx.fillText(this.score, this.cellSize * 7, this.cellSize * 4 - this.cellSize / 2);
+  ctx.fillText('CLEAR BONUS', this.cellSize * 7, this.cellSize * 6);
+  ctx.fillText(this.clearBonus, this.cellSize * 7, this.cellSize * 8 - this.cellSize / 2);
+
+  if (password) {
+    ctx.fillText(
+      `${password.toUpperCase().slice(0, 4)} ${password.toUpperCase().slice(4, 8)}`,
+      this.cellSize * 7,
+      this.cellSize * 10,
+    );
+  } else {
+    this.isGameOver = true;
+  }
+}
+
 export {
   renderGameWindow,
   renderLevel,
   renderBlock,
   renderTarget,
   renderElementsList,
+  renderScoreScreen,
 };

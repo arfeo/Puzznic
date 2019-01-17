@@ -1,5 +1,9 @@
+import { Game } from '../Game';
+
 import { APP } from '../../constants/global';
 import { MenuFunctionalKeys } from '../../constants/menu';
+
+import { renderPointer } from './render';
 
 /**
  * Function creates all game's event listeners
@@ -27,15 +31,29 @@ function removeEventHandlers() {
 function keyDownHandler(event: KeyboardEvent) {
   switch (event.key) {
     case MenuFunctionalKeys.Up: {
-      console.log('Up');
+      if (this.currentItem > 1) {
+        this.currentItem -= 1;
+        renderPointer.call(this);
+      }
       break;
     }
     case MenuFunctionalKeys.Down: {
-      console.log('Down');
+      if (this.currentItem < 2) {
+        this.currentItem += 1;
+        renderPointer.call(this);
+      }
       break;
     }
     case MenuFunctionalKeys.Continue: {
-      console.log('Enter');
+      switch (this.currentItem) {
+        case 1: {
+          this.destroy();
+
+          APP.pageInstance = new Game();
+          break;
+        }
+        default: break;
+      }
       break;
     }
     default: break;

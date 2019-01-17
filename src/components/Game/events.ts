@@ -1,10 +1,12 @@
 import { Game } from './index';
+import { Menu } from '../Menu';
 
 import { APP } from '../../constants/global';
 import { FunctionalKeys, TARGET_BLINK_DELAY } from '../../constants/game';
 
 import { checkBlockPosition, checkObstacle, checkTargetMove } from './actions';
 import { animateBlockMove } from './animations';
+
 /**
  * Function creates all game's event listeners
  */
@@ -110,7 +112,9 @@ function keyDownHandler(event: KeyboardEvent) {
 
           APP.pageInstance = new Game(this.level.id + 1, this.score);
         } else {
-          alert('Congratulations!');
+          this.destroy();
+
+          APP.pageInstance = new Menu();
         }
       }
       break;

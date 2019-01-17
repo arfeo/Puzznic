@@ -25,7 +25,7 @@ function renderMenuWindow() {
 }
 
 /**
- * Function renders the menu, including logo
+ * Function renders the game menu, including logo
  */
 function renderMenuContent() {
   const ctx: CanvasRenderingContext2D = this.menuCanvas.getContext('2d');
@@ -57,6 +57,30 @@ function renderMenuContent() {
 
   ctx.fillText('Play', this.cellSize * 5, this.cellSize * 7.5);
   ctx.fillText('Password', this.cellSize * 5, this.cellSize * 9);
+
+  renderPointer.call(this);
 }
 
-export { renderMenuWindow, renderMenuContent };
+/**
+ * Function renders a pointer arrow against the currently selected menu item
+ */
+function renderPointer() {
+  const ctx: CanvasRenderingContext2D = this.menuCanvas.getContext('2d');
+  const yOffset: number = (this.currentItem - 1) * 1.5;
+
+  ctx.clearRect(
+    this.cellSize * 3.5,
+    this.cellSize * 6.5,
+    this.cellSize * 1.4,
+    this.cellSize * 2.5,
+  );
+
+  ctx.font = MENU_ITEMS_FONT;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'bottom';
+  ctx.fillStyle = MENU_ELEMENTS_COLORS.items.text;
+
+  ctx.fillText('➧', this.cellSize * 4, this.cellSize * (yOffset + 7.55));
+}
+
+export { renderMenuWindow, renderMenuContent, renderPointer };

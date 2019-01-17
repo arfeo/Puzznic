@@ -1,0 +1,15 @@
+@import '../../assets/styles/variables';
+
+.menuWindow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .-menu-canvas {
+    width: calc(#{$cellSize * 14});
+    height: calc(#{$cellSize * 12});
+    background-color: white;
+    z-index: 1;
+  }
+}

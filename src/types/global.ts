@@ -1,10 +1,11 @@
 import { Game } from '../components/Game';
+import { Menu } from '../components/Menu';
 
 export interface IGlobals {
-  pageInstance: Game;
+  pageInstance: Game | Menu;
   eventListeners: {
-    onKeyDown: EventListener;
-    onKeyUp: EventListener;
+    onKeyDown?: EventListener;
+    onKeyUp?: EventListener;
   };
   cellSize: number;
 }

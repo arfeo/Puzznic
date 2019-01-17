@@ -1,4 +1,4 @@
-import { APP } from '../../constants/global';
+import { APP } from '../constants/global';
 
 /**
  * Function calculates the analogue of CSS vmin in pixels

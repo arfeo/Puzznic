@@ -2,7 +2,7 @@ import { LEVELS } from '../../constants/levels';
 import { TARGET_BLINK_DELAY } from '../../constants/game';
 
 import { renderGameWindow, renderLevel } from './render';
-import { setCellSize } from './utils';
+import { setCellSize } from '../../utils/common';
 import { removeEventHandlers, setUpEventHandlers } from './events';
 
 import { IBlock, IKeysDown, ILevel } from '../../types/game';

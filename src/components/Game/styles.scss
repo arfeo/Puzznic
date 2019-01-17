@@ -57,5 +57,14 @@
         z-index: 4;
       }
     }
+
+    .-score-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(#{$cellSize * 14});
+      height: calc(#{$cellSize * 12});
+      z-index: 10;
+    }
   }
 }

@@ -17,6 +17,7 @@ class Game {
   gridCanvas: HTMLCanvasElement;
   blocksCanvas: HTMLCanvasElement;
   targetCanvas: HTMLCanvasElement;
+  scoreCanvas: HTMLCanvasElement;
   animateTarget: number;
   targetBlinkDelay: number;
   currentBlock: IBlock;

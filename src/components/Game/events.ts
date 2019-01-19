@@ -6,6 +6,7 @@ import { FunctionalKeys, TARGET_BLINK_DELAY } from '../../constants/game';
 
 import { checkBlockPosition, checkObstacle, checkTargetMove } from './actions';
 import { animateBlockMove } from './animations';
+import { renderLevel } from './render';
 
 /**
  * Function creates all game's event listeners
@@ -110,12 +111,20 @@ function keyDownHandler(event: KeyboardEvent) {
         if (!this.isGameOver) {
           this.destroy();
 
-          APP.pageInstance = new Game(this.level.id + 1, this.score);
+          APP.pageInstance = new Game(this.level.id + 1, this.score, this.isIconModeOn);
         } else {
           this.destroy();
 
           APP.pageInstance = new Menu();
         }
+      }
+      break;
+    }
+    case FunctionalKeys.SwitchIconMode: {
+      if (this.blocksMoving.length === 0) {
+        this.isIconModeOn = !this.isIconModeOn;
+
+        renderLevel.call(this);
       }
       break;
     }

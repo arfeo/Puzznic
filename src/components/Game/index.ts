@@ -30,7 +30,7 @@ class Game {
   isLevelCompleted: boolean;
   isGameOver: boolean;
 
-  constructor(level = 1, score = 0) {
+  constructor(level = 1, score = 0, icons = true) {
     this.level = JSON.parse(JSON.stringify(LEVELS.filter((item: ILevel) => item.id === level)[0]));
     this.score = score;
     this.moves = 0;
@@ -44,7 +44,7 @@ class Game {
     this.blocksMoving = [];
     this.clearBonus = 0;
 
-    this.isIconModeOn = true;
+    this.isIconModeOn = icons;
     this.isLevelCompleted = false;
     this.isGameOver = false;
 

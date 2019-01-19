@@ -4,6 +4,7 @@ import { TARGET_BLINK_DELAY } from '../../constants/game';
 import { renderGameWindow, renderLevel } from './render';
 import { setCellSize } from '../../utils/common';
 import { removeEventHandlers, setUpEventHandlers } from './events';
+import { generateBlocksIconsCorrelation } from './utils';
 
 import { IBlock, IKeysDown, ILevel } from '../../types/game';
 
@@ -24,6 +25,8 @@ class Game {
   currentBlock: IBlock;
   blocksMoving: number[];
   clearBonus: number;
+  blocksIcons: { [key: number]: number };
+  isIconModeOn: boolean;
   isLevelCompleted: boolean;
   isGameOver: boolean;
 
@@ -33,6 +36,7 @@ class Game {
     this.moves = 0;
 
     this.cellSize = setCellSize();
+    this.blocksIcons = generateBlocksIconsCorrelation();
 
     this.targetBlinkDelay = TARGET_BLINK_DELAY;
 
@@ -40,6 +44,7 @@ class Game {
     this.blocksMoving = [];
     this.clearBonus = 0;
 
+    this.isIconModeOn = true;
     this.isLevelCompleted = false;
     this.isGameOver = false;
 

@@ -29,6 +29,11 @@ export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
     label: 'rgb(255, 255, 255)',
     labelShadow: 'rgb(0, 0, 0)',
   },
+  icon: {
+    color1: 'rgb(255, 255, 255)',
+    color2: 'rgb(0, 0, 0)',
+    color3: 'rgb(190, 188, 191)',
+  },
   target: {
     state1: 'rgb(190, 188, 191)',
     state2: 'rgb(96, 95, 96)',

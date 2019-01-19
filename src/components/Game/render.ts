@@ -8,7 +8,13 @@ import {
 } from '../../constants/game';
 import { LEVELS } from '../../constants/levels';
 
-import { drawRectangle, drawTriangle, drawLineToAngle } from '../../utils/drawing';
+import {
+  drawRectangle,
+  drawTriangle,
+  drawLineToAngle,
+  drawCircle,
+} from '../../utils/drawing';
+
 import { animateTarget } from './animations';
 
 import { IBlock, ILevel } from '../../types/game';
@@ -260,15 +266,15 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     ctx,
     left + this.cellSize / 6,
     top + this.cellSize / 6,
-    this.cellSize -  this.cellSize / 3,
-    this.cellSize -  this.cellSize / 3,
+    this.cellSize * 2 / 3,
+    this.cellSize * 2 / 3,
     ELEMENTS_COLORS.block.background,
   );
   drawLineToAngle(
     ctx,
     left + this.cellSize * 3 / 24,
     top + this.cellSize / 6,
-    this.cellSize - this.cellSize / 3,
+    this.cellSize * 2 / 3,
     90,
     ELEMENTS_COLORS.block.highlight,
     this.cellSize / 12,
@@ -277,7 +283,7 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     ctx,
     left + this.cellSize / 6,
     top + this.cellSize * 3 / 24,
-    this.cellSize - this.cellSize / 3,
+    this.cellSize * 2 / 3,
     0,
     ELEMENTS_COLORS.block.highlight,
     this.cellSize / 12,
@@ -285,17 +291,17 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
   drawLineToAngle(
     ctx,
     left + this.cellSize / 6,
-    top + this.cellSize - this.cellSize * 3 / 24,
-    this.cellSize - this.cellSize / 3,
+    top + this.cellSize * 21 / 24,
+    this.cellSize * 2 / 3,
     0,
     ELEMENTS_COLORS.block.background,
     this.cellSize / 12,
   );
   drawLineToAngle(
     ctx,
-    left + this.cellSize - this.cellSize * 3 / 24,
+    left + this.cellSize * 21 / 24,
     top + this.cellSize / 6,
-    this.cellSize - this.cellSize / 3,
+    this.cellSize * 2 / 3,
     90,
     ELEMENTS_COLORS.block.background,
     this.cellSize / 12,
@@ -310,7 +316,7 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
   );
   drawRectangle(
     ctx,
-    left + this.cellSize - this.cellSize / 12,
+    left + this.cellSize * 11 / 12,
     top,
     this.cellSize / 12,
     this.cellSize / 12,
@@ -318,8 +324,8 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
   );
   drawRectangle(
     ctx,
-    left + this.cellSize - this.cellSize / 12,
-    top + this.cellSize - this.cellSize / 12,
+    left + this.cellSize * 11 / 12,
+    top + this.cellSize * 11 / 12,
     this.cellSize / 12,
     this.cellSize / 12,
     ELEMENTS_COLORS.empty.background,
@@ -327,29 +333,394 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
   drawRectangle(
     ctx,
     left,
-    top + this.cellSize - this.cellSize / 12,
+    top + this.cellSize * 11 / 12,
     this.cellSize / 12,
     this.cellSize / 12,
     ELEMENTS_COLORS.empty.background,
   );
 
-  ctx.font = BLOCK_LABEL_FONT;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
+  if (this.isIconModeOn) {
+    renderBlockIcon.call(this, ctx, this.blocksIcons[type], left, top);
+  } else {
+    ctx.font = BLOCK_LABEL_FONT;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
 
-  ctx.fillStyle = ELEMENTS_COLORS.block.labelShadow;
-  ctx.fillText(
-    type.toString(),
-    left + this.cellSize /2 + this.cellSize / 12,
-    top + this.cellSize /2 + this.cellSize / 12,
-  );
+    ctx.fillStyle = ELEMENTS_COLORS.block.labelShadow;
+    ctx.fillText(
+      type.toString(),
+      left + this.cellSize * 7 / 12,
+      top + this.cellSize * 7 / 12,
+    );
 
-  ctx.fillStyle = ELEMENTS_COLORS.block.label;
-  ctx.fillText(
-    type.toString(),
-    left + this.cellSize /2,
-    top + this.cellSize /2,
-  );
+    ctx.fillStyle = ELEMENTS_COLORS.block.label;
+    ctx.fillText(
+      type.toString(),
+      left + this.cellSize / 2,
+      top + this.cellSize / 2,
+    );
+  }
+}
+
+/**
+ * Function renders a block icon according to the specified id
+ *
+ * @param ctx
+ * @param id
+ * @param left
+ * @param top
+ */
+function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number, top: number) {
+  switch (id) {
+    case 1: {
+      drawTriangle(
+        ctx,
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize / 4,
+        ],
+        [
+          left + this.cellSize / 4,
+          top + this.cellSize * 3 / 4,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize * 3 / 4,
+        ],
+        ELEMENTS_COLORS.icon.color1,
+      );
+      drawTriangle(
+        ctx,
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize / 4,
+        ],
+        [
+          left + this.cellSize * 3 / 4,
+          top + this.cellSize * 3 / 4,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize * 3 / 4,
+        ],
+        ELEMENTS_COLORS.icon.color2,
+      );
+      break;
+    }
+    case 2: {
+      drawRectangle(
+        ctx,
+        left + this.cellSize / 3,
+        top + this.cellSize / 3,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color2,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize / 4,
+        top + this.cellSize * 3 / 12,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color1,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize * 2 / 3,
+        top + this.cellSize / 3,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color2,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize * 7 / 12,
+        top + this.cellSize / 4,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color1,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize / 3,
+        top + this.cellSize * 2 / 3,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color2,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize / 4,
+        top + this.cellSize * 7 / 12,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color1,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize * 2 / 3,
+        top + this.cellSize * 2 / 3,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color2,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize * 7 / 12,
+        top + this.cellSize * 7 / 12,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color1,
+      );
+      break;
+    }
+    case 3: {
+      drawRectangle(
+        ctx,
+        left + this.cellSize / 2,
+        top + this.cellSize / 3,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color2,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize * 5 / 12,
+        top + this.cellSize / 4,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color1,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize / 3,
+        top + this.cellSize / 2,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color2,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize / 4,
+        top + this.cellSize * 5 / 12,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color1,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize * 2 / 3,
+        top + this.cellSize / 2,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color2,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize * 7 / 12,
+        top + this.cellSize * 5 / 12,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color1,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize / 2,
+        top + this.cellSize * 2 / 3,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color2,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize * 5 / 12,
+        top + this.cellSize * 7 / 12,
+        this.cellSize / 6,
+        this.cellSize / 6,
+        ELEMENTS_COLORS.icon.color1,
+      );
+      break;
+    }
+    case 4: {
+      drawTriangle(
+        ctx,
+        [
+          left + this.cellSize / 4,
+          top + this.cellSize / 4,
+        ],
+        [
+          left + this.cellSize * 3 / 4,
+          top + this.cellSize / 4,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize * 3 / 8,
+        ],
+        ELEMENTS_COLORS.icon.color1,
+      );
+      drawTriangle(
+        ctx,
+        [
+          left + this.cellSize / 4,
+          top + this.cellSize / 4,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize * 3 / 8,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize * 3 / 4,
+        ],
+        ELEMENTS_COLORS.icon.color3,
+      );
+      drawTriangle(
+        ctx,
+        [
+          left + this.cellSize * 3 / 4,
+          top + this.cellSize / 4,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize * 3 / 8,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize * 3 / 4,
+        ],
+        ELEMENTS_COLORS.icon.color2,
+      );
+      break;
+    }
+    case 5: {
+      drawTriangle(
+        ctx,
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize / 4,
+        ],
+        [
+          left + this.cellSize / 4,
+          top + this.cellSize / 2,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize / 2,
+        ],
+        ELEMENTS_COLORS.icon.color1,
+      );
+      drawTriangle(
+        ctx,
+        [
+          left + this.cellSize / 4,
+          top + this.cellSize / 2,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize / 2,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize * 3 / 4,
+        ],
+        ELEMENTS_COLORS.icon.color3,
+      );
+      drawTriangle(
+        ctx,
+        [
+          left + this.cellSize * 3 / 4,
+          top + this.cellSize / 2,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize / 2,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize * 3 / 4,
+        ],
+        ELEMENTS_COLORS.icon.color2,
+      );
+      drawTriangle(
+        ctx,
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize / 4,
+        ],
+        [
+          left + this.cellSize / 2,
+          top + this.cellSize / 2,
+        ],
+        [
+          left + this.cellSize * 3 / 4,
+          top + this.cellSize / 2,
+        ],
+        ELEMENTS_COLORS.icon.color3,
+      );
+      break;
+    }
+    case 6: {
+      drawRectangle(
+        ctx,
+        left + this.cellSize / 3,
+        top + this.cellSize / 3,
+        this.cellSize / 2,
+        this.cellSize / 2,
+        ELEMENTS_COLORS.icon.color2,
+      );
+      drawRectangle(
+        ctx,
+        left + this.cellSize / 4,
+        top + this.cellSize / 4,
+        this.cellSize / 2,
+        this.cellSize / 2,
+        ELEMENTS_COLORS.icon.color1,
+      );
+      break;
+    }
+    case 7: {
+      drawCircle(
+        ctx,
+        left + this.cellSize * 13 / 24,
+        top + this.cellSize * 13 / 24,
+        this.cellSize / 4,
+        ELEMENTS_COLORS.icon.color2,
+      );
+      drawCircle(
+        ctx,
+        left + this.cellSize / 2,
+        top + this.cellSize / 2,
+        this.cellSize / 4,
+        ELEMENTS_COLORS.icon.color3,
+      );
+      drawCircle(
+        ctx,
+        left + this.cellSize * 11 / 24,
+        top + this.cellSize * 11 / 24,
+        this.cellSize / 8,
+        ELEMENTS_COLORS.icon.color1,
+      );
+      break;
+    }
+    case 8: {
+      drawCircle(
+        ctx,
+        left + this.cellSize * 13 / 24,
+        top + this.cellSize * 13 / 24,
+        this.cellSize / 12,
+        ELEMENTS_COLORS.icon.color2,
+      );
+      drawCircle(
+        ctx,
+        left + this.cellSize / 2,
+        top + this.cellSize / 2,
+        this.cellSize / 12,
+        ELEMENTS_COLORS.icon.color3,
+      );
+      break;
+    }
+    default: break;
+  }
 }
 
 /**
@@ -373,8 +744,8 @@ function renderTarget(color: string) {
     ctx,
     left + this.cellSize / 12,
     top + this.cellSize / 12,
-    this.cellSize - this.cellSize / 6,
-    this.cellSize - this.cellSize / 6,
+    this.cellSize * 5 / 6,
+    this.cellSize * 5 / 6,
     null,
     this.cellSize / 6,
     color,
@@ -389,7 +760,7 @@ function renderTarget(color: string) {
   );
   drawRectangle(
     ctx,
-    left + this.cellSize - this.cellSize / 12,
+    left + this.cellSize * 11 / 12,
     top,
     this.cellSize / 12,
     this.cellSize / 12,
@@ -397,8 +768,8 @@ function renderTarget(color: string) {
   );
   drawRectangle(
     ctx,
-    left + this.cellSize - this.cellSize / 12,
-    top + this.cellSize - this.cellSize / 12,
+    left + this.cellSize * 11 / 12,
+    top + this.cellSize * 11 / 12,
     this.cellSize / 12,
     this.cellSize / 12,
     ELEMENTS_COLORS.empty.background,

@@ -1,9 +1,9 @@
-import { StaticPage } from '../common/StaticPage';
+import { Page } from '../common/Page';
 
 import { setUpEventHandlers, removeEventHandlers } from './events';
 import { renderPasswordWindow } from './render';
 
-class Password extends StaticPage {
+class Password extends Page {
   constructor() {
     super();
   }

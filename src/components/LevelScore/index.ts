@@ -1,9 +1,9 @@
-import { StaticPage } from '../common/StaticPage';
+import { Page } from '../common/Page';
 import { Game } from '../Game';
 
 import { renderLevelScoreWindow } from './render';
 
-class LevelScore extends StaticPage {
+class LevelScore extends Page {
   animateScore: number;
 
   constructor(game: Game) {

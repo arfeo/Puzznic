@@ -1,9 +1,9 @@
-import { StaticPage } from '../common/StaticPage';
+import { Page } from '../common/Page';
 
 import { renderMenuContent } from './render';
 import { setUpEventHandlers, removeEventHandlers } from './events';
 
-class Menu extends StaticPage {
+class Menu extends Page {
   currentItem: number;
 
   constructor() {

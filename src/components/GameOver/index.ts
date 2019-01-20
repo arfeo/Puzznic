@@ -1,15 +1,15 @@
-import { StaticPage } from '../common/StaticPage';
+import { Page } from '../common/Page';
 import { Menu } from '../Menu';
 
 import { APP } from '../../constants/global';
 
-class GameOver extends StaticPage {
+class GameOver extends Page {
   constructor() {
     super();
   }
 
   render() {
-    const ctx: CanvasRenderingContext2D = this.staticPageCanvas.getContext('2d');
+    const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
     ctx.font = '5vmin Courier';
     ctx.textAlign = 'center';

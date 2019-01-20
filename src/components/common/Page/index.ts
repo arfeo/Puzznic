@@ -3,33 +3,34 @@ import { Game } from '../../Game';
 import { setCellSize } from '../../../utils/common';
 import { drawRectangle } from '../../../utils/drawing';
 
-abstract class StaticPage {
+abstract class Page {
   game: Game;
   cellSize: number;
-  staticPageCanvas: HTMLCanvasElement;
+  pageCanvas: HTMLCanvasElement;
   init?(game?: Game): void;
   abstract render(): void;
 
   protected constructor(bordered = true, game?: Game) {
     const appRoot: HTMLElement = document.getElementById('root');
-    const staticPageWindow: HTMLElement = document.createElement('div');
-    this.staticPageCanvas = document.createElement('canvas');
+    const pageWindow: HTMLElement = document.createElement('div');
 
     this.cellSize = setCellSize();
 
-    staticPageWindow.className = 'staticPageWindow';
-    this.staticPageCanvas.className = '-static-page-canvas';
+    this.pageCanvas = document.createElement('canvas');
 
-    this.staticPageCanvas.width = this.cellSize * 14;
-    this.staticPageCanvas.height = this.cellSize * 12;
+    pageWindow.className = 'pageWindow';
+    this.pageCanvas.className = '-page-canvas';
+
+    this.pageCanvas.width = this.cellSize * 14;
+    this.pageCanvas.height = this.cellSize * 12;
 
     appRoot.innerHTML = '';
 
-    appRoot.appendChild(staticPageWindow);
-    staticPageWindow.appendChild(this.staticPageCanvas);
+    appRoot.appendChild(pageWindow);
+    pageWindow.appendChild(this.pageCanvas);
 
     if (bordered) {
-      const ctx: CanvasRenderingContext2D = this.staticPageCanvas.getContext('2d');
+      const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
       drawRectangle(
         ctx,
@@ -61,4 +62,4 @@ abstract class StaticPage {
   }
 }
 
-export { StaticPage };
+export { Page };

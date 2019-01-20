@@ -10,7 +10,7 @@ import { ILevel } from '../../types/game';
  * Function renders the component window
  */
 function renderLevelScoreWindow() {
-  const ctx: CanvasRenderingContext2D = this.staticPageCanvas.getContext('2d');
+  const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   const nextLevel: ILevel = LEVELS.find((level: ILevel) => level.id === this.game.level.id + 1);
   const password: string = nextLevel ? nextLevel.password : null;
   let scoreCloned: number = this.game.score;

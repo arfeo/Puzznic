@@ -8,7 +8,7 @@ import {
  * Function renders the component window
  */
 function renderMenuContent() {
-  const ctx: CanvasRenderingContext2D = this.staticPageCanvas.getContext('2d');
+  const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
   // Logo
   ctx.save();
@@ -45,7 +45,7 @@ function renderMenuContent() {
  * Function renders a pointer arrow against the currently selected menu item
  */
 function renderPointer() {
-  const ctx: CanvasRenderingContext2D = this.staticPageCanvas.getContext('2d');
+  const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   const yOffset: number = (this.currentItem - 1) * 1.5;
 
   ctx.clearRect(

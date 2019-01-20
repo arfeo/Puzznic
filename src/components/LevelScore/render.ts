@@ -1,9 +1,15 @@
 import { Game } from '../Game';
 import { GameOver } from '../GameOver';
 
+import {
+  ELEMENTS_COLORS,
+  SCORE_ANIMATION_SPEED,
+  WINDOW_FONT,
+  FunctionalKeys,
+} from '../../constants/pages';
+
 import { APP } from '../../constants/global';
 import { LEVELS } from '../../constants/levels';
-import { ELEMENTS_COLORS, SCORE_ANIMATION_SPEED, WINDOW_FONT } from '../../constants/pages';
 
 import { ILevel } from '../../types/game';
 
@@ -92,7 +98,7 @@ function renderLevelScoreWindow() {
 
   APP.eventListeners = {
     onKeyDown: (event: KeyboardEvent) => {
-      if (event.key === 'Enter') {
+      if (event.key === FunctionalKeys.Continue) {
         document.body.removeEventListener('keydown', APP.eventListeners.onKeyDown);
 
         if (this.game.isLevelCompleted) {

@@ -2,7 +2,7 @@ import { Page } from '../common/Page';
 import { Menu } from '../Menu';
 
 import { APP } from '../../constants/global';
-import { ELEMENTS_COLORS, WINDOW_FONT } from '../../constants/pages';
+import { ELEMENTS_COLORS, WINDOW_FONT, FunctionalKeys } from '../../constants/pages';
 
 class GameOver extends Page {
   constructor() {
@@ -22,7 +22,7 @@ class GameOver extends Page {
 
     APP.eventListeners = {
       onKeyDown: (event: KeyboardEvent) => {
-        if (event.key === 'Enter') {
+        if (event.key === FunctionalKeys.Continue) {
           document.body.removeEventListener('keydown', APP.eventListeners.onKeyDown);
 
           APP.pageInstance = new Menu();

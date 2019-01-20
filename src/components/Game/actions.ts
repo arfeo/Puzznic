@@ -1,5 +1,8 @@
+import { LevelScore } from '../LevelScore';
+
+import { APP } from '../../constants/global';
+
 import { animateBlockMove, animateBlockElimination, animateBonusSize } from './animations';
-import { renderScoreScreen } from './render';
 import { findCornerBlocks } from './utils';
 
 import { IBlock } from '../../types/game';
@@ -150,7 +153,11 @@ function checkBlockGroups() {
 
     Promise.all(neighbours.map((id: number) => animateBlockElimination.call(this, id))).then(() => {
       if (this.level.blocks.length === 0) {
-        window.setTimeout(renderScoreScreen.bind(this), 1000);
+        window.setTimeout(() => {
+          this.destroy();
+
+          APP.pageInstance = new LevelScore(this);
+        }, 1000);
       } else {
         checkBlocksToFall.call(this);
       }

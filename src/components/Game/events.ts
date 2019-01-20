@@ -1,6 +1,5 @@
 import { Game } from './index';
 import { Menu } from '../Menu';
-import { GameOver } from '../GameOver';
 
 import { APP } from '../../constants/global';
 import { FunctionalKeys, TARGET_BLINK_DELAY } from '../../constants/game';
@@ -103,20 +102,6 @@ function keyDownHandler(event: KeyboardEvent) {
           if (!checkObstacle.call(this, nextX, nextY)) {
             animateBlockMove.call(this, this.currentBlock, nextX, nextY);
           }
-        }
-      }
-      break;
-    }
-    case FunctionalKeys.Continue: {
-      if (this.isLevelCompleted) {
-        if (!this.isGameOver) {
-          this.destroy();
-
-          APP.pageInstance = new Game(this.level.id + 1, this.score, this.isIconModeOn);
-        } else {
-          this.destroy();
-
-          APP.pageInstance = new GameOver();
         }
       }
       break;

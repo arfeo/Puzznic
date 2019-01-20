@@ -1,12 +1,15 @@
+import { Game } from '../../Game';
+
 import { setCellSize } from '../../../utils/common';
 
 abstract class StaticPage {
+  game: Game;
   cellSize: number;
   staticPageCanvas: HTMLCanvasElement;
-  init?(): void;
+  init?(game?: Game): void;
   abstract render(): void;
 
-  protected constructor() {
+  protected constructor(game?: Game) {
     const appRoot: HTMLElement = document.getElementById('root');
     const staticPageWindow: HTMLElement = document.createElement('div');
     this.staticPageCanvas = document.createElement('canvas');
@@ -25,7 +28,7 @@ abstract class StaticPage {
     staticPageWindow.appendChild(this.staticPageCanvas);
 
     if (typeof this.init === 'function') {
-      this.init();
+      this.init(game);
     }
 
     this.render();

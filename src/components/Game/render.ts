@@ -2,11 +2,8 @@ import {
   BLOCK_LABEL_FONT,
   ELEMENTS_COLORS,
   ELEMENTS_LIST_FONT,
-  SCORE_SCREEN_FONT,
-  SCORE_ANIMATION_SPEED,
   MapDefinitions,
 } from '../../constants/game';
-import { LEVELS } from '../../constants/levels';
 
 import {
   drawRectangle,
@@ -17,7 +14,7 @@ import {
 
 import { animateTarget } from './animations';
 
-import { IBlock, ILevel } from '../../types/game';
+import { IBlock } from '../../types/game';
 
 /**
  * Function creates game window element, game panel and all needed canvases
@@ -34,7 +31,6 @@ function renderGameWindow() {
   this.blocksCanvas = document.createElement('canvas');
   this.targetCanvas = document.createElement('canvas');
   this.bonusCanvas = document.createElement('canvas');
-  this.scoreCanvas = document.createElement('canvas');
 
   gameWindow.className = 'gameWindow';
   backgroundCanvas.className = '-background-canvas';
@@ -45,7 +41,6 @@ function renderGameWindow() {
   this.blocksCanvas.className = '-blocks-canvas';
   this.targetCanvas.className = '-target-canvas';
   this.bonusCanvas.className = '-bonus-canvas';
-  this.scoreCanvas.className = '-score-canvas';
 
   backgroundCanvas.width = this.cellSize * 14;
   backgroundCanvas.height = this.cellSize * 12;
@@ -59,15 +54,12 @@ function renderGameWindow() {
   this.targetCanvas.height = this.cellSize * 12;
   this.bonusCanvas.width = this.cellSize * 10;
   this.bonusCanvas.height = this.cellSize * 12;
-  this.scoreCanvas.width = this.cellSize * 14;
-  this.scoreCanvas.height = this.cellSize * 12;
 
   appRoot.innerHTML = '';
 
   appRoot.appendChild(gameWindow);
   gameWindow.appendChild(backgroundCanvas);
   gameWindow.appendChild(gameBoard);
-  gameBoard.appendChild(this.scoreCanvas);
   gameBoard.appendChild(this.elementsCanvas);
   gameBoard.appendChild(gridContainer);
   gridContainer.appendChild(this.gridCanvas);
@@ -834,116 +826,10 @@ function renderElementsList() {
   }
 }
 
-/**
- * ...
- */
-function renderScoreScreen() {
-  const ctx: CanvasRenderingContext2D = this.scoreCanvas.getContext('2d');
-  const nextLevel: ILevel = LEVELS.find((level: ILevel) => level.id === this.level.id + 1);
-  const password: string = nextLevel ? nextLevel.password : null;
-  let scoreCloned: number = this.score;
-  let start: number = performance.now();
-
-  this.isLevelCompleted = true;
-  this.clearBonus += this.level.bonus;
-  this.score += this.clearBonus;
-
-  drawRectangle(
-    ctx,
-    0,
-    0,
-    this.cellSize * 14,
-    this.cellSize * 12,
-    ELEMENTS_COLORS.scoreScreen.background,
-    this.cellSize / 3,
-    ELEMENTS_COLORS.scoreScreen.outerBorder,
-  );
-  drawRectangle(
-    ctx,
-    this.cellSize / 6,
-    this.cellSize / 6,
-    this.cellSize * 14 - this.cellSize / 3,
-    this.cellSize * 12 - this.cellSize / 3,
-    ELEMENTS_COLORS.scoreScreen.background,
-    this.cellSize / 12,
-    ELEMENTS_COLORS.scoreScreen.innerBorder,
-  );
-
-  ctx.font = SCORE_SCREEN_FONT;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillStyle = ELEMENTS_COLORS.scoreScreen.text;
-
-  ctx.fillText('SCORE', this.cellSize * 7, this.cellSize * 2);
-  ctx.fillText(scoreCloned.toString().padStart(8, '0'), this.cellSize * 7, this.cellSize * 4 - this.cellSize / 2);
-  ctx.fillText('CLEAR BONUS', this.cellSize * 7, this.cellSize * 6);
-  ctx.fillText(this.clearBonus.toString().padStart(8, '0'), this.cellSize * 7, this.cellSize * 8 - this.cellSize / 2);
-
-  if (password) {
-    ctx.fillText(
-      `${password.toUpperCase().slice(0, 4)} ${password.toUpperCase().slice(4, 8)}`,
-      this.cellSize * 7,
-      this.cellSize * 10,
-    );
-  } else {
-    this.isGameOver = true;
-  }
-
-  const animate = (time: number) => {
-    if (this.clearBonus === 0) {
-      return cancelAnimationFrame(this.animateScore);
-    }
-
-    if (time - start > SCORE_ANIMATION_SPEED) {
-      scoreCloned += 50;
-      this.clearBonus -= 50;
-
-      drawRectangle(
-        ctx,
-        this.cellSize,
-        this.cellSize * 4 - this.cellSize * 3 / 2,
-        this.cellSize * 14 - this.cellSize * 2,
-        this.cellSize * 2,
-        ELEMENTS_COLORS.scoreScreen.background,
-      );
-      drawRectangle(
-        ctx,
-        this.cellSize,
-        this.cellSize * 8 - this.cellSize * 3 / 2,
-        this.cellSize * 14 - this.cellSize * 2,
-        this.cellSize * 2,
-        ELEMENTS_COLORS.scoreScreen.background,
-      );
-
-      ctx.fillStyle = ELEMENTS_COLORS.scoreScreen.text;
-
-      ctx.fillText(
-        scoreCloned.toString().padStart(8, '0'),
-        this.cellSize * 7,
-        this.cellSize * 4 - this.cellSize / 2,
-      );
-      ctx.fillText(
-        this.clearBonus.toString().padStart(8, '0'),
-        this.cellSize * 7,
-        this.cellSize * 8 - this.cellSize / 2,
-      );
-
-      start = time;
-    }
-
-    this.animateScore = requestAnimationFrame(animate);
-  };
-
-  window.setTimeout(() => {
-    this.animateScore = requestAnimationFrame(animate);
-  }, 1000);
-}
-
 export {
   renderGameWindow,
   renderLevel,
   renderBlock,
   renderTarget,
   renderElementsList,
-  renderScoreScreen,
 };

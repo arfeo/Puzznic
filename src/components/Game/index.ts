@@ -18,6 +18,7 @@ class Game {
   gridCanvas: HTMLCanvasElement;
   blocksCanvas: HTMLCanvasElement;
   targetCanvas: HTMLCanvasElement;
+  bonusCanvas: HTMLCanvasElement;
   scoreCanvas: HTMLCanvasElement;
   animateTarget: number;
   animateScore: number;

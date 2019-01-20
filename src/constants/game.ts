@@ -56,6 +56,10 @@ export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
     innerBorder: 'rgb(94, 92, 94)',
     text: 'rgb(0, 0, 0)',
   },
+  bonus: {
+    stroke: 'rgb(0, 0, 0)',
+    shadow: 'rgb(255, 255, 255)',
+  },
 };
 
 export const TARGET_BLINK_DELAY = 300;
@@ -71,3 +75,7 @@ export const ELEMENTS_LIST_FONT = '5vmin Courier';
 export const BLOCK_LABEL_FONT = '3vmin Courier';
 
 export const SCORE_SCREEN_FONT = '5vmin Courier';
+
+export const FADE_OUT_ANIMATION_SPEED = 0.05;
+
+export const BONUS_SIZE_LABEL_FONT = '700 5vmin Helvetica, Arial';

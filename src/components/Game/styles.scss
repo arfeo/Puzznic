@@ -37,7 +37,8 @@
 
       .-grid-canvas,
       .-blocks-canvas,
-      .-target-canvas {
+      .-target-canvas,
+      .-bonus-canvas {
         position: absolute;
         top: 0;
         left: 0;
@@ -55,6 +56,10 @@
 
       .-target-canvas {
         z-index: 4;
+      }
+
+      .-bonus-canvas {
+        z-index: 5;
       }
     }
 

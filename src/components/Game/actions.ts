@@ -1,5 +1,6 @@
-import { animateBlockMove, animateBlockElimination } from './animations';
+import { animateBlockMove, animateBlockElimination, animateBonusSize } from './animations';
 import { renderScoreScreen } from './render';
+import { findCornerBlocks } from './utils';
 
 import { IBlock } from '../../types/game';
 
@@ -135,6 +136,14 @@ function checkBlockGroups() {
 
   if (neighbours.length > 0) {
     if (neighbours.length >= 4) {
+      const corners: number[][] = findCornerBlocks.call(this, neighbours);
+      const topLeft: number[] = corners[0];
+      const bottomRight: number[] = corners[1];
+      const middleX: number = this.cellSize * (bottomRight[1] + topLeft[1] + 1) / 2;
+      const middleY: number = this.cellSize * (bottomRight[0] + topLeft[0] + 1) / 2;
+
+      animateBonusSize.call(this, middleX, middleY, 1000);
+
       this.clearBonus += 1000;
     }
 

@@ -1,4 +1,10 @@
-import { BLOCK_ELIMINATION_DELAY, BLOCK_FALL_SPEED, ELEMENTS_COLORS } from '../../constants/game';
+import {
+  BLOCK_ELIMINATION_DELAY,
+  BLOCK_FALL_SPEED,
+  BONUS_SIZE_LABEL_FONT,
+  ELEMENTS_COLORS,
+  FADE_OUT_ANIMATION_SPEED,
+} from '../../constants/game';
 
 import { renderBlock, renderElementsList, renderTarget } from './render';
 import { checkBlockGroups, checkBlocksToFall, checkObstacle } from './actions';
@@ -201,4 +207,59 @@ function animateBlockElimination(blockId: number): Promise<void> {
   });
 }
 
-export { animateTarget, animateBlockMove, animateBlockElimination };
+/**
+ * Function animates bonus size label, fading in and out
+ * whilst floating above the given point's coords
+ *
+ * @param left
+ * @param top
+ * @param size
+ */
+function animateBonusSize(left: number, top: number, size: number) {
+  const ctx: CanvasRenderingContext2D = this.bonusCanvas.getContext('2d');
+  let frame: number;
+  let alpha = 0;
+  let pulse = 1;
+  let yCorrection = 0;
+
+  ctx.font = BONUS_SIZE_LABEL_FONT;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.strokeStyle = ELEMENTS_COLORS.bonus.stroke;
+  ctx.lineWidth = 5;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 0;
+  ctx.shadowColor = ELEMENTS_COLORS.bonus.shadow;
+  ctx.shadowBlur = 20;
+
+  const animate = () => {
+    if (alpha >= 1) {
+      pulse = -1;
+    }
+
+    ctx.clearRect(0, 0, this.cellSize * 10, this.cellSize * 12);
+
+    if (alpha < 0) {
+      return cancelAnimationFrame(frame);
+    }
+
+    alpha += pulse * FADE_OUT_ANIMATION_SPEED;
+
+    ctx.globalAlpha = alpha;
+
+    ctx.strokeText(size.toString(), left, top - yCorrection);
+
+    yCorrection += 1.5;
+
+    frame = requestAnimationFrame(animate);
+  };
+
+  frame = requestAnimationFrame(animate);
+}
+
+export {
+  animateTarget,
+  animateBlockMove,
+  animateBlockElimination,
+  animateBonusSize,
+};

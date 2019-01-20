@@ -33,6 +33,7 @@ function renderGameWindow() {
   this.gridCanvas = document.createElement('canvas');
   this.blocksCanvas = document.createElement('canvas');
   this.targetCanvas = document.createElement('canvas');
+  this.bonusCanvas = document.createElement('canvas');
   this.scoreCanvas = document.createElement('canvas');
 
   gameWindow.className = 'gameWindow';
@@ -43,6 +44,7 @@ function renderGameWindow() {
   this.gridCanvas.className = '-grid-canvas';
   this.blocksCanvas.className = '-blocks-canvas';
   this.targetCanvas.className = '-target-canvas';
+  this.bonusCanvas.className = '-bonus-canvas';
   this.scoreCanvas.className = '-score-canvas';
 
   backgroundCanvas.width = this.cellSize * 14;
@@ -55,6 +57,8 @@ function renderGameWindow() {
   this.blocksCanvas.height = this.cellSize * 12;
   this.targetCanvas.width = this.cellSize * 10;
   this.targetCanvas.height = this.cellSize * 12;
+  this.bonusCanvas.width = this.cellSize * 10;
+  this.bonusCanvas.height = this.cellSize * 12;
   this.scoreCanvas.width = this.cellSize * 14;
   this.scoreCanvas.height = this.cellSize * 12;
 
@@ -69,6 +73,7 @@ function renderGameWindow() {
   gridContainer.appendChild(this.gridCanvas);
   gridContainer.appendChild(this.blocksCanvas);
   gridContainer.appendChild(this.targetCanvas);
+  gridContainer.appendChild(this.bonusCanvas);
 
   renderBackground.call(
     this,

@@ -7,7 +7,7 @@ class LevelScore extends StaticPage {
   animateScore: number;
 
   constructor(game: Game) {
-    super(game);
+    super(true, game);
   }
 
   init(game?: Game) {

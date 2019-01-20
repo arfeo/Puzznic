@@ -7,7 +7,7 @@ class Menu extends StaticPage {
   currentItem: number;
 
   constructor() {
-    super();
+    super(false);
   }
 
   init() {

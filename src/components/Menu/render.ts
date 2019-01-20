@@ -5,7 +5,7 @@ import {
 } from '../../constants/menu';
 
 /**
- * Function renders the game menu, including logo
+ * Function renders the component window
  */
 function renderMenuContent() {
   const ctx: CanvasRenderingContext2D = this.staticPageCanvas.getContext('2d');

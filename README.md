@@ -2,7 +2,7 @@
 
 The legend of 8-bit video games era is finally on the web. Game Boy fans should be happy (huh?). Play online without installing flash players, applets, and another stinky crap. The application's build size is smaller than 32 kB, so feel free to run it on any microwave owen with the internet access.
 
-[![Puzznic Gameplay](http://arfeo.net/static/puzznic/cover.png)](https://www.youtube.com/watch?v=1ZC5W3iheCg "Puzznic Gameplay")
+[![Puzznic Gameplay](http://arfeo.net/static/puzznic/cover.png)](https://www.youtube.com/watch?v=gD8x0M94CPM "Puzznic Gameplay")
 
 Live demo: http://arfeo.net/tests/puzznic/
 

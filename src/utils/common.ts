@@ -3,7 +3,7 @@ import { APP } from '../constants/global';
 /**
  * Function calculates the analogue of CSS vmin in pixels
  */
-export const calculateVMin = (): number => {
+const calculateVMin = (): number => {
   const vpWidth: number = window.innerWidth;
   const vpHeight: number = window.innerHeight;
 
@@ -15,7 +15,7 @@ export const calculateVMin = (): number => {
  * depending on the screen size if no cell size is given in the app settings,
  * or cell size given in the app settings
  */
-export const setCellSize = (): number => {
+const setCellSize = (): number => {
   return APP.cellSize > 0 ? APP.cellSize : Math.round(calculateVMin() * 6  / 10) * 10;
 };
 
@@ -27,7 +27,7 @@ export const setCellSize = (): number => {
  * @param max
  * @param discard
  */
-export const getRandomNum = (min = 1, max = 1, discard: number[] = []): number => {
+const getRandomNum = (min = 1, max = 1, discard: number[] = []): number => {
   const num: number = Math.floor(min + Math.random() * (max + 1 - min));
 
   if (discard.indexOf(num) > -1) {
@@ -36,3 +36,5 @@ export const getRandomNum = (min = 1, max = 1, discard: number[] = []): number =
 
   return num;
 };
+
+export { setCellSize, getRandomNum };

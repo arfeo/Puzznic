@@ -6,7 +6,7 @@ import { IBlock } from '../../types/game';
  * Function returns an object containing correlation
  * of blocks numbers with icon ids
  */
-export function generateBlocksIconsCorrelation (): { [key: number]: number } {
+function generateBlocksIconsCorrelation (): { [key: number]: number } {
   const result: { [key: number]: number } = {};
 
   for (let i = 1; i <= 8; i+= 1) {
@@ -22,7 +22,7 @@ export function generateBlocksIconsCorrelation (): { [key: number]: number } {
  *
  * @param blockIds
  */
-export function findCornerBlocks(blockIds: number[]): number[][] {
+function findCornerBlocks(blockIds: number[]): number[][] {
   if (blockIds.length === 0) {
     return;
   }
@@ -55,3 +55,5 @@ export function findCornerBlocks(blockIds: number[]): number[][] {
 
   return [topLeft, bottomRight];
 }
+
+export { generateBlocksIconsCorrelation, findCornerBlocks };

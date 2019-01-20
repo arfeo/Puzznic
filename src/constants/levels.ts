@@ -95,7 +95,7 @@ export const LEVELS: ILevel[] = [
       { id: 7, type: 3, position: [7, 2] },
       { id: 8, type: 3, position: [7, 7] },
     ],
-    bonus: 400,
+    bonus: 500,
     password: 'sawaitoh',
   },
 ];

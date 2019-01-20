@@ -1,22 +1,20 @@
-import { renderMenuContent, renderMenuWindow } from './render';
-import { setCellSize } from '../../utils/common';
+import { StaticPage } from '../common/StaticPage';
+
+import { renderMenuContent } from './render';
 import { setUpEventHandlers, removeEventHandlers } from './events';
 
-class Menu {
-  cellSize: number;
-  menuCanvas: HTMLCanvasElement;
+class Menu extends StaticPage {
   currentItem: number;
 
   constructor() {
-    this.cellSize = setCellSize();
+    super();
+  }
 
+  init() {
     this.currentItem = 1;
-
-    this.render();
   }
 
   render() {
-    renderMenuWindow.call(this);
     renderMenuContent.call(this);
 
     setUpEventHandlers.call(this);

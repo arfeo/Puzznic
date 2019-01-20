@@ -5,30 +5,10 @@ import {
 } from '../../constants/menu';
 
 /**
- * Function creates menu window element and all needed canvases
- */
-function renderMenuWindow() {
-  const appRoot: HTMLElement = document.getElementById('root');
-  const menuWindow: HTMLElement = document.createElement('div');
-  this.menuCanvas = document.createElement('canvas');
-
-  menuWindow.className = 'menuWindow';
-  this.menuCanvas.className = '-menu-canvas';
-
-  this.menuCanvas.width = this.cellSize * 14;
-  this.menuCanvas.height = this.cellSize * 12;
-
-  appRoot.innerHTML = '';
-
-  appRoot.appendChild(menuWindow);
-  menuWindow.appendChild(this.menuCanvas);
-}
-
-/**
  * Function renders the game menu, including logo
  */
 function renderMenuContent() {
-  const ctx: CanvasRenderingContext2D = this.menuCanvas.getContext('2d');
+  const ctx: CanvasRenderingContext2D = this.staticPageCanvas.getContext('2d');
 
   // Logo
   ctx.save();
@@ -65,7 +45,7 @@ function renderMenuContent() {
  * Function renders a pointer arrow against the currently selected menu item
  */
 function renderPointer() {
-  const ctx: CanvasRenderingContext2D = this.menuCanvas.getContext('2d');
+  const ctx: CanvasRenderingContext2D = this.staticPageCanvas.getContext('2d');
   const yOffset: number = (this.currentItem - 1) * 1.5;
 
   ctx.clearRect(
@@ -83,4 +63,4 @@ function renderPointer() {
   ctx.fillText('➧', this.cellSize * 4, this.cellSize * (yOffset + 7.55));
 }
 
-export { renderMenuWindow, renderMenuContent, renderPointer };
+export { renderMenuContent, renderPointer };

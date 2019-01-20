@@ -1,7 +1,7 @@
 import { Menu } from '../Menu';
 
 import { APP } from '../../constants/global';
-import { FunctionalKeys } from '../../constants/password';
+import { FunctionalKeys } from '../../constants/pages';
 
 /**
  * Function creates all components's event listeners

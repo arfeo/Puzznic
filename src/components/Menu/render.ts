@@ -1,11 +1,11 @@
 import {
   ELEMENTS_COLORS,
   LOGO_FONT,
-  MENU_ITEMS_FONT,
-} from '../../constants/menu';
+  WINDOW_FONT,
+} from '../../constants/pages';
 
 /**
- * Function renders the component window
+ * Function renders the page window
  */
 function renderMenuContent() {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
@@ -30,10 +30,10 @@ function renderMenuContent() {
   // Menu items
   ctx.restore();
 
-  ctx.font = MENU_ITEMS_FONT;
+  ctx.font = WINDOW_FONT;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'bottom';
-  ctx.fillStyle = ELEMENTS_COLORS.item.text;
+  ctx.fillStyle = ELEMENTS_COLORS.window.text;
 
   ctx.fillText('Play', this.cellSize * 5, this.cellSize * 7.5);
   ctx.fillText('Password', this.cellSize * 5, this.cellSize * 9);
@@ -55,10 +55,10 @@ function renderPointer() {
     this.cellSize * 2.5,
   );
 
-  ctx.font = MENU_ITEMS_FONT;
+  ctx.font = WINDOW_FONT;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'bottom';
-  ctx.fillStyle = ELEMENTS_COLORS.item.text;
+  ctx.fillStyle = ELEMENTS_COLORS.window.text;
 
   ctx.fillText('➧', this.cellSize * 4, this.cellSize * (yOffset + 7.55));
 }

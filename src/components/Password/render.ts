@@ -1,13 +1,15 @@
+import { ELEMENTS_COLORS, WINDOW_FONT } from '../../constants/pages';
+
 /**
- * Function renders the component window
+ * Function renders the page window
  */
 function renderPasswordWindow() {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
-  ctx.font = '5vmin Courier';
+  ctx.font = WINDOW_FONT;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillStyle = 'rgb(0, 0, 0)';
+  ctx.fillStyle = ELEMENTS_COLORS.window.text;
 
   ctx.fillText('PASSWORD', this.cellSize * 7, this.cellSize);
 }

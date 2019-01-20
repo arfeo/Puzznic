@@ -2,7 +2,7 @@ import { Game } from '../Game';
 import { Password } from '../Password';
 
 import { APP } from '../../constants/global';
-import { FunctionalKeys } from '../../constants/menu';
+import { FunctionalKeys } from '../../constants/pages';
 
 import { renderPointer } from './render';
 

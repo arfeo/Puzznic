@@ -1,5 +1,7 @@
 import { Game } from '../../Game';
 
+import { ELEMENTS_COLORS } from '../../../constants/pages';
+
 import { setCellSize } from '../../../utils/common';
 import { drawRectangle } from '../../../utils/drawing';
 
@@ -38,9 +40,9 @@ abstract class Page {
         0,
         this.cellSize * 14,
         this.cellSize * 12,
-        'rgb(255, 255, 255)',
+        ELEMENTS_COLORS.window.background,
         this.cellSize / 3,
-        'rgb(189, 187, 189)',
+        ELEMENTS_COLORS.window.outerBorder,
       );
       drawRectangle(
         ctx,
@@ -48,9 +50,9 @@ abstract class Page {
         this.cellSize / 6,
         this.cellSize * 14 - this.cellSize / 3,
         this.cellSize * 12 - this.cellSize / 3,
-        'rgb(255, 255, 255)',
+        ELEMENTS_COLORS.window.background,
         this.cellSize / 12,
-        'rgb(94, 92, 94)',
+        ELEMENTS_COLORS.window.innerBorder,
       );
     }
 

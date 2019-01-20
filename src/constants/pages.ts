@@ -1,7 +1,10 @@
 export enum FunctionalKeys {
   Up = 'ArrowUp',
+  Right = 'ArrowRight',
   Down = 'ArrowDown',
+  Left = 'ArrowLeft',
   Continue = 'Enter',
+  GoToMenu = 'q',
 }
 
 export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
@@ -10,11 +13,16 @@ export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
     shadow: 'rgb(0, 0, 0)',
     stroke: 'rgb(189, 187, 189)',
   },
-  item: {
+  window: {
+    background: 'rgb(255, 255, 255)',
+    outerBorder: 'rgb(189, 187, 189)',
+    innerBorder: 'rgb(94, 92, 94)',
     text: 'rgb(0, 0, 0)',
   },
 };
 
 export const LOGO_FONT = 'italic 20vmin Impact';
 
-export const MENU_ITEMS_FONT = '5vmin Courier';
+export const WINDOW_FONT = '5vmin Courier';
+
+export const SCORE_ANIMATION_SPEED = 50;

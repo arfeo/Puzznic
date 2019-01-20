@@ -3,11 +3,12 @@ import { GameOver } from '../GameOver';
 
 import { APP } from '../../constants/global';
 import { LEVELS } from '../../constants/levels';
+import { ELEMENTS_COLORS, SCORE_ANIMATION_SPEED, WINDOW_FONT } from '../../constants/pages';
 
 import { ILevel } from '../../types/game';
 
 /**
- * Function renders the component window
+ * Function renders the page window
  */
 function renderLevelScoreWindow() {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
@@ -20,10 +21,10 @@ function renderLevelScoreWindow() {
   this.game.clearBonus += this.game.level.bonus;
   this.game.score += this.game.clearBonus;
 
-  ctx.font = '5vmin Courier';
+  ctx.font = WINDOW_FONT;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillStyle = 'rgb(0, 0, 0)';
+  ctx.fillStyle = ELEMENTS_COLORS.window.text;
 
   ctx.fillText('SCORE', this.cellSize * 7, this.cellSize * 2);
   ctx.fillText(scoreCloned.toString().padStart(8, '0'), this.cellSize * 7, this.cellSize * 4 - this.cellSize / 2);
@@ -49,7 +50,7 @@ function renderLevelScoreWindow() {
       return cancelAnimationFrame(this.animateScore);
     }
 
-    if (time - start > 50) {
+    if (time - start > SCORE_ANIMATION_SPEED) {
       scoreCloned += 50;
       this.game.clearBonus -= 50;
 
@@ -66,7 +67,7 @@ function renderLevelScoreWindow() {
         this.cellSize * 2,
       );
 
-      ctx.fillStyle = 'rgb(0, 0, 0)';
+      ctx.fillStyle = ELEMENTS_COLORS.window.text;
 
       ctx.fillText(
         scoreCloned.toString().padStart(8, '0'),

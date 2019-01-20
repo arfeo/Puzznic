@@ -2,6 +2,7 @@ import { Page } from '../common/Page';
 import { Menu } from '../Menu';
 
 import { APP } from '../../constants/global';
+import { ELEMENTS_COLORS, WINDOW_FONT } from '../../constants/pages';
 
 class GameOver extends Page {
   constructor() {
@@ -11,10 +12,10 @@ class GameOver extends Page {
   render() {
     const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
-    ctx.font = '5vmin Courier';
+    ctx.font = WINDOW_FONT;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillStyle = 'rgb(0, 0, 0)';
+    ctx.fillStyle = ELEMENTS_COLORS.window.text;
 
     ctx.fillText('CONGRATULATIONS!', this.cellSize * 7, this.cellSize * 4);
     ctx.fillText('THE END', this.cellSize * 7, this.cellSize * 8);

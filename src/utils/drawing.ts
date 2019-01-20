@@ -45,17 +45,24 @@ function drawSector(
   edgingWidth?: number,
   edgingColor?: string,
 ) {
-  ctx.fillStyle = fillStyle;
-  ctx.lineWidth = edgingWidth || 0;
-  ctx.strokeStyle = edgingColor || 'transparent';
-
   ctx.beginPath();
   ctx.moveTo(dotX, dotY);
   ctx.arc(dotX, dotY, radius, startAngle, endAngle);
   ctx.lineTo(dotX, dotY);
   ctx.closePath();
-  ctx.fill();
-  ctx.stroke();
+
+  if (fillStyle !== undefined) {
+    ctx.fillStyle = fillStyle || 'rgba(0, 0, 0, 0)';
+
+    ctx.fill();
+  }
+
+  if (edgingWidth !== undefined) {
+    ctx.lineWidth = edgingWidth || 1;
+    ctx.strokeStyle = edgingColor || 'rgba(0, 0, 0, 0)';
+
+    ctx.stroke();
+  }
 }
 
 /**
@@ -82,14 +89,21 @@ function drawArc(
   edgingWidth?: number,
   edgingColor?: string,
 ) {
-  ctx.fillStyle = fillStyle || 'transparent';
-  ctx.lineWidth = edgingWidth || 0;
-  ctx.strokeStyle = edgingColor || 'transparent';
-
   ctx.beginPath();
   ctx.arc(cx, cy, radius, startAngle, endAngle);
-  ctx.fill();
-  ctx.stroke();
+
+  if (fillStyle !== undefined) {
+    ctx.fillStyle = fillStyle || 'rgba(0, 0, 0, 0)';
+
+    ctx.fill();
+  }
+
+  if (edgingWidth !== undefined) {
+    ctx.lineWidth = edgingWidth || 1;
+    ctx.strokeStyle = edgingColor || 'rgba(0, 0, 0, 0)';
+
+    ctx.stroke();
+  }
 }
 
 /**
@@ -117,8 +131,8 @@ function drawLineToAngle(
   const x2 = x1 + length * Math.cos(a);
   const y2 = y1 + length * Math.sin(a);
 
-  ctx.strokeStyle = strokeStyle || 'transparent';
-  ctx.lineWidth = lineWidth || 0;
+  ctx.strokeStyle = strokeStyle || null;
+  ctx.lineWidth = lineWidth || 1;
 
   ctx.beginPath();
   ctx.moveTo(x1, y1);
@@ -153,15 +167,15 @@ function drawRectangle(
   edgingWidth?: number,
   edgingColor?: string,
 ) {
-  if (fillStyle) {
-    ctx.fillStyle = fillStyle || 'transparent';
+  if (fillStyle !== undefined) {
+    ctx.fillStyle = fillStyle || 'rgba(0, 0, 0, 0)';
 
     ctx.fillRect(left, top, width, height);
   }
 
-  if (edgingWidth) {
-    ctx.lineWidth = edgingWidth || 0;
-    ctx.strokeStyle = edgingColor || 'transparent';
+  if (edgingWidth !== undefined) {
+    ctx.lineWidth = edgingWidth || 1;
+    ctx.strokeStyle = edgingColor || 'rgba(0, 0, 0, 0)';
 
     ctx.strokeRect(left, top, width, height);
   }
@@ -187,17 +201,24 @@ function drawTriangle(
   edgingWidth?: number,
   edgingColor?: string,
 ) {
-  ctx.fillStyle = fillStyle || 'transparent';
-  ctx.lineWidth = edgingWidth || 0;
-  ctx.strokeStyle = edgingColor || 'transparent';
-
   ctx.beginPath();
   ctx.moveTo(c1[0], c1[1]);
   ctx.lineTo(c2[0], c2[1]);
   ctx.lineTo(c3[0], c3[1]);
   ctx.closePath();
-  ctx.fill();
-  ctx.stroke();
+
+  if (fillStyle !== undefined) {
+    ctx.fillStyle = fillStyle || 'rgba(0, 0, 0, 0)';
+
+    ctx.fill();
+  }
+
+  if (edgingWidth !== undefined) {
+    ctx.lineWidth = edgingWidth || 1;
+    ctx.strokeStyle = edgingColor || 'rgba(0, 0, 0, 0)';
+
+    ctx.stroke();
+  }
 }
 
 export {

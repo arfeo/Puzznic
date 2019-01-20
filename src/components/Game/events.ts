@@ -1,5 +1,6 @@
 import { Game } from './index';
 import { Menu } from '../Menu';
+import { GameOver } from '../GameOver';
 
 import { APP } from '../../constants/global';
 import { FunctionalKeys, TARGET_BLINK_DELAY } from '../../constants/game';
@@ -115,7 +116,7 @@ function keyDownHandler(event: KeyboardEvent) {
         } else {
           this.destroy();
 
-          APP.pageInstance = new Menu();
+          APP.pageInstance = new GameOver();
         }
       }
       break;

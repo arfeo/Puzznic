@@ -10,7 +10,7 @@ export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
     shadow: 'rgb(0, 0, 0)',
     stroke: 'rgb(189, 187, 189)',
   },
-  items: {
+  item: {
     text: 'rgb(0, 0, 0)',
   },
 };

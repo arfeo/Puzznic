@@ -1,4 +1,5 @@
 import { Game } from '../Game';
+import { Password } from '../Password';
 
 import { APP } from '../../constants/global';
 import { FunctionalKeys } from '../../constants/menu';
@@ -6,7 +7,7 @@ import { FunctionalKeys } from '../../constants/menu';
 import { renderPointer } from './render';
 
 /**
- * Function creates all game's event listeners
+ * Function creates all components's event listeners
  */
 function setUpEventHandlers() {
   APP.eventListeners = {
@@ -17,7 +18,7 @@ function setUpEventHandlers() {
 }
 
 /**
- * Function removes all game's event listeners
+ * Function removes all components's event listeners
  */
 function removeEventHandlers() {
   document.body.removeEventListener('keydown', APP.eventListeners.onKeyDown);
@@ -50,6 +51,12 @@ function keyDownHandler(event: KeyboardEvent) {
           this.destroy();
 
           APP.pageInstance = new Game();
+          break;
+        }
+        case 2: {
+          this.destroy();
+
+          APP.pageInstance = new Password();
           break;
         }
         default: break;

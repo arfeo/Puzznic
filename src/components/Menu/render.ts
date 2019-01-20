@@ -33,7 +33,7 @@ function renderMenuContent() {
   ctx.font = MENU_ITEMS_FONT;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'bottom';
-  ctx.fillStyle = ELEMENTS_COLORS.items.text;
+  ctx.fillStyle = ELEMENTS_COLORS.item.text;
 
   ctx.fillText('Play', this.cellSize * 5, this.cellSize * 7.5);
   ctx.fillText('Password', this.cellSize * 5, this.cellSize * 9);
@@ -58,7 +58,7 @@ function renderPointer() {
   ctx.font = MENU_ITEMS_FONT;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'bottom';
-  ctx.fillStyle = ELEMENTS_COLORS.items.text;
+  ctx.fillStyle = ELEMENTS_COLORS.item.text;
 
   ctx.fillText('➧', this.cellSize * 4, this.cellSize * (yOffset + 7.55));
 }

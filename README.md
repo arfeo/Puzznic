@@ -12,9 +12,13 @@ Finally it is here! The puzzle game to top all puzzle games. 144 levels of frust
 
 ## Controls
 
-Use arrow keys to point on a block, then `Shift` to "grab" it, and, at last, left or right arrow key -- to move it. As easy as pie.
+Use *arrow keys* to point on a block, then `Shift` to "grab" it, and, at last, *left* or *right* arrow key -- to move it. As easy as pie.
 
 To turn blocks icons mode on or off, press `Space`. This mode is on by default, and it's more twisted, as every single time you start playing the game, icons are set for blocks randomly.
+
+`R` -- restart current level
+
+`Q` -- abort the game and return to the main menu
 
 ## Installation
 

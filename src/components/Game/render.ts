@@ -834,8 +834,8 @@ function renderElementsList() {
  */
 function renderScoreScreen() {
   const ctx: CanvasRenderingContext2D = this.scoreCanvas.getContext('2d');
-  const nextLevel: ILevel[] = LEVELS.filter((level: ILevel) => level.id === this.level.id + 1);
-  const password: string = nextLevel && nextLevel.length > 0 ? nextLevel[0].password : null;
+  const nextLevel: ILevel = LEVELS.find((level: ILevel) => level.id === this.level.id + 1);
+  const password: string = nextLevel ? nextLevel.password : null;
   let scoreCloned: number = this.score;
   let start: number = performance.now();
 

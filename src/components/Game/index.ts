@@ -31,7 +31,7 @@ class Game {
   isGameOver: boolean;
 
   constructor(level = 1, score = 0, isIconMode = true, icons: { [key: number]: number } = {}) {
-    this.level = JSON.parse(JSON.stringify(LEVELS.filter((item: ILevel) => item.id === level)[0]));
+    this.level = JSON.parse(JSON.stringify(LEVELS.find((item: ILevel) => item.id === level)));
     this.score = score;
     this.moves = 0;
 

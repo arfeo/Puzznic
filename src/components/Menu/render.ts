@@ -1,5 +1,5 @@
 import {
-  MENU_ELEMENTS_COLORS,
+  ELEMENTS_COLORS,
   LOGO_FONT,
   MENU_ITEMS_FONT,
 } from '../../constants/menu';
@@ -36,13 +36,13 @@ function renderMenuContent() {
   ctx.font = LOGO_FONT;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.shadowColor = MENU_ELEMENTS_COLORS.logo.shadow;
+  ctx.shadowColor = ELEMENTS_COLORS.logo.shadow;
   ctx.shadowOffsetX = this.cellSize / 3;
   ctx.shadowOffsetY = this.cellSize / 3;
   ctx.shadowBlur = 0;
   ctx.lineWidth = this.cellSize / 3;
-  ctx.strokeStyle = MENU_ELEMENTS_COLORS.logo.stroke;
-  ctx.fillStyle = MENU_ELEMENTS_COLORS.logo.text;
+  ctx.strokeStyle = ELEMENTS_COLORS.logo.stroke;
+  ctx.fillStyle = ELEMENTS_COLORS.logo.text;
 
   ctx.strokeText('PUZZNIC', this.cellSize * 6.6, this.cellSize * 2.5);
   ctx.fillText('PUZZNIC', this.cellSize * 6.7, this.cellSize * 2.5);
@@ -53,7 +53,7 @@ function renderMenuContent() {
   ctx.font = MENU_ITEMS_FONT;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'bottom';
-  ctx.fillStyle = MENU_ELEMENTS_COLORS.items.text;
+  ctx.fillStyle = ELEMENTS_COLORS.items.text;
 
   ctx.fillText('Play', this.cellSize * 5, this.cellSize * 7.5);
   ctx.fillText('Password', this.cellSize * 5, this.cellSize * 9);
@@ -78,7 +78,7 @@ function renderPointer() {
   ctx.font = MENU_ITEMS_FONT;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'bottom';
-  ctx.fillStyle = MENU_ELEMENTS_COLORS.items.text;
+  ctx.fillStyle = ELEMENTS_COLORS.items.text;
 
   ctx.fillText('➧', this.cellSize * 4, this.cellSize * (yOffset + 7.55));
 }

@@ -1,7 +1,7 @@
 import { Game } from '../Game';
 
 import { APP } from '../../constants/global';
-import { MenuFunctionalKeys } from '../../constants/menu';
+import { FunctionalKeys } from '../../constants/menu';
 
 import { renderPointer } from './render';
 
@@ -30,21 +30,21 @@ function removeEventHandlers() {
  */
 function keyDownHandler(event: KeyboardEvent) {
   switch (event.key) {
-    case MenuFunctionalKeys.Up: {
+    case FunctionalKeys.Up: {
       if (this.currentItem > 1) {
         this.currentItem -= 1;
         renderPointer.call(this);
       }
       break;
     }
-    case MenuFunctionalKeys.Down: {
+    case FunctionalKeys.Down: {
       if (this.currentItem < 2) {
         this.currentItem += 1;
         renderPointer.call(this);
       }
       break;
     }
-    case MenuFunctionalKeys.Continue: {
+    case FunctionalKeys.Continue: {
       switch (this.currentItem) {
         case 1: {
           this.destroy();

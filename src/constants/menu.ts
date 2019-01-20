@@ -1,10 +1,10 @@
-export enum MenuFunctionalKeys {
+export enum FunctionalKeys {
   Up = 'ArrowUp',
   Down = 'ArrowDown',
   Continue = 'Enter',
 }
 
-export const MENU_ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
+export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
   logo: {
     text: 'rgb(95, 94, 95)',
     shadow: 'rgb(0, 0, 0)',

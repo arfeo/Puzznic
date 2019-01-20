@@ -249,7 +249,7 @@ function animateBonusSize(left: number, top: number, size: number) {
 
     ctx.strokeText(size.toString(), left, top - yCorrection);
 
-    yCorrection += 1.5;
+    yCorrection += 1;
 
     frame = requestAnimationFrame(animate);
   };

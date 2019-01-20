@@ -141,10 +141,11 @@ function checkBlockGroups() {
       const bottomRight: number[] = corners[1];
       const middleX: number = this.cellSize * (bottomRight[1] + topLeft[1] + 1) / 2;
       const middleY: number = this.cellSize * (bottomRight[0] + topLeft[0] + 1) / 2;
+      const bonusSize = 1000;
 
-      animateBonusSize.call(this, middleX, middleY, 1000);
+      animateBonusSize.call(this, middleX, middleY, bonusSize);
 
-      this.clearBonus += 1000;
+      this.clearBonus += bonusSize;
     }
 
     Promise.all(neighbours.map((id: number) => animateBlockElimination.call(this, id))).then(() => {

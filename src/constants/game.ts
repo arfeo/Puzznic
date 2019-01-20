@@ -76,6 +76,6 @@ export const BLOCK_LABEL_FONT = '3vmin Courier';
 
 export const SCORE_SCREEN_FONT = '5vmin Courier';
 
-export const FADE_OUT_ANIMATION_SPEED = 0.05;
+export const FADE_OUT_ANIMATION_SPEED = 0.03;
 
 export const BONUS_SIZE_LABEL_FONT = '700 5vmin Helvetica, Arial';

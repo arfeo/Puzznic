@@ -17,7 +17,8 @@ export function generateBlocksIconsCorrelation (): { [key: number]: number } {
 }
 
 /**
- * Function returns top left and bottom right positions of blocks in a block group
+ * Function returns top left and bottom right positions
+ * of blocks in a given block group
  *
  * @param blockIds
  */

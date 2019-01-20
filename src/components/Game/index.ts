@@ -30,13 +30,13 @@ class Game {
   isLevelCompleted: boolean;
   isGameOver: boolean;
 
-  constructor(level = 1, score = 0, icons = true) {
+  constructor(level = 1, score = 0, isIconMode = true, icons: { [key: number]: number } = {}) {
     this.level = JSON.parse(JSON.stringify(LEVELS.filter((item: ILevel) => item.id === level)[0]));
     this.score = score;
     this.moves = 0;
 
     this.cellSize = setCellSize();
-    this.blocksIcons = generateBlocksIconsCorrelation();
+    this.blocksIcons = Object.keys(icons).length > 0 ? icons : generateBlocksIconsCorrelation();
 
     this.targetBlinkDelay = TARGET_BLINK_DELAY;
 
@@ -44,7 +44,7 @@ class Game {
     this.blocksMoving = [];
     this.clearBonus = 0;
 
-    this.isIconModeOn = icons;
+    this.isIconModeOn = isIconMode;
     this.isLevelCompleted = false;
     this.isGameOver = false;
 

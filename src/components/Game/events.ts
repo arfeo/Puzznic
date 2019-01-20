@@ -128,6 +128,20 @@ function keyDownHandler(event: KeyboardEvent) {
       }
       break;
     }
+    case FunctionalKeys.GoToMenu: {
+      this.destroy();
+
+      APP.pageInstance = new Menu();
+      break;
+    }
+    case FunctionalKeys.Restart: {
+      if (!this.isLevelCompleted) {
+        this.destroy();
+
+        APP.pageInstance = new Game(this.level.id, this.score, this.isIconModeOn, this.blocksIcons);
+      }
+      break;
+    }
     default: break;
   }
 

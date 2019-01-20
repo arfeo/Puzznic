@@ -11,6 +11,8 @@ export enum FunctionalKeys {
   Left = 'ArrowLeft',
   Continue = 'Enter',
   SwitchIconMode = ' ',
+  GoToMenu = 'q',
+  Restart = 'r',
 }
 
 export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {

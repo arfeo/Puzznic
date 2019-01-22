@@ -18,7 +18,7 @@ To turn blocks icons mode on or off, press `Space`. This mode is on by default, 
 
 `R` -- restart current level
 
-`Q` -- abort the game and return to the main menu
+`Q` -- return to the main menu
 
 ## Installation
 

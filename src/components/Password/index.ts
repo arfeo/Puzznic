@@ -16,6 +16,11 @@ class Password extends Page {
     super();
   }
 
+  init() {
+    this.currentSlot = 1;
+    this.currentSymbol = [0, 0];
+  }
+
   render() {
     renderPasswordWindow.call(this);
     renderInputSlots.call(this);

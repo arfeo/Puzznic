@@ -20,12 +20,30 @@ function renderPasswordWindow() {
  * Function renders 8 password input slots divided by space after the fourth one
  */
 function renderInputSlots() {
+  for (let i = 1; i <= 8; i += 1) {
+    renderSlot.call(this, i);
+  }
+}
+
+/**
+ * Function renders a single password input slot by the given index number
+ *
+ * @param index
+ * @param underlined
+ */
+function renderSlot(index: number, underlined = true) {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
+  const left: number = this.cellSize + this.cellSize * (index - 1) * 1.5 + (index >= 5 ? this.cellSize * 0.5 : 0);
+  const top: number = this.cellSize * 4;
 
-  for (let i = 0; i < 8; i += 1) {
-    const left: number = this.cellSize + this.cellSize * i * 1.5 + (i >= 4 ? this.cellSize * 0.5 : 0);
-    const top: number = this.cellSize * 4;
+  ctx.clearRect(
+    left - this.cellSize * 0.25,
+    top - this.cellSize * 1.5,
+    this.cellSize * 1.5,
+    this.cellSize * 1.75,
+  );
 
+  if (underlined) {
     drawLineToAngle(
       ctx,
       left,
@@ -55,6 +73,7 @@ function renderSymbols() {
     for (let x = 0; x < PASSWORD_SYMBOLS[y].length; x += 1) {
       const left: number = this.cellSize + this.cellSize * x * 1.5;
       const top: number = this.cellSize * 5.5 + this.cellSize * y;
+      const isCurrent: boolean = this.currentSymbol[0] === y && this.currentSymbol[1] === x;
 
       ctx.font = WINDOW_FONT;
       ctx.textAlign = 'left';
@@ -62,6 +81,10 @@ function renderSymbols() {
       ctx.fillStyle = ELEMENTS_COLORS.window.text;
 
       ctx.fillText(PASSWORD_SYMBOLS[y][x], left, top);
+
+      if (isCurrent) {
+        ctx.fillText('➧', left - this.cellSize * 0.5, top + this.cellSize / 24);
+      }
     }
   }
 }
@@ -69,5 +92,6 @@ function renderSymbols() {
 export {
   renderPasswordWindow,
   renderInputSlots,
+  renderSlot,
   renderSymbols,
 };

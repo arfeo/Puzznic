@@ -44,13 +44,20 @@ function renderInputSlots() {
 function renderSymbols() {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
+  ctx.clearRect(
+    this.cellSize * 0.25,
+    this.cellSize * 4.5,
+    this.cellSize * 13.5,
+    this.cellSize * 4,
+  );
+
   for (let y = 0; y < PASSWORD_SYMBOLS.length; y += 1) {
     for (let x = 0; x < PASSWORD_SYMBOLS[y].length; x += 1) {
       const left: number = this.cellSize + this.cellSize * x * 1.5;
       const top: number = this.cellSize * 5.5 + this.cellSize * y;
 
       ctx.font = WINDOW_FONT;
-      ctx.textAlign = 'center';
+      ctx.textAlign = 'left';
       ctx.textBaseline = 'middle';
       ctx.fillStyle = ELEMENTS_COLORS.window.text;
 

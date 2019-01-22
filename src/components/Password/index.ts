@@ -9,6 +9,9 @@ import {
 import { setUpEventHandlers, removeEventHandlers } from './events';
 
 class Password extends Page {
+  currentSlot: number;
+  currentSymbol: number[];
+
   constructor() {
     super();
   }

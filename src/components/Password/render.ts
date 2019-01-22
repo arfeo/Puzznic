@@ -74,7 +74,7 @@ function renderSymbols() {
 
   ctx.clearRect(
     this.cellSize * 0.25,
-    this.cellSize * 4.5,
+    this.cellSize * 5,
     this.cellSize * 13.5,
     this.cellSize * 4,
   );
@@ -82,7 +82,7 @@ function renderSymbols() {
   for (let y = 0; y < PASSWORD_SYMBOLS.length; y += 1) {
     for (let x = 0; x < PASSWORD_SYMBOLS[y].length; x += 1) {
       const left: number = this.cellSize + this.cellSize * x * 1.5;
-      const top: number = this.cellSize * 5.5 + this.cellSize * y;
+      const top: number = this.cellSize * 6 + this.cellSize * y;
       const isCurrent: boolean = this.currentSymbol[0] === y && this.currentSymbol[1] === x;
 
       ctx.font = WINDOW_FONT;

@@ -7,6 +7,8 @@ function animateCurrentSlot() {
   let start: number = performance.now();
   let isUnderlined = true;
 
+  cancelAnimationFrame(this.animateCurrentSlot);
+
   const animate = (time: number) => {
     if (time - start > 500) {
       isUnderlined = !isUnderlined;

@@ -1,7 +1,7 @@
 import { Page } from '../common/Page';
 
 import { setUpEventHandlers, removeEventHandlers } from './events';
-import { renderPasswordWindow } from './render';
+import { renderInputSlots, renderPasswordWindow } from './render';
 
 class Password extends Page {
   constructor() {
@@ -10,6 +10,7 @@ class Password extends Page {
 
   render() {
     renderPasswordWindow.call(this);
+    renderInputSlots.call(this);
 
     setUpEventHandlers.call(this);
   }

@@ -1,6 +1,7 @@
 import { ELEMENTS_COLORS, PASSWORD_SYMBOLS, WINDOW_FONT } from '../../constants/pages';
 
 import { drawLineToAngle } from '../../utils/drawing';
+import { animateCurrentSlot } from './animations';
 
 /**
  * Function renders the page window
@@ -23,6 +24,8 @@ function renderInputSlots() {
   for (let i = 1; i <= 8; i += 1) {
     renderSlot.call(this, i);
   }
+
+  animateCurrentSlot.call(this);
 }
 
 /**
@@ -42,6 +45,13 @@ function renderSlot(index: number, underlined = true) {
     this.cellSize * 1.5,
     this.cellSize * 1.75,
   );
+
+  ctx.font = WINDOW_FONT;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = ELEMENTS_COLORS.window.text;
+
+  ctx.fillText(this.password[index - 1], left + this.cellSize * 0.5, top - this.cellSize * 0.5);
 
   if (underlined) {
     drawLineToAngle(

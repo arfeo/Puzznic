@@ -9,14 +9,17 @@ import {
 import { setUpEventHandlers, removeEventHandlers } from './events';
 
 class Password extends Page {
+  password: string[];
   currentSlot: number;
   currentSymbol: number[];
+  animateCurrentSlot: number;
 
   constructor() {
     super();
   }
 
   init() {
+    this.password = new Array(8).fill('');
     this.currentSlot = 1;
     this.currentSymbol = [0, 0];
   }
@@ -31,6 +34,8 @@ class Password extends Page {
 
   destroy() {
     removeEventHandlers.call(this);
+
+    cancelAnimationFrame(this.animateCurrentSlot);
   }
 }
 

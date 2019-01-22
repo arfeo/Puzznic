@@ -74,9 +74,9 @@ function renderSymbols() {
 
   ctx.clearRect(
     this.cellSize * 0.25,
-    this.cellSize * 5,
+    this.cellSize * 5.5,
     this.cellSize * 13.5,
-    this.cellSize * 4,
+    this.cellSize * 3,
   );
 
   for (let y = 0; y < PASSWORD_SYMBOLS.length; y += 1) {
@@ -99,9 +99,43 @@ function renderSymbols() {
   }
 }
 
+/**
+ * Function renders the password window's controls: NEXT, BACK, END
+ */
+function renderControls() {
+  const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
+  const controlX: number = this.cellSize * 1.75;
+  const controlY: number = this.cellSize * 10;
+
+  ctx.clearRect(
+    this.cellSize * 0.25,
+    controlY - this.cellSize * 0.5,
+    this.cellSize * 13.5,
+    this.cellSize,
+  );
+
+  ctx.font = WINDOW_FONT;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = ELEMENTS_COLORS.window.text;
+
+  ctx.fillText('NEXT', controlX, controlY);
+  ctx.fillText('BACK', controlX + this.cellSize * 4.5, controlY);
+  ctx.fillText('END', controlX + this.cellSize * 9, controlY);
+
+  if (this.currentControl > 0) {
+    ctx.fillText(
+      '➧',
+      controlX - this.cellSize * 0.5 + this.cellSize * (this.currentControl - 1) * 4.5,
+      controlY + this.cellSize / 24,
+    );
+  }
+}
+
 export {
   renderPasswordWindow,
   renderInputSlots,
   renderSlot,
   renderSymbols,
+  renderControls,
 };

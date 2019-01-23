@@ -2,6 +2,7 @@ import { Page } from '../common/Page';
 import { Game } from '../Game';
 
 import { renderLevelScoreWindow } from './render';
+import { setUpEventHandlers } from './events';
 
 class LevelScore extends Page {
   animateScore: number;
@@ -16,6 +17,8 @@ class LevelScore extends Page {
 
   render() {
     renderLevelScoreWindow.call(this);
+
+    setUpEventHandlers.call(this);
   }
 
   destroy() {

@@ -319,4 +319,36 @@ export const LEVELS: ILevel[] = [
     bonus: 500,
     password: 'takamine',
   },
+  {
+    id: 11,
+    map: [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 2, 2, 2, 2, 2, 2, 2, 2, 0],
+      [0, 2, 1, 1, 1, 1, 1, 1, 2, 0],
+      [0, 2, 1, 1, 1, 1, 2, 2, 2, 0],
+      [0, 2, 1, 1, 1, 1, 1, 1, 2, 0],
+      [0, 2, 1, 1, 2, 1, 1, 1, 2, 0],
+      [0, 2, 1, 1, 2, 1, 1, 1, 2, 0],
+      [0, 2, 2, 2, 1, 1, 1, 1, 2, 0],
+      [0, 2, 1, 1, 1, 1, 1, 1, 2, 0],
+      [0, 2, 2, 2, 2, 2, 2, 2, 2, 0]
+    ],
+    blocks: [
+      { id: 1, type: 1, position: [9, 6] },
+      { id: 2, type: 1, position: [10, 7] },
+      { id: 3, type: 2, position: [9, 7] },
+      { id: 4, type: 2, position: [10, 6] },
+      { id: 5, type: 2, position: [4, 6] },
+      { id: 6, type: 2, position: [10, 2] },
+      { id: 7, type: 3, position: [8, 2] },
+      { id: 8, type: 3, position: [4, 7] },
+      { id: 9, type: 4, position: [6, 4] },
+      { id: 10, type: 4, position: [10, 5] }
+    ],
+    target: [4, 7],
+    bonus: 300,
+    password: 'nisiyama',
+  },
 ];

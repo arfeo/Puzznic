@@ -1,8 +1,5 @@
 export interface IGlobals {
   pageInstance: any;
-  eventListeners: {
-    onKeyDown?: EventListener;
-    onKeyUp?: EventListener;
-  };
+  eventListeners: { [key: string]: EventListener };
   cellSize: number;
 }

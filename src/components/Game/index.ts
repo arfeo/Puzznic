@@ -1,5 +1,6 @@
 import { LEVELS } from '../../constants/levels';
 import { TARGET_BLINK_DELAY } from '../../constants/game';
+import { CELL_SIZE_VMIN } from '../../constants/global';
 
 import { renderGameWindow, renderLevel } from './render';
 import { setCellSize } from '../../utils/common';
@@ -34,7 +35,7 @@ class Game {
     this.score = score;
     this.moves = 0;
 
-    this.cellSize = setCellSize();
+    this.cellSize = setCellSize(CELL_SIZE_VMIN);
     this.blocksIcons = Object.keys(icons).length > 0 ? icons : generateBlocksIconsCorrelation();
 
     this.targetBlinkDelay = TARGET_BLINK_DELAY;

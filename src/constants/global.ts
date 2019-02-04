@@ -3,5 +3,6 @@ import { IGlobals } from '../types/global';
 export const APP: IGlobals = {
   pageInstance: null,
   eventListeners: null,
-  cellSize: 0,
 };
+
+export const CELL_SIZE_VMIN = 6;

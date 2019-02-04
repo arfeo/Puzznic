@@ -1,5 +1,3 @@
-import { APP } from '../constants/global';
-
 /**
  * Function calculates the analogue of CSS vmin in pixels
  */
@@ -12,13 +10,11 @@ function calculateVMin(): number {
 
 /**
  * Function returns the cell size (atomic canvas measure)
- * depending on the screen size if no cell size is given in the app settings,
- * or cell size given in the app settings
+ * depending on the screen size and the given vmin value
  */
-function setCellSize(): number {
-  return APP.cellSize > 0 ? APP.cellSize : Math.round(calculateVMin() * 6  / 10) * 10;
+function setCellSize(vmin: number): number {
+  return Math.round(calculateVMin() * vmin  / 10) * 10;
 }
-
 /**
  * Function returns a random number in a given interval;
  * as an option it discards one or more numbers given in the `discard` array

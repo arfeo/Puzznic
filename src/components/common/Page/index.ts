@@ -1,6 +1,7 @@
 import { Game } from '../../Game';
 
 import { ELEMENTS_COLORS } from '../../../constants/pages';
+import { CELL_SIZE_VMIN } from '../../../constants/global';
 
 import { setCellSize } from '../../../utils/common';
 import { drawRectangle } from '../../../utils/drawing';
@@ -16,7 +17,7 @@ abstract class Page {
     const appRoot: HTMLElement = document.getElementById('root');
     const pageWindow: HTMLElement = document.createElement('div');
 
-    this.cellSize = setCellSize();
+    this.cellSize = setCellSize(CELL_SIZE_VMIN);
 
     this.pageCanvas = document.createElement('canvas');
 

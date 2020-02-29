@@ -11,7 +11,7 @@ import { renderLevel } from './render';
 /**
  * Function creates all game's event listeners
  */
-function setUpEventHandlers() {
+function setUpEventHandlers(): void {
   APP.eventListeners = {
     onKeyDown: keyDownHandler.bind(this),
     onKeyUp: keyUpHandler.bind(this),
@@ -26,7 +26,7 @@ function setUpEventHandlers() {
 /**
  * Function removes all game's event listeners
  */
-function removeEventHandlers() {
+function removeEventHandlers(): void {
   document.body.removeEventListener('keydown', APP.eventListeners.onKeyDown);
   document.body.removeEventListener('keyup', APP.eventListeners.onKeyUp);
 }
@@ -36,7 +36,7 @@ function removeEventHandlers() {
  *
  * @param event
  */
-function keyDownHandler(event: KeyboardEvent) {
+function keyDownHandler(event: KeyboardEvent): void {
   let key = '';
 
   switch (event.key) {
@@ -139,7 +139,7 @@ function keyDownHandler(event: KeyboardEvent) {
 /**
  * Function fires at key up event
  */
-function keyUpHandler() {
+function keyUpHandler(): void {
   setActiveKey.call(this);
 
   this.targetBlinkDelay = TARGET_BLINK_DELAY;
@@ -152,7 +152,7 @@ function keyUpHandler() {
  *
  * @param type
  */
-function setActiveKey(type?: string) {
+function setActiveKey(type?: string): void {
   this.keysDown = {
     catch: false,
     up: false,

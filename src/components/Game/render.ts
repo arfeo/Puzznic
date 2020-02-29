@@ -19,7 +19,7 @@ import { IBlock } from '../../types/game';
 /**
  * Function creates game window element, game panel and all needed canvases
  */
-function renderGameWindow() {
+function renderGameWindow(): void {
   const appRoot: HTMLElement = document.getElementById('root');
   const gameWindow: HTMLElement = document.createElement('div');
   const backgroundCanvas: HTMLCanvasElement = document.createElement('canvas');
@@ -82,7 +82,7 @@ function renderGameWindow() {
  * @param width
  * @param height
  */
-function renderBackground(ctx: CanvasRenderingContext2D, width: number, height: number) {
+function renderBackground(ctx: CanvasRenderingContext2D, width: number, height: number): void {
   const brickWidth: number = this.cellSize * 2 / 3;
   const brickHeight: number = this.cellSize / 3;
   const borderWidth: number = this.cellSize / 12;
@@ -146,7 +146,7 @@ function renderBackground(ctx: CanvasRenderingContext2D, width: number, height: 
  * Function renders game board as described in `constants/levels`
  * for the current level, including initial block states and the target
  */
-function renderLevel() {
+function renderLevel(): void {
   const { map, blocks } = this.level;
 
   if (!map || !blocks) {
@@ -177,7 +177,7 @@ function renderLevel() {
  * @param x
  * @param y
  */
-function renderMapElement(x: number, y: number) {
+function renderMapElement(x: number, y: number): void {
   const ctx: CanvasRenderingContext2D = this.gridCanvas.getContext('2d');
   const elementType: number = this.level.map[y][x];
   const top: number = this.cellSize * y;
@@ -250,7 +250,7 @@ function renderMapElement(x: number, y: number) {
  * @param left
  * @param top
  */
-function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, top: number) {
+function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, top: number): void {
   drawRectangle(
     ctx,
     left,
@@ -367,7 +367,7 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
  * @param left
  * @param top
  */
-function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number, top: number) {
+function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number, top: number): void {
   switch (id) {
     case 1: {
       drawTriangle(
@@ -725,7 +725,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
  *
  * @param color
  */
-function renderTarget(color: string) {
+function renderTarget(color: string): void {
   const ctx: CanvasRenderingContext2D = this.targetCanvas.getContext('2d');
   const top: number = this.cellSize * this.level.target[0];
   const left: number = this.cellSize * this.level.target[1];
@@ -784,7 +784,7 @@ function renderTarget(color: string) {
 /**
  * Function renders the list of currently available blocks (grouped by types) and their count
  */
-function renderElementsList() {
+function renderElementsList(): void {
   const { blocks } = this.level;
 
   if (!blocks) {

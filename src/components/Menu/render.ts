@@ -7,7 +7,7 @@ import {
 /**
  * Function renders the page window
  */
-function renderMenuContent() {
+function renderMenuContent(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
   // Logo
@@ -44,7 +44,7 @@ function renderMenuContent() {
 /**
  * Function renders a pointer arrow against the currently selected menu item
  */
-function renderPointer() {
+function renderPointer(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   const yOffset: number = (this.currentItem - 1) * 1.5;
 

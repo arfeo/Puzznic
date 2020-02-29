@@ -76,7 +76,7 @@ function checkObstacle(x: number, y: number): boolean {
 /**
  * Function checks which blocks have no obstacle below and have to fall
  */
-function checkBlocksToFall() {
+function checkBlocksToFall(): void {
   const { blocks } = this.level;
 
   if (!blocks) {
@@ -96,7 +96,7 @@ function checkBlocksToFall() {
 /**
  * Function checks which blocks form groups (neighbours by X and Y axises)
  */
-function checkBlockGroups() {
+function checkBlockGroups(): void {
   const { blocks } = this.level;
   const neighbours: number[] = [];
 

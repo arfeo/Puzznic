@@ -11,17 +11,17 @@ class LevelScore extends Page {
     super(true, game);
   }
 
-  init(game?: Game) {
+  init(game?: Game): void {
     this.game = game;
   }
 
-  render() {
+  render(): void {
     renderLevelScoreWindow.call(this);
 
     setUpEventHandlers.call(this);
   }
 
-  destroy() {
+  destroy(): void {
     cancelAnimationFrame(this.animateScore);
   }
 }

@@ -10,17 +10,17 @@ class Menu extends Page {
     super(false);
   }
 
-  init() {
+  init(): void {
     this.currentItem = 1;
   }
 
-  render() {
+  render(): void {
     renderMenuContent.call(this);
 
     setUpEventHandlers.call(this);
   }
 
-  destroy() {
+  destroy(): void {
     removeEventHandlers.call(this);
   }
 }

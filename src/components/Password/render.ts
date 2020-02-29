@@ -6,7 +6,7 @@ import { animateCurrentSlot } from './animations';
 /**
  * Function renders the page window
  */
-function renderPasswordWindow() {
+function renderPasswordWindow(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
   ctx.font = WINDOW_FONT;
@@ -20,7 +20,7 @@ function renderPasswordWindow() {
 /**
  * Function renders 8 password input slots divided by space after the fourth one
  */
-function renderInputSlots() {
+function renderInputSlots(): void {
   for (let i = 1; i <= 8; i += 1) {
     renderSlot.call(this, i);
   }
@@ -34,7 +34,7 @@ function renderInputSlots() {
  * @param index
  * @param underlined
  */
-function renderSlot(index: number, underlined = true) {
+function renderSlot(index: number, underlined = true): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   const left: number = this.cellSize + this.cellSize * (index - 1) * 1.5 + (index >= 5 ? this.cellSize * 0.5 : 0);
   const top: number = this.cellSize * 4;
@@ -69,7 +69,7 @@ function renderSlot(index: number, underlined = true) {
 /**
  * Function renders the block of symbols as defined in `PASSWORD_SYMBOLS` array
  */
-function renderSymbols() {
+function renderSymbols(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
   ctx.clearRect(
@@ -102,7 +102,7 @@ function renderSymbols() {
 /**
  * Function renders the password window's controls: NEXT, BACK, END
  */
-function renderControls() {
+function renderControls(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   const controlX: number = this.cellSize * 1.75;
   const controlY: number = this.cellSize * 10;

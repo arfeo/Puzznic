@@ -9,7 +9,7 @@ import { renderPointer } from './render';
 /**
  * Function creates all components's event listeners
  */
-function setUpEventHandlers() {
+function setUpEventHandlers(): void {
   APP.eventListeners = {
     onKeyDown: keyDownHandler.bind(this),
   };
@@ -20,7 +20,7 @@ function setUpEventHandlers() {
 /**
  * Function removes all components's event listeners
  */
-function removeEventHandlers() {
+function removeEventHandlers(): void {
   document.body.removeEventListener('keydown', APP.eventListeners.onKeyDown);
 }
 
@@ -29,7 +29,7 @@ function removeEventHandlers() {
  *
  * @param event
  */
-function keyDownHandler(event: KeyboardEvent) {
+function keyDownHandler(event: KeyboardEvent): void {
   switch (event.key) {
     case FunctionalKeys.Up: {
       if (this.currentItem > 1) {

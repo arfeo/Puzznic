@@ -14,11 +14,11 @@ import { IBlock } from '../../types/game';
 /**
  * Function animates the target
  */
-function animateTarget() {
+function animateTarget(): void {
   let start = performance.now();
   let state = 1;
 
-  const animate = (time: number) => {
+  const animate = (time: number): void => {
     if (this.isLevelCompleted) {
       return cancelAnimationFrame(this.animateTarget);
     }
@@ -49,7 +49,7 @@ function animateTarget() {
  * @param nextX
  * @param nextY
  */
-function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
+function animateBlockMove(block: IBlock, nextX: number, nextY: number): void {
   if (block.position === undefined) {
     return;
   }
@@ -96,7 +96,7 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number) {
 
     this.blocksMoving.push(block.id);
 
-    const animate = () => {
+    const animate = (): void => {
       if (step > BLOCK_FALL_SPEED) {
         cancelAnimationFrame(frame);
 
@@ -156,12 +156,12 @@ function animateBlockElimination(blockId: number): Promise<void> {
     if (block && block.length > 0) {
       const left: number = this.cellSize * block[0].position[1];
       const top: number = this.cellSize * block[0].position[0];
-      const type: number = block[0].type;
+      const { type } = block[0];
       let start: number = performance.now();
       let frame: number;
       let step = 1;
 
-      const animate = (time: number) => {
+      const animate = (time: number): void => {
         if (step === 6) {
           ctx.clearRect(
             left,
@@ -215,7 +215,7 @@ function animateBlockElimination(blockId: number): Promise<void> {
  * @param top
  * @param size
  */
-function animateBonusSize(left: number, top: number, size: number) {
+function animateBonusSize(left: number, top: number, size: number): void {
   const ctx: CanvasRenderingContext2D = this.bonusCanvas.getContext('2d');
   let frame: number;
   let alpha = 0;
@@ -232,7 +232,7 @@ function animateBonusSize(left: number, top: number, size: number) {
   ctx.shadowColor = ELEMENTS_COLORS.bonus.shadow;
   ctx.shadowBlur = 20;
 
-  const animate = () => {
+  const animate = (): void => {
     if (alpha >= 1) {
       pulse = -1;
     }

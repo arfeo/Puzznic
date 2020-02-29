@@ -13,7 +13,7 @@ abstract class Page {
   init?(game?: Game): void;
   abstract render(): void;
 
-  protected constructor(bordered = true, game?: Game) {
+  constructor(bordered = true, game?: Game) {
     const appRoot: HTMLElement = document.getElementById('root');
     const pageWindow: HTMLElement = document.createElement('div');
 

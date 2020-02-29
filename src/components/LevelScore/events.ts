@@ -7,7 +7,7 @@ import { FunctionalKeys } from '../../constants/pages';
 /**
  * Function creates all components's event listeners
  */
-function setUpEventHandlers() {
+function setUpEventHandlers(): void {
   APP.eventListeners = {
     onKeyDown: (event: KeyboardEvent) => {
       if (event.key === FunctionalKeys.Continue) {

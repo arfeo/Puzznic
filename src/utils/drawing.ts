@@ -17,7 +17,7 @@ function drawCircle(
   fillStyle?: string,
   edgingWidth?: number,
   edgingColor?: string,
-) {
+): void {
   drawArc(ctx, dotX, dotY, radius, 0, Math.PI * 2, fillStyle, edgingWidth, edgingColor);
 }
 
@@ -44,7 +44,7 @@ function drawSector(
   fillStyle?: string,
   edgingWidth?: number,
   edgingColor?: string,
-) {
+): void {
   ctx.beginPath();
   ctx.moveTo(dotX, dotY);
   ctx.arc(dotX, dotY, radius, startAngle, endAngle);
@@ -88,7 +88,7 @@ function drawArc(
   fillStyle?: string,
   edgingWidth?: number,
   edgingColor?: string,
-) {
+): void {
   ctx.beginPath();
   ctx.arc(cx, cy, radius, startAngle, endAngle);
 
@@ -166,7 +166,7 @@ function drawRectangle(
   fillStyle?: string,
   edgingWidth?: number,
   edgingColor?: string,
-) {
+): void {
   if (fillStyle) {
     ctx.fillStyle = fillStyle;
 
@@ -200,7 +200,7 @@ function drawTriangle(
   fillStyle?: string,
   edgingWidth?: number,
   edgingColor?: string,
-) {
+): void {
   ctx.beginPath();
   ctx.moveTo(c1[0], c1[1]);
   ctx.lineTo(c2[0], c2[1]);

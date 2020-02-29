@@ -16,18 +16,14 @@ class Password extends Page {
   currentControl: number;
   animateCurrentSlot: number;
 
-  constructor() {
-    super();
-  }
-
-  init() {
+  init(): void {
     this.password = new Array(8).fill('');
     this.currentSlot = 1;
     this.currentSymbol = [0, 0];
     this.currentControl = 0;
   }
 
-  render() {
+  render(): void {
     renderPasswordWindow.call(this);
     renderInputSlots.call(this);
     renderSymbols.call(this);
@@ -36,7 +32,7 @@ class Password extends Page {
     setUpEventHandlers.call(this);
   }
 
-  destroy() {
+  destroy(): void {
     removeEventHandlers.call(this);
 
     cancelAnimationFrame(this.animateCurrentSlot);

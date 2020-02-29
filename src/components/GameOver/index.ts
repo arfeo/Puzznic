@@ -5,11 +5,7 @@ import { APP } from '../../constants/global';
 import { ELEMENTS_COLORS, WINDOW_FONT, FunctionalKeys } from '../../constants/pages';
 
 class GameOver extends Page {
-  constructor() {
-    super();
-  }
-
-  render() {
+  render(): void {
     const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
     ctx.font = WINDOW_FONT;

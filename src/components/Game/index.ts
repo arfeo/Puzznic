@@ -51,14 +51,14 @@ class Game {
     this.render();
   }
 
-  render() {
+  render(): void {
     renderGameWindow.call(this);
     renderLevel.call(this);
 
     setUpEventHandlers.call(this);
   }
 
-  destroy() {
+  destroy(): void {
     removeEventHandlers.call(this);
 
     cancelAnimationFrame(this.animateTarget);

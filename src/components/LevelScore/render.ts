@@ -8,7 +8,7 @@ import { ILevel } from '../../types/game';
 /**
  * Function renders the page window
  */
-function renderLevelScoreWindow() {
+function renderLevelScoreWindow(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   const nextLevel: ILevel = LEVELS.find((level: ILevel) => level.id === this.game.level.id + 1);
   const password: string = nextLevel ? nextLevel.password : null;

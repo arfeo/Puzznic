@@ -1,0 +1,194 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "rules": {
+    "@typescript-eslint/ban-ts-ignore": "error",
+    "@typescript-eslint/camelcase": "warn",
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "@typescript-eslint/no-extra-non-null-assertion": "error",
+    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/no-empty-function": "error",
+    "@typescript-eslint/no-empty-interface": "error",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-extra-semi": "error",
+    "@typescript-eslint/no-inferrable-types": "error",
+    "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/no-parameter-properties": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true,
+        "varsIgnorePattern": "^_$"
+      }
+    ],
+    "@typescript-eslint/no-use-before-define": ["warn", "nofunc"],
+    "@typescript-eslint/unified-signatures": "warn",
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true
+      }
+    ],
+    "@typescript-eslint/no-useless-constructor": "warn",
+    "array-bracket-spacing": ["error", "never"],
+    "class-methods-use-this": [
+      "warn",
+      {
+        "exceptMethods": []
+      }
+    ],
+    "comma-dangle": ["error", "always-multiline"],
+    "default-case": "error",
+    "dot-notation": "error",
+    "eol-last": ["error", "always"],
+    "eqeqeq": ["warn", "always", { "null": "ignore" }],
+    "func-style": [
+      "error",
+      "declaration",
+      {
+        "allowArrowFunctions": true
+      }
+    ],
+    "guard-for-in": "error",
+    "id-length": [
+      "error",
+      {
+        "exceptions": ["a", "b", "e", "i", "x", "y", "_"],
+        "min": 2
+      }
+    ],
+    "indent": "off",
+    "key-spacing": "error",
+    "keyword-spacing": "error",
+    "max-classes-per-file": "error",
+    "max-depth": ["error", 5],
+    "max-len": [
+      "warn",
+      {
+        "code": 120,
+        "comments": 120
+      }
+    ],
+    "no-alert": "error",
+    "no-cond-assign": ["error", "always"],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "info"
+        ]
+      }
+    ],
+    "no-else-return": ["warn", { "allowElseIf": false }],
+    "no-extra-bind": "error",
+    "no-extra-boolean-cast": "warn",
+    "no-implied-eval": "error",
+    "no-irregular-whitespace": [
+      "error",
+      {
+        "skipComments": true,
+        "skipStrings": true,
+        "skipTemplates": true
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxBOF": 0,
+        "maxEOF": 0
+      }
+    ],
+    "no-param-reassign": ["warn", { "props": false }],
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "no-shadow": ["error", { "hoist": "all" }],
+    "no-unused-vars": "off",
+    "no-useless-concat": "error",
+    "no-useless-return": "warn",
+    "no-unused-expressions": "off",
+    "no-useless-constructor": "off",
+    "no-var": "warn",
+    "object-curly-spacing": ["error", "always"],
+    "object-shorthand": [
+      "warn",
+      "always",
+      {
+        "ignoreConstructors": false,
+        "avoidQuotes": true
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*"},
+      { "blankLine": "any",    "prev": ["const", "let", "var"], "next": ["const", "let", "var"]},
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": "directive", "next": "*" },
+      { "blankLine": "any",    "prev": "directive", "next": "directive" }
+    ],
+    "prefer-arrow-callback": [
+      "warn",
+      {
+        "allowNamedFunctions": false,
+        "allowUnboundThis": true
+      }
+    ],
+    "prefer-const": [
+      "warn",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": true
+      }
+    ],
+    "prefer-destructuring": [
+      "warn",
+      {
+        "VariableDeclarator": {
+          "array": false,
+          "object": true
+        },
+        "AssignmentExpression": {
+          "array": true,
+          "object": true
+        }
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
+    "prefer-spread": "error",
+    "prefer-template": "warn",
+    "quotes": ["error", "single"],
+    "radix": "error",
+    "semi": ["error", "always"],
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "exceptions": ["-", "+"]
+      }
+    ],
+    "yoda": "error"
+  }
+}

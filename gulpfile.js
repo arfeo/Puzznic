@@ -1,10 +1,11 @@
+/* eslint-disable */
 const gulp = require('gulp');
 const del = require('del');
 const buffer = require('vinyl-buffer');
 const source = require('vinyl-source-stream');
 const browserify = require('browserify');
 const tsify = require('tsify');
-const tslint = require('gulp-tslint');
+const eslint = require('gulp-eslint');
 const sass = require('gulp-sass');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
@@ -21,6 +22,7 @@ function build(done) {
     linter,
     ts,
     scss,
+    assets,
   )(done);
 }
 
@@ -48,8 +50,8 @@ function run(done) {
 }
 
 function watchers() {
-  gulp.watch('./src/**/*.ts', gulp.series(linter, ts, reload));
-  gulp.watch('./src/**/*.scss', gulp.series(scss, reload));
+  gulp.watch('./src/**/*.ts', gulp.series(linter, ts, assets, reload));
+  gulp.watch('./src/**/*.scss', gulp.series(scss, assets, reload));
 }
 
 function scss() {
@@ -59,10 +61,16 @@ function scss() {
     .pipe(gulp.dest('./dist'));
 }
 
+function assets() {
+  return gulp.src('./src/assets/images/**/*')
+    .pipe(gulp.dest('./dist/static'));
+}
+
 function linter() {
   return gulp.src('./src/**/*.ts')
-    .pipe(tslint())
-    .pipe(tslint.report());
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
 }
 
 function ts() {

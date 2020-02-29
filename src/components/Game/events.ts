@@ -131,7 +131,7 @@ function keyDownHandler(event: KeyboardEvent) {
     default: break;
   }
 
-  if (this.keysDown.hasOwnProperty(key)) {
+  if (Object.prototype.hasOwnProperty.call(this.keysDown, key)) {
     setActiveKey.call(this, key);
   }
 }

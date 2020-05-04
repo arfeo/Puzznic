@@ -21,13 +21,15 @@ abstract class Page {
 
     this.pageCanvas = document.createElement('canvas');
 
-    pageWindow.className = 'pageWindow';
+    pageWindow.className = 'page-window';
     this.pageCanvas.className = '-page-canvas';
 
     this.pageCanvas.width = this.cellSize * 14;
     this.pageCanvas.height = this.cellSize * 12;
 
-    appRoot.innerHTML = '';
+    while (appRoot.firstChild) {
+      appRoot.removeChild(appRoot.firstChild);
+    }
 
     appRoot.appendChild(pageWindow);
     pageWindow.appendChild(this.pageCanvas);

@@ -32,10 +32,10 @@ function renderGameWindow(): void {
   this.targetCanvas = document.createElement('canvas');
   this.bonusCanvas = document.createElement('canvas');
 
-  gameWindow.className = 'gameWindow';
+  gameWindow.className = 'game-window';
   backgroundCanvas.className = '-background-canvas';
-  gameBoard.className = 'gameBoard';
-  gridContainer.className = 'gridContainer';
+  gameBoard.className = 'game-board';
+  gridContainer.className = 'grid-container';
   this.elementsCanvas.className = '-elements-canvas';
   this.gridCanvas.className = '-grid-canvas';
   this.blocksCanvas.className = '-blocks-canvas';
@@ -55,7 +55,9 @@ function renderGameWindow(): void {
   this.bonusCanvas.width = this.cellSize * 10;
   this.bonusCanvas.height = this.cellSize * 12;
 
-  appRoot.innerHTML = '';
+  while (appRoot.firstChild) {
+    appRoot.removeChild(appRoot.firstChild);
+  }
 
   appRoot.appendChild(gameWindow);
   gameWindow.appendChild(backgroundCanvas);

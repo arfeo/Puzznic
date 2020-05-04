@@ -1,6 +1,6 @@
 @import '../../assets/styles/variables';
 
-.gameWindow {
+.game-window {
   position: relative;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@
     z-index: 1;
   }
 
-  .gameBoard {
+  .game-board {
     position: absolute;
     top: 0;
     left: 0;
@@ -30,7 +30,7 @@
       z-index: 2;
     }
 
-    .gridContainer {
+    .grid-container {
       position: relative;
       width: calc(#{$cellSize * 10});
       height: calc(#{$cellSize * 12});

@@ -14,6 +14,7 @@
   "rules": {
     "@typescript-eslint/ban-ts-ignore": "error",
     "@typescript-eslint/camelcase": "warn",
+    "@typescript-eslint/default-param-last": "error",
     "@typescript-eslint/explicit-function-return-type": [
       "warn",
       {
@@ -47,14 +48,9 @@
     ],
     "@typescript-eslint/no-useless-constructor": "warn",
     "array-bracket-spacing": ["error", "never"],
-    "class-methods-use-this": [
-      "warn",
-      {
-        "exceptMethods": []
-      }
-    ],
     "comma-dangle": ["error", "always-multiline"],
     "default-case": "error",
+    "default-param-last": "error",
     "dot-notation": "error",
     "eol-last": ["error", "always"],
     "eqeqeq": ["warn", "always", { "null": "ignore" }],
@@ -77,7 +73,7 @@
     "key-spacing": "error",
     "keyword-spacing": "error",
     "max-classes-per-file": "error",
-    "max-depth": ["error", 5],
+    "max-depth": ["error", 4],
     "max-len": [
       "warn",
       {

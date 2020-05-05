@@ -1,6 +1,28 @@
 import { MapDefinitions } from '../../../constants/game';
 
 import { drawLineToAngle, drawRectangle, drawTriangle } from '../../../core/utils/drawing';
+import { renderBlock } from './block';
+
+function renderMap(): void {
+  const { map, blocks } = this.level;
+
+  if (!map || !blocks) {
+    return;
+  }
+
+  for (let y = 0; y < map.length; y += 1) {
+    for (let x = 0; x < map[y].length; x += 1) {
+      renderMapElement.call(this, x, y);
+    }
+  }
+
+  for (const block of blocks) {
+    const top: number = this.cellSize * block.position[0];
+    const left: number = this.cellSize * block.position[1];
+
+    renderBlock.call(this, this.blocksCanvas.getContext('2d'), block.type, left, top);
+  }
+}
 
 function renderMapElement(x: number, y: number): void {
   const ctx: CanvasRenderingContext2D = this.gridCanvas.getContext('2d');
@@ -83,4 +105,4 @@ function renderMapElement(x: number, y: number): void {
   }
 }
 
-export { renderMapElement };
+export { renderMap };

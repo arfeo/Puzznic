@@ -1,5 +1,5 @@
 import { renderBackground } from './background';
-import { renderLevel } from './level';
+import { renderMap } from './map';
 import { renderElementsList } from './elementsList';
 
 function renderGameWindow(): HTMLElement {
@@ -41,7 +41,7 @@ function renderGameWindow(): HTMLElement {
   gridContainer.appendChild(this.bonusCanvas);
 
   renderBackground.call(this);
-  renderLevel.call(this);
+  renderMap.call(this);
   renderElementsList.call(this);
 
   return gameWindow;

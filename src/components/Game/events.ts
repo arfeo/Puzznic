@@ -3,7 +3,7 @@ import { Menu } from '../Menu';
 
 import { FunctionalKeys, TARGET_BLINK_DELAY } from '../../constants/game';
 
-import { renderMap } from './render';
+import { renderElementsList, renderMap } from './render';
 import { checkBlockPosition, checkObstacle, checkTargetMove } from './actions';
 import { animateBlockMove } from './animations';
 
@@ -82,6 +82,7 @@ function onKeyDown(event: KeyboardEvent): void {
         this.isIconModeOn = !this.isIconModeOn;
 
         renderMap.call(this);
+        renderElementsList.call(this);
       }
       break;
     }

@@ -20,7 +20,7 @@ To turn blocks icons mode on or off, press `Space`. This mode is on by default, 
 
 `R` -- restart current level
 
-`Q` -- return to the main menu
+`Esc` -- return to the main menu
 
 ## Installation
 

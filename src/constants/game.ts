@@ -10,8 +10,8 @@ export enum FunctionalKeys {
   Down = 'ArrowDown',
   Left = 'ArrowLeft',
   SwitchIconMode = ' ',
-  GoToMenu = 'q',
-  Restart = 'r',
+  GoToMenu = 'Escape',
+  Restart = 'R',
 }
 
 export const TARGET_BLINK_DELAY = 300;

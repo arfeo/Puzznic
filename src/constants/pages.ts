@@ -4,7 +4,7 @@ export enum FunctionalKeys {
   Down = 'ArrowDown',
   Left = 'ArrowLeft',
   Continue = 'Enter',
-  GoToMenu = 'q',
+  GoToMenu = 'Escape',
 }
 
 export const WINDOW_FONT = '5vmin Courier';

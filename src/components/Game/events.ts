@@ -91,7 +91,8 @@ function onKeyDown(event: KeyboardEvent): void {
       new Menu();
       break;
     }
-    case FunctionalKeys.Restart: {
+    case FunctionalKeys.Restart:
+    case FunctionalKeys.Restart.toLowerCase(): {
       if (!this.isLevelCompleted) {
         this.destroy();
 

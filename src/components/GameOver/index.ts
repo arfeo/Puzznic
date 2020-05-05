@@ -1,11 +1,10 @@
 import { PageComponent } from '../../core/components/Page';
-import { Menu } from '../Menu';
 
 import { CELL_SIZE_VMIN } from '../../constants/global';
-import { FunctionalKeys } from '../../constants/pages';
 
 import { getCellSize } from '../../core/utils/game';
 import { renderGameOverWindow } from './render';
+import { keyDownHandler } from './events';
 
 class GameOver extends PageComponent {
   private cellSize: number;
@@ -23,13 +22,7 @@ class GameOver extends PageComponent {
       {
         target: document,
         type: 'keydown',
-        listener: (event: KeyboardEvent) => {
-          if (event.key === FunctionalKeys.Continue) {
-            this.destroy();
-
-            new Menu();
-          }
-        },
+        listener: keyDownHandler.bind(this),
       },
     ];
   }

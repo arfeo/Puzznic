@@ -3,18 +3,13 @@
     "baseUrl": "..",
     "module": "commonjs",
     "target": "es5",
-    "lib": [
-      "es2017",
-      "es6",
-      "dom"
-    ],
+    "lib": ["es6", "dom"],
     "sourceMap": true,
     "allowJs": true,
     "moduleResolution": "node",
     "rootDir": "src",
     "outDir": "dist",
     "noImplicitAny": true,
-    "noUnusedLocals": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true

@@ -3,8 +3,15 @@ import { ELEMENTS_COLORS, PASSWORD_SYMBOLS, WINDOW_FONT } from '../../constants/
 import { drawLineToAngle } from '../../core/utils/drawing';
 import { animateCurrentSlot } from './animations';
 
-function renderPasswordWindow(): void {
+function renderPasswordWindow(): HTMLElement {
+  const pageWindow: HTMLElement = document.createElement('div');
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
+
+  pageWindow.className = 'page-window';
+  this.pageCanvas.className = '-page-canvas';
+
+  this.pageCanvas.width = this.cellSize * 14;
+  this.pageCanvas.height = this.cellSize * 12;
 
   ctx.font = WINDOW_FONT;
   ctx.textAlign = 'center';
@@ -12,6 +19,14 @@ function renderPasswordWindow(): void {
   ctx.fillStyle = ELEMENTS_COLORS.window.text;
 
   ctx.fillText('PASSWORD', this.cellSize * 7, this.cellSize * 1.5);
+
+  renderInputSlots.call(this);
+  renderSymbols.call(this);
+  renderControls.call(this);
+
+  pageWindow.appendChild(this.pageCanvas);
+
+  return pageWindow;
 }
 
 function renderInputSlots(): void {

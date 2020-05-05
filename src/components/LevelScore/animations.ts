@@ -1,6 +1,6 @@
 import { ELEMENTS_COLORS, SCORE_ANIMATION_SPEED } from '../../constants/pages';
 
-function animateScorePointsTransition(): void {
+function animateScorePoints(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   let scoreCloned: number = this.game.score;
   let start: number = performance.now();
@@ -53,4 +53,4 @@ function animateScorePointsTransition(): void {
   }, 1000);
 }
 
-export { animateScorePointsTransition };
+export { animateScorePoints };

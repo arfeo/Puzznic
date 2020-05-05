@@ -1,25 +1,12 @@
 import { Menu } from '../Menu';
 import { Game } from '../Game';
 
-import { APP } from '../../constants/global';
 import { LEVELS } from '../../constants/levels';
 import { FunctionalKeys, PASSWORD_SYMBOLS } from '../../constants/pages';
 
 import { renderControls, renderInputSlots, renderSymbols } from './render';
 
 import { Level } from '../Game/types';
-
-function setUpEventHandlers(): void {
-  APP.eventListeners = {
-    onKeyDown: keyDownHandler.bind(this),
-  };
-
-  document.body.addEventListener('keydown', APP.eventListeners.onKeyDown);
-}
-
-function removeEventHandlers(): void {
-  document.body.removeEventListener('keydown', APP.eventListeners.onKeyDown);
-}
 
 function keyDownHandler(event: KeyboardEvent): void {
   switch (event.key) {
@@ -131,7 +118,7 @@ function keyDownHandler(event: KeyboardEvent): void {
             if (level) {
               this.destroy();
 
-              APP.pageInstance = new Game(level.id);
+              new Game(level.id);
             }
             break;
           }
@@ -151,14 +138,11 @@ function keyDownHandler(event: KeyboardEvent): void {
     case FunctionalKeys.GoToMenu: {
       this.destroy();
 
-      APP.pageInstance = new Menu();
+      new Menu();
       break;
     }
     default: break;
   }
 }
 
-export {
-  setUpEventHandlers,
-  removeEventHandlers,
-};
+export { keyDownHandler };

@@ -1,7 +1,5 @@
 import { LevelScore } from '../LevelScore';
 
-import { APP } from '../../constants/global';
-
 import { animateBlockMove, animateBlockElimination, animateBonusSize } from './animations';
 import { findCornerBlocks } from './helpers';
 
@@ -130,7 +128,7 @@ function checkBlockGroups(): void {
         window.setTimeout(() => {
           this.destroy();
 
-          APP.pageInstance = new LevelScore(this);
+          new LevelScore(this);
         }, 1000);
       } else {
         checkBlocksToFall.call(this);

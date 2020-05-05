@@ -88,7 +88,7 @@ class Game extends PageComponent {
     };
   }
 
-  render(): HTMLElement {
+  public render(): HTMLElement {
     return renderGameWindow.call(this);
   }
 }

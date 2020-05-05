@@ -1,24 +1,16 @@
-import { LEVELS } from '../../constants/levels';
 import { ELEMENTS_COLORS, WINDOW_FONT } from '../../constants/pages';
 
 import { drawRectangle } from '../../core/utils/drawing';
 
-import { Level } from '../Game/types';
-
-function renderLevelScoreWindow(): HTMLElement {
+function renderGameOverWindow(): HTMLElement {
   const pageWindow: HTMLElement = document.createElement('div');
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
-  const nextLevel: Level = LEVELS.find((level: Level) => level.id === this.game.level.id + 1);
-  const password: string = nextLevel ? nextLevel.password : null;
 
   pageWindow.className = 'page-window';
   this.pageCanvas.className = '-page-canvas';
 
   this.pageCanvas.width = this.cellSize * 14;
   this.pageCanvas.height = this.cellSize * 12;
-
-  this.game.isLevelCompleted = true;
-  this.game.clearBonus += this.game.level.bonus;
 
   drawRectangle(
     ctx,
@@ -51,32 +43,12 @@ function renderLevelScoreWindow(): HTMLElement {
   ctx.textBaseline = 'middle';
   ctx.fillStyle = ELEMENTS_COLORS.window.text;
 
-  ctx.fillText('SCORE', this.cellSize * 7, this.cellSize * 2);
-  ctx.fillText(
-    this.game.score.toString().padStart(8, '0'),
-    this.cellSize * 7,
-    this.cellSize * 3.5,
-  );
-  ctx.fillText('CLEAR BONUS', this.cellSize * 7, this.cellSize * 6);
-  ctx.fillText(
-    this.game.clearBonus.toString().padStart(8, '0'),
-    this.cellSize * 7,
-    this.cellSize * 7.5,
-  );
-
-  if (password) {
-    ctx.fillText(
-      `${password.toUpperCase().slice(0, 4)} ${password.toUpperCase().slice(4, 8)}`,
-      this.cellSize * 7,
-      this.cellSize * 10,
-    );
-  } else {
-    this.game.isGameOver = true;
-  }
+  ctx.fillText('CONGRATULATIONS!', this.cellSize * 7, this.cellSize * 4);
+  ctx.fillText('THE END', this.cellSize * 7, this.cellSize * 8);
 
   pageWindow.appendChild(this.pageCanvas);
 
   return pageWindow;
 }
 
-export { renderLevelScoreWindow };
+export { renderGameOverWindow };

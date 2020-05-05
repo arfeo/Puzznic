@@ -4,8 +4,15 @@ import {
   WINDOW_FONT,
 } from '../../constants/pages';
 
-function renderMenuContent(): void {
+function renderMenuContent(): HTMLElement {
+  const pageWindow: HTMLElement = document.createElement('div');
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
+
+  pageWindow.className = 'page-window';
+  this.pageCanvas.className = '-page-canvas';
+
+  this.pageCanvas.width = this.cellSize * 14;
+  this.pageCanvas.height = this.cellSize * 12;
 
   // Logo
   ctx.save();
@@ -36,6 +43,10 @@ function renderMenuContent(): void {
   ctx.fillText('Password', this.cellSize * 5, this.cellSize * 9);
 
   renderPointer.call(this);
+
+  pageWindow.appendChild(this.pageCanvas);
+
+  return pageWindow;
 }
 
 function renderPointer(): void {

@@ -1,7 +1,6 @@
 import { Game } from './index';
 import { Menu } from '../Menu';
 
-import { APP } from '../../constants/global';
 import { FunctionalKeys, TARGET_BLINK_DELAY } from '../../constants/game';
 
 import { checkBlockPosition, checkObstacle, checkTargetMove } from './actions';
@@ -89,14 +88,14 @@ function keyDownHandler(event: KeyboardEvent): void {
     case FunctionalKeys.GoToMenu: {
       this.destroy();
 
-      APP.pageInstance = new Menu();
+      new Menu();
       break;
     }
     case FunctionalKeys.Restart: {
       if (!this.isLevelCompleted) {
         this.destroy();
 
-        APP.pageInstance = new Game(this.level.id, this.score, this.isIconModeOn, this.blocksIcons);
+        new Game(this.level.id, this.score, this.isIconModeOn, this.blocksIcons);
       }
       break;
     }

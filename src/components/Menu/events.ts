@@ -1,22 +1,9 @@
 import { Game } from '../Game';
 import { Password } from '../Password';
 
-import { APP } from '../../constants/global';
 import { FunctionalKeys } from '../../constants/pages';
 
 import { renderPointer } from './render';
-
-function setUpEventHandlers(): void {
-  APP.eventListeners = {
-    onKeyDown: keyDownHandler.bind(this),
-  };
-
-  document.body.addEventListener('keydown', APP.eventListeners.onKeyDown);
-}
-
-function removeEventHandlers(): void {
-  document.body.removeEventListener('keydown', APP.eventListeners.onKeyDown);
-}
 
 function keyDownHandler(event: KeyboardEvent): void {
   switch (event.key) {
@@ -39,13 +26,13 @@ function keyDownHandler(event: KeyboardEvent): void {
         case 1: {
           this.destroy();
 
-          APP.pageInstance = new Game();
+          new Game();
           break;
         }
         case 2: {
           this.destroy();
 
-          APP.pageInstance = new Password();
+          new Password();
           break;
         }
         default: break;
@@ -56,7 +43,4 @@ function keyDownHandler(event: KeyboardEvent): void {
   }
 }
 
-export {
-  setUpEventHandlers,
-  removeEventHandlers,
-};
+export { keyDownHandler };

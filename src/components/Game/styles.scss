@@ -7,8 +7,8 @@
   justify-content: space-between;
 
   .-background-canvas {
-    width: calc(#{$cellSize * 14});
-    height: calc(#{$cellSize * 12});
+    width: calc(#{$cellSize * $pageWidth});
+    height: calc(#{$cellSize * $pageHeight});
     z-index: 1;
   }
 
@@ -19,21 +19,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: calc(#{$cellSize * 14});
-    height: calc(#{$cellSize * 12});
+    width: calc(#{$cellSize * $pageWidth});
+    height: calc(#{$cellSize * $pageHeight});
 
     .-elements-canvas {
-      background-color: white;
+      background-color: $white;
       margin-left: 3vmin;
       width: calc(#{$cellSize * 3});
-      height: calc(#{$cellSize * 11});
+      height: calc(#{$cellSize * ($pageHeight - 1)});
       z-index: 2;
     }
 
     .grid-container {
       position: relative;
-      width: calc(#{$cellSize * 10});
-      height: calc(#{$cellSize * 12});
+      width: calc(#{$cellSize * ($pageWidth - 4)});
+      height: calc(#{$cellSize * $pageHeight});
 
       .-grid-canvas,
       .-blocks-canvas,
@@ -42,8 +42,8 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: calc(#{$cellSize * 10});
-        height: calc(#{$cellSize * 12});
+        width: calc(#{$cellSize * ($pageWidth - 4)});
+        height: calc(#{$cellSize * $pageHeight});
       }
 
       .-grid-canvas {

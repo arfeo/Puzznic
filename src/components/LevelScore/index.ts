@@ -1,28 +1,49 @@
-import { Page } from '../common/Page';
+import { PageComponent } from '../../core/components/Page';
 import { Game } from '../Game';
 
+import { CELL_SIZE_VMIN } from '../../constants/global';
+
+import { getCellSize } from '../../core/utils/game';
 import { renderLevelScoreWindow } from './render';
-import { setUpEventHandlers } from './events';
+import { animateScorePoints } from './animations';
+import { keyDownHandler } from './events';
 
-class LevelScore extends Page {
-  animateScore: number;
+class LevelScore extends PageComponent {
+  private game: Game;
+  private cellSize: number;
+  private pageCanvas: HTMLCanvasElement;
 
-  constructor(game: Game) {
-    super(true, game);
+  public animations: {
+    animateScore: number;
   }
 
-  init(game?: Game): void {
+  public init(game: Game): void {
     this.game = game;
+
+    this.cellSize = getCellSize(CELL_SIZE_VMIN);
+
+    this.appRoot = document.getElementById('root');
+    this.pageCanvas = document.createElement('canvas');
+
+    this.eventHandlers = [
+      {
+        target: document,
+        type: 'keydown',
+        listener: keyDownHandler.bind(this),
+      },
+    ];
+
+    this.animations = {
+      animateScore: null,
+    };
   }
 
-  render(): void {
-    renderLevelScoreWindow.call(this);
-
-    setUpEventHandlers.call(this);
+  public afterMount(): void {
+    animateScorePoints.call(this);
   }
 
-  destroy(): void {
-    cancelAnimationFrame(this.animateScore);
+  public render(): HTMLElement {
+    return renderLevelScoreWindow.call(this);
   }
 }
 

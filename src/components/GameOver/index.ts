@@ -1,32 +1,41 @@
-import { Page } from '../common/Page';
+import { PageComponent } from '../../core/components/Page';
 import { Menu } from '../Menu';
 
-import { APP } from '../../constants/global';
-import { ELEMENTS_COLORS, WINDOW_FONT, FunctionalKeys } from '../../constants/pages';
+import { CELL_SIZE_VMIN } from '../../constants/global';
+import { FunctionalKeys } from '../../constants/pages';
 
-class GameOver extends Page {
-  render(): void {
-    const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
+import { getCellSize } from '../../core/utils/game';
+import { renderGameOverWindow } from './render';
 
-    ctx.font = WINDOW_FONT;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillStyle = ELEMENTS_COLORS.window.text;
+class GameOver extends PageComponent {
+  private cellSize: number;
+  private pageCanvas: HTMLCanvasElement;
+  private isBordered: boolean;
 
-    ctx.fillText('CONGRATULATIONS!', this.cellSize * 7, this.cellSize * 4);
-    ctx.fillText('THE END', this.cellSize * 7, this.cellSize * 8);
+  public init(isBordered = true): void {
+    this.isBordered = isBordered;
+    this.cellSize = getCellSize(CELL_SIZE_VMIN);
 
-    APP.eventListeners = {
-      onKeyDown: (event: KeyboardEvent) => {
-        if (event.key === FunctionalKeys.Continue) {
-          document.body.removeEventListener('keydown', APP.eventListeners.onKeyDown);
+    this.appRoot = document.getElementById('root');
+    this.pageCanvas = document.createElement('canvas');
 
-          APP.pageInstance = new Menu();
-        }
+    this.eventHandlers = [
+      {
+        target: document,
+        type: 'keydown',
+        listener: (event: KeyboardEvent) => {
+          if (event.key === FunctionalKeys.Continue) {
+            this.destroy();
+
+            new Menu();
+          }
+        },
       },
-    };
+    ];
+  }
 
-    document.body.addEventListener('keydown', APP.eventListeners.onKeyDown);
+  public render(): HTMLElement {
+    return renderGameOverWindow.call(this);
   }
 }
 

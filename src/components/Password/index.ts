@@ -1,41 +1,49 @@
-import { Page } from '../common/Page';
+import { PageComponent } from '../../core/components/Page';
 
-import {
-  renderControls,
-  renderInputSlots,
-  renderPasswordWindow,
-  renderSymbols,
-} from './render';
+import { CELL_SIZE_VMIN } from '../../constants/global';
 
-import { setUpEventHandlers, removeEventHandlers } from './events';
+import { getCellSize } from '../../core/utils/game';
+import { keyDownHandler } from './events';
+import { renderPasswordWindow } from './render';
 
-class Password extends Page {
-  password: string[];
-  currentSlot: number;
-  currentSymbol: number[];
-  currentControl: number;
-  animateCurrentSlot: number;
+class Password extends PageComponent {
+  private cellSize: number;
+  private pageCanvas: HTMLCanvasElement;
+  private password: string[];
+  private currentSlot: number;
+  private currentSymbol: number[];
+  private currentControl: number;
 
-  init(): void {
+  public animations: {
+    animateCurrentSlot: number;
+  };
+
+  public init(): void {
+    this.cellSize = getCellSize(CELL_SIZE_VMIN);
+
+    this.appRoot = document.getElementById('root');
+    this.pageCanvas = document.createElement('canvas');
+
     this.password = new Array(8).fill('');
     this.currentSlot = 1;
     this.currentSymbol = [0, 0];
     this.currentControl = 0;
+
+    this.eventHandlers = [
+      {
+        target: document,
+        type: 'keydown',
+        listener: keyDownHandler.bind(this),
+      },
+    ];
+
+    this.animations = {
+      animateCurrentSlot: null,
+    };
   }
 
-  render(): void {
-    renderPasswordWindow.call(this);
-    renderInputSlots.call(this);
-    renderSymbols.call(this);
-    renderControls.call(this);
-
-    setUpEventHandlers.call(this);
-  }
-
-  destroy(): void {
-    removeEventHandlers.call(this);
-
-    cancelAnimationFrame(this.animateCurrentSlot);
+  public render(): HTMLElement {
+    return renderPasswordWindow.call(this);
   }
 }
 

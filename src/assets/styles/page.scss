@@ -1,4 +1,4 @@
-@import '../../../assets/styles/variables';
+@import './variables';
 
 .page-window {
   position: relative;
@@ -7,9 +7,9 @@
   justify-content: space-between;
 
   .-page-canvas {
-    width: calc(#{$cellSize * 14});
-    height: calc(#{$cellSize * 12});
-    background-color: white;
+    width: calc(#{$cellSize * $pageWidth});
+    height: calc(#{$cellSize * $pageHeight});
+    background-color: $white;
     z-index: 1;
   }
 }

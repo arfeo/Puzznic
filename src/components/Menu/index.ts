@@ -1,27 +1,35 @@
-import { Page } from '../common/Page';
+import { PageComponent } from '../../core/components/Page';
 
+import { CELL_SIZE_VMIN } from '../../constants/global';
+
+import { getCellSize } from '../../core/utils/game';
+import { keyDownHandler } from './events';
 import { renderMenuContent } from './render';
-import { setUpEventHandlers, removeEventHandlers } from './events';
 
-class Menu extends Page {
-  currentItem: number;
+class Menu extends PageComponent {
+  private cellSize: number;
+  private pageCanvas: HTMLCanvasElement;
+  private currentItem: number;
 
-  constructor() {
-    super(false);
-  }
+  public init(): void {
+    this.cellSize = getCellSize(CELL_SIZE_VMIN);
 
-  init(): void {
+    this.appRoot = document.getElementById('root');
+    this.pageCanvas = document.createElement('canvas');
+
     this.currentItem = 1;
+
+    this.eventHandlers = [
+      {
+        target: document,
+        type: 'keydown',
+        listener: keyDownHandler.bind(this),
+      },
+    ];
   }
 
-  render(): void {
-    renderMenuContent.call(this);
-
-    setUpEventHandlers.call(this);
-  }
-
-  destroy(): void {
-    removeEventHandlers.call(this);
+  public render(): HTMLElement {
+    return renderMenuContent.call(this);
   }
 }
 

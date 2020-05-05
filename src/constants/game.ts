@@ -1,6 +1,6 @@
 export enum MapDefinitions {
   Empty = 1,
-  Wall = 2,
+  Wall,
 }
 
 export enum FunctionalKeys {
@@ -15,22 +15,6 @@ export enum FunctionalKeys {
 }
 
 export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
-  empty: {
-    background: 'rgb(255, 255, 255)',
-  },
-  wall: {
-    border: 'rgb(96, 95, 96)',
-    background: 'rgb(255, 255, 255)',
-    shadow: 'rgb(190, 188, 191)',
-    margin: 'rgb(0, 0, 0)',
-  },
-  block: {
-    border: 'rgb(0, 0, 0)',
-    background: 'rgb(96, 95, 96)',
-    highlight: 'rgb(187, 186, 188)',
-    label: 'rgb(255, 255, 255)',
-    labelShadow: 'rgb(0, 0, 0)',
-  },
   icon: {
     color1: 'rgb(255, 255, 255)',
     color2: 'rgb(0, 0, 0)',
@@ -41,30 +25,8 @@ export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
     state2: 'rgb(96, 95, 96)',
     state3: 'rgb(255, 255, 255)',
   },
-  elementsList: {
-    text: 'rgb(0, 0, 0)',
-  },
-  brick: {
-    border: 'rgb(0, 0, 0)',
-    background: 'rgb(95, 94, 95)',
-    highlight: 'rgb(191, 189, 191)',
-  },
-  bonus: {
-    stroke: 'rgb(0, 0, 0)',
-    shadow: 'rgb(255, 255, 255)',
-  },
 };
 
 export const TARGET_BLINK_DELAY = 300;
 
 export const BLOCK_FALL_SPEED = 10;
-
-export const BLOCK_ELIMINATION_DELAY = 100;
-
-export const ELEMENTS_LIST_FONT = '5vmin Courier';
-
-export const BLOCK_LABEL_FONT = '3vmin Courier';
-
-export const FADE_OUT_ANIMATION_SPEED = 0.03;
-
-export const BONUS_SIZE_LABEL_FONT = '700 5vmin Helvetica, Arial';

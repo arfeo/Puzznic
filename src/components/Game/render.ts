@@ -1,9 +1,4 @@
-import {
-  BLOCK_LABEL_FONT,
-  ELEMENTS_COLORS,
-  ELEMENTS_LIST_FONT,
-  MapDefinitions,
-} from '../../constants/game';
+import { ELEMENTS_COLORS, MapDefinitions } from '../../constants/game';
 
 import {
   drawRectangle,
@@ -26,6 +21,7 @@ function renderGameWindow(): HTMLElement {
   gridContainer.className = 'grid-container';
   this.backgroundCanvas.className = '-background-canvas';
   this.elementsCanvas.className = '-elements-canvas';
+
   this.gridCanvas.className = '-grid-canvas';
   this.blocksCanvas.className = '-blocks-canvas';
   this.targetCanvas.className = '-target-canvas';
@@ -80,9 +76,10 @@ function renderBackground(): void {
         brickWidth,
         brickHeight,
         {
-          fillColor: ELEMENTS_COLORS.brick.background,
+          fillColor: 'rgb(95, 94, 95)',
         },
       );
+
       drawLineToAngle(
         ctx,
         left,
@@ -90,10 +87,11 @@ function renderBackground(): void {
         brickHeight,
         90,
         {
-          edgingColor: ELEMENTS_COLORS.brick.highlight,
+          edgingColor: 'rgb(191, 189, 191)',
           edgingWidth: borderWidth,
         },
       );
+
       drawLineToAngle(
         ctx,
         left,
@@ -101,10 +99,11 @@ function renderBackground(): void {
         brickWidth,
         0,
         {
-          edgingColor: ELEMENTS_COLORS.brick.highlight,
+          edgingColor: 'rgb(191, 189, 191)',
           edgingWidth: borderWidth,
         },
       );
+
       drawLineToAngle(
         ctx,
         left,
@@ -112,10 +111,11 @@ function renderBackground(): void {
         brickWidth,
         0,
         {
-          edgingColor: ELEMENTS_COLORS.brick.border,
+          edgingColor: 'rgb(0, 0, 0)',
           edgingWidth: borderWidth,
         },
       );
+
       drawLineToAngle(
         ctx,
         left + brickWidth - borderWidth,
@@ -123,7 +123,7 @@ function renderBackground(): void {
         brickHeight,
         90,
         {
-          edgingColor: ELEMENTS_COLORS.brick.border,
+          edgingColor: 'rgb(0, 0, 0)',
           edgingWidth: borderWidth,
         },
       );
@@ -171,7 +171,7 @@ function renderMapElement(x: number, y: number): void {
         this.cellSize,
         this.cellSize,
         {
-          fillColor: ELEMENTS_COLORS.empty.background,
+          fillColor: 'rgb(255, 255, 255)',
         },
       );
       break;
@@ -184,27 +184,30 @@ function renderMapElement(x: number, y: number): void {
         this.cellSize,
         this.cellSize,
         {
-          fillColor: ELEMENTS_COLORS.wall.border,
+          fillColor: 'rgb(96, 95, 96)',
         },
       );
+
       drawTriangle(
         ctx,
         [left + this.cellSize / 12, top + this.cellSize / 12],
         [left + this.cellSize - this.cellSize / 6, top + this.cellSize / 12],
         [left + this.cellSize / 12, top + this.cellSize - this.cellSize / 6],
         {
-          fillColor: ELEMENTS_COLORS.wall.background,
+          fillColor: 'rgb(255, 255, 255)',
         },
       );
+
       drawTriangle(
         ctx,
         [left + this.cellSize / 12, top + this.cellSize - this.cellSize / 6],
         [left + this.cellSize - this.cellSize / 6, top + this.cellSize / 12],
         [left + this.cellSize - this.cellSize / 6, top + this.cellSize - this.cellSize / 6],
         {
-          fillColor: ELEMENTS_COLORS.wall.shadow,
+          fillColor: 'rgb(190, 188, 191)',
         },
       );
+
       drawLineToAngle(
         ctx,
         left,
@@ -212,10 +215,11 @@ function renderMapElement(x: number, y: number): void {
         this.cellSize,
         0,
         {
-          edgingColor: ELEMENTS_COLORS.wall.margin,
+          edgingColor: 'rgb(0, 0, 0)',
           edgingWidth: this.cellSize / 12,
         },
       );
+
       drawLineToAngle(
         ctx,
         left + this.cellSize - this.cellSize / 24,
@@ -223,7 +227,7 @@ function renderMapElement(x: number, y: number): void {
         this.cellSize,
         270,
         {
-          edgingColor: ELEMENTS_COLORS.wall.margin,
+          edgingColor: 'rgb(0, 0, 0)',
           edgingWidth: this.cellSize / 12,
         },
       );
@@ -241,9 +245,10 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     this.cellSize,
     this.cellSize,
     {
-      fillColor: ELEMENTS_COLORS.block.border,
+      fillColor: 'rgb(0, 0, 0)',
     },
   );
+
   drawRectangle(
     ctx,
     left + this.cellSize / 6,
@@ -251,9 +256,10 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     this.cellSize * 2 / 3,
     this.cellSize * 2 / 3,
     {
-      fillColor: ELEMENTS_COLORS.block.background,
+      fillColor: 'rgb(96, 95, 96)',
     },
   );
+
   drawLineToAngle(
     ctx,
     left + this.cellSize * 3 / 24,
@@ -261,10 +267,11 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     this.cellSize * 2 / 3,
     90,
     {
-      edgingColor: ELEMENTS_COLORS.block.highlight,
+      edgingColor: 'rgb(187, 186, 188)',
       edgingWidth: this.cellSize / 12,
     },
   );
+
   drawLineToAngle(
     ctx,
     left + this.cellSize / 6,
@@ -272,10 +279,11 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     this.cellSize * 2 / 3,
     0,
     {
-      edgingColor: ELEMENTS_COLORS.block.highlight,
+      edgingColor: 'rgb(187, 186, 188)',
       edgingWidth: this.cellSize / 12,
     },
   );
+
   drawLineToAngle(
     ctx,
     left + this.cellSize / 6,
@@ -283,10 +291,11 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     this.cellSize * 2 / 3,
     0,
     {
-      edgingColor: ELEMENTS_COLORS.block.background,
+      edgingColor: 'rgb(96, 95, 96)',
       edgingWidth: this.cellSize / 12,
     },
   );
+
   drawLineToAngle(
     ctx,
     left + this.cellSize * 21 / 24,
@@ -294,10 +303,11 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     this.cellSize * 2 / 3,
     90,
     {
-      edgingColor: ELEMENTS_COLORS.block.background,
+      edgingColor: 'rgb(96, 95, 96)',
       edgingWidth: this.cellSize / 12,
     }
   );
+
   drawRectangle(
     ctx,
     left,
@@ -305,9 +315,10 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     this.cellSize / 12,
     this.cellSize / 12,
     {
-      fillColor: ELEMENTS_COLORS.empty.background,
+      fillColor: 'rgb(255, 255, 255)',
     },
   );
+
   drawRectangle(
     ctx,
     left + this.cellSize * 11 / 12,
@@ -315,9 +326,10 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     this.cellSize / 12,
     this.cellSize / 12,
     {
-      fillColor: ELEMENTS_COLORS.empty.background,
+      fillColor: 'rgb(255, 255, 255)',
     },
   );
+
   drawRectangle(
     ctx,
     left + this.cellSize * 11 / 12,
@@ -325,9 +337,10 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     this.cellSize / 12,
     this.cellSize / 12,
     {
-      fillColor: ELEMENTS_COLORS.empty.background,
+      fillColor: 'rgb(255, 255, 255)',
     },
   );
+
   drawRectangle(
     ctx,
     left,
@@ -335,25 +348,25 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     this.cellSize / 12,
     this.cellSize / 12,
     {
-      fillColor: ELEMENTS_COLORS.empty.background,
+      fillColor: 'rgb(255, 255, 255)',
     },
   );
 
   if (this.isIconModeOn) {
     renderBlockIcon.call(this, ctx, this.blocksIcons[type], left, top);
   } else {
-    ctx.font = BLOCK_LABEL_FONT;
+    ctx.font = '3vmin Courier';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
-    ctx.fillStyle = ELEMENTS_COLORS.block.labelShadow;
+    ctx.fillStyle = 'rgb(0, 0, 0)';
     ctx.fillText(
       type.toString(),
       left + this.cellSize * 7 / 12,
       top + this.cellSize * 7 / 12,
     );
 
-    ctx.fillStyle = ELEMENTS_COLORS.block.label;
+    ctx.fillStyle = 'rgb(255, 255, 255)';
     ctx.fillText(
       type.toString(),
       left + this.cellSize / 2,
@@ -383,6 +396,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color1,
         },
       );
+
       drawTriangle(
         ctx,
         [
@@ -414,6 +428,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color2,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize / 4,
@@ -424,6 +439,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color1,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize * 2 / 3,
@@ -434,6 +450,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color2,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize * 7 / 12,
@@ -444,6 +461,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color1,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize / 3,
@@ -454,6 +472,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color2,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize / 4,
@@ -464,6 +483,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color1,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize * 2 / 3,
@@ -474,6 +494,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color2,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize * 7 / 12,
@@ -497,6 +518,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color2,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize * 5 / 12,
@@ -507,6 +529,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color1,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize / 3,
@@ -517,6 +540,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color2,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize / 4,
@@ -527,6 +551,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color1,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize * 2 / 3,
@@ -537,6 +562,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color2,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize * 7 / 12,
@@ -547,6 +573,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color1,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize / 2,
@@ -557,6 +584,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color2,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize * 5 / 12,
@@ -588,6 +616,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color1,
         },
       );
+
       drawTriangle(
         ctx,
         [
@@ -606,6 +635,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color3,
         },
       );
+
       drawTriangle(
         ctx,
         [
@@ -645,6 +675,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color1,
         },
       );
+
       drawTriangle(
         ctx,
         [
@@ -663,6 +694,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color3,
         },
       );
+
       drawTriangle(
         ctx,
         [
@@ -681,6 +713,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color2,
         },
       );
+
       drawTriangle(
         ctx,
         [
@@ -712,6 +745,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color2,
         },
       );
+
       drawRectangle(
         ctx,
         left + this.cellSize / 4,
@@ -734,6 +768,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color2,
         },
       );
+
       drawCircle(
         ctx,
         left + this.cellSize / 2,
@@ -743,6 +778,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color3,
         },
       );
+
       drawCircle(
         ctx,
         left + this.cellSize * 11 / 24,
@@ -764,6 +800,7 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           fillColor: ELEMENTS_COLORS.icon.color2,
         },
       );
+
       drawCircle(
         ctx,
         left + this.cellSize / 2,
@@ -802,6 +839,7 @@ function renderTarget(color: string): void {
       edgingColor: color,
     },
   );
+
   drawRectangle(
     ctx,
     left,
@@ -809,9 +847,10 @@ function renderTarget(color: string): void {
     this.cellSize / 12,
     this.cellSize / 12,
     {
-      fillColor: ELEMENTS_COLORS.empty.background,
+      fillColor: 'rgb(255, 255, 255)',
     },
   );
+
   drawRectangle(
     ctx,
     left + this.cellSize * 11 / 12,
@@ -819,9 +858,10 @@ function renderTarget(color: string): void {
     this.cellSize / 12,
     this.cellSize / 12,
     {
-      fillColor: ELEMENTS_COLORS.empty.background,
+      fillColor: 'rgb(255, 255, 255)',
     },
   );
+
   drawRectangle(
     ctx,
     left + this.cellSize * 11 / 12,
@@ -829,9 +869,10 @@ function renderTarget(color: string): void {
     this.cellSize / 12,
     this.cellSize / 12,
     {
-      fillColor: ELEMENTS_COLORS.empty.background,
+      fillColor: 'rgb(255, 255, 255)',
     },
   );
+
   drawRectangle(
     ctx,
     left,
@@ -839,7 +880,7 @@ function renderTarget(color: string): void {
     this.cellSize / 12,
     this.cellSize / 12,
     {
-      fillColor: ELEMENTS_COLORS.empty.background,
+      fillColor: 'rgb(255, 255, 255)',
     },
   );
 }
@@ -870,10 +911,10 @@ function renderElementsList(): void {
         this.cellSize * (index - 1) + this.cellSize * (index - 1) / 3 + this.cellSize / 3,
       );
 
-      ctx.font = ELEMENTS_LIST_FONT;
+      ctx.font = '5vmin Courier';
       ctx.textAlign = 'left';
       ctx.textBaseline = 'bottom';
-      ctx.fillStyle = ELEMENTS_COLORS.elementsList.text;
+      ctx.fillStyle = 'rgb(0, 0, 0)';
 
       ctx.fillText(
         `X${elements.length}`,

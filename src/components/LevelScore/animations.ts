@@ -1,5 +1,3 @@
-import { ELEMENTS_COLORS, SCORE_ANIMATION_SPEED } from '../../constants/pages';
-
 function animateScorePoints(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   let scoreCloned: number = this.game.score;
@@ -12,7 +10,7 @@ function animateScorePoints(): void {
       return cancelAnimationFrame(this.animateScore);
     }
 
-    if (time - start > SCORE_ANIMATION_SPEED) {
+    if (time - start > 50) {
       scoreCloned += 50;
       this.game.clearBonus -= 50;
 
@@ -29,7 +27,7 @@ function animateScorePoints(): void {
         this.cellSize * 2,
       );
 
-      ctx.fillStyle = ELEMENTS_COLORS.window.text;
+      ctx.fillStyle = 'rgb(0, 0, 0)';
 
       ctx.fillText(
         scoreCloned.toString().padStart(8, '0'),

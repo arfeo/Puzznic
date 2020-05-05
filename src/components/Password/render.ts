@@ -1,4 +1,4 @@
-import { ELEMENTS_COLORS, PASSWORD_SYMBOLS, WINDOW_FONT } from '../../constants/pages';
+import { PASSWORD_SYMBOLS, WINDOW_FONT } from '../../constants/pages';
 
 import { drawLineToAngle } from '../../core/utils/drawing';
 import { animateCurrentSlot } from './animations';
@@ -16,7 +16,7 @@ function renderPasswordWindow(): HTMLElement {
   ctx.font = WINDOW_FONT;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillStyle = ELEMENTS_COLORS.window.text;
+  ctx.fillStyle = 'rgb(0, 0, 0)';
 
   ctx.fillText('PASSWORD', this.cellSize * 7, this.cellSize * 1.5);
 
@@ -52,7 +52,7 @@ function renderSlot(index: number, underlined = true): void {
   ctx.font = WINDOW_FONT;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillStyle = ELEMENTS_COLORS.window.text;
+  ctx.fillStyle = 'rgb(0, 0, 0)';
 
   ctx.fillText(this.password[index - 1], left + this.cellSize * 0.5, top - this.cellSize * 0.5);
 
@@ -89,7 +89,7 @@ function renderSymbols(): void {
       ctx.font = WINDOW_FONT;
       ctx.textAlign = 'left';
       ctx.textBaseline = 'middle';
-      ctx.fillStyle = ELEMENTS_COLORS.window.text;
+      ctx.fillStyle = 'rgb(0, 0, 0)';
 
       ctx.fillText(PASSWORD_SYMBOLS[y][x], left, top);
 
@@ -115,7 +115,7 @@ function renderControls(): void {
   ctx.font = WINDOW_FONT;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
-  ctx.fillStyle = ELEMENTS_COLORS.window.text;
+  ctx.fillStyle = 'rgb(0, 0, 0)';
 
   ctx.fillText('NEXT', controlX, controlY);
   ctx.fillText('BACK', controlX + this.cellSize * 4.5, controlY);

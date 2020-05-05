@@ -1,8 +1,4 @@
-import {
-  ELEMENTS_COLORS,
-  LOGO_FONT,
-  WINDOW_FONT,
-} from '../../constants/pages';
+import { WINDOW_FONT } from '../../constants/pages';
 
 function renderMenuContent(): HTMLElement {
   const pageWindow: HTMLElement = document.createElement('div');
@@ -17,16 +13,16 @@ function renderMenuContent(): HTMLElement {
   // Logo
   ctx.save();
 
-  ctx.font = LOGO_FONT;
+  ctx.font = 'italic 20vmin Impact';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.shadowColor = ELEMENTS_COLORS.logo.shadow;
+  ctx.shadowColor = 'rgb(0, 0, 0)';
   ctx.shadowOffsetX = this.cellSize / 3;
   ctx.shadowOffsetY = this.cellSize / 3;
   ctx.shadowBlur = 0;
   ctx.lineWidth = this.cellSize / 3;
-  ctx.strokeStyle = ELEMENTS_COLORS.logo.stroke;
-  ctx.fillStyle = ELEMENTS_COLORS.logo.text;
+  ctx.strokeStyle = 'rgb(189, 187, 189)';
+  ctx.fillStyle = 'rgb(95, 94, 95)';
 
   ctx.strokeText('PUZZNIC', this.cellSize * 6.6, this.cellSize * 2.5);
   ctx.fillText('PUZZNIC', this.cellSize * 6.7, this.cellSize * 2.5);
@@ -37,7 +33,7 @@ function renderMenuContent(): HTMLElement {
   ctx.font = WINDOW_FONT;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'bottom';
-  ctx.fillStyle = ELEMENTS_COLORS.window.text;
+  ctx.fillStyle = 'rgb(0, 0, 0)';
 
   ctx.fillText('Play', this.cellSize * 5, this.cellSize * 7.5);
   ctx.fillText('Password', this.cellSize * 5, this.cellSize * 9);
@@ -63,7 +59,7 @@ function renderPointer(): void {
   ctx.font = WINDOW_FONT;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'bottom';
-  ctx.fillStyle = ELEMENTS_COLORS.window.text;
+  ctx.fillStyle = 'rgb(0, 0, 0)';
 
   ctx.fillText('➧', this.cellSize * 4, this.cellSize * (yOffset + 7.55));
 }

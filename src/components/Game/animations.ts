@@ -1,10 +1,4 @@
-import {
-  BLOCK_ELIMINATION_DELAY,
-  BLOCK_FALL_SPEED,
-  BONUS_SIZE_LABEL_FONT,
-  ELEMENTS_COLORS,
-  FADE_OUT_ANIMATION_SPEED,
-} from '../../constants/game';
+import { BLOCK_FALL_SPEED, ELEMENTS_COLORS } from '../../constants/game';
 
 import { renderBlock, renderElementsList, renderTarget } from './render';
 import { checkBlockGroups, checkBlocksToFall, checkObstacle } from './actions';
@@ -164,7 +158,7 @@ function animateBlockElimination(blockId: number): Promise<void> {
           return resolve();
         }
 
-        if (time - start > BLOCK_ELIMINATION_DELAY) {
+        if (time - start > 100) {
           ctx.clearRect(
             left,
             top,
@@ -197,14 +191,14 @@ function animateBonusSize(left: number, top: number, size: number): void {
   let pulse = 1;
   let yCorrection = 0;
 
-  ctx.font = BONUS_SIZE_LABEL_FONT;
+  ctx.font = '700 5vmin Helvetica, Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.strokeStyle = ELEMENTS_COLORS.bonus.stroke;
+  ctx.strokeStyle = 'rgb(0, 0, 0)';
   ctx.lineWidth = 5;
   ctx.shadowOffsetX = 0;
   ctx.shadowOffsetY = 0;
-  ctx.shadowColor = ELEMENTS_COLORS.bonus.shadow;
+  ctx.shadowColor = 'rgb(255, 255, 255)';
   ctx.shadowBlur = 20;
 
   const animate = (): void => {
@@ -218,7 +212,7 @@ function animateBonusSize(left: number, top: number, size: number): void {
       return cancelAnimationFrame(frame);
     }
 
-    alpha += pulse * FADE_OUT_ANIMATION_SPEED;
+    alpha += pulse * 0.03;
 
     ctx.globalAlpha = alpha;
 

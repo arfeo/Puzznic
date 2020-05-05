@@ -1,4 +1,4 @@
-import { ELEMENTS_COLORS, WINDOW_FONT } from '../../constants/pages';
+import { WINDOW_FONT } from '../../constants/pages';
 
 import { drawRectangle } from '../../core/utils/drawing';
 
@@ -19,9 +19,9 @@ function renderGameOverWindow(): HTMLElement {
     this.cellSize * 14,
     this.cellSize * 12,
     {
-      fillColor: ELEMENTS_COLORS.window.background,
+      fillColor: 'rgb(255, 255, 255)',
       edgingWidth: this.cellSize / 3,
-      edgingColor: ELEMENTS_COLORS.window.outerBorder,
+      edgingColor: 'rgb(189, 187, 189)',
     },
   );
 
@@ -32,16 +32,16 @@ function renderGameOverWindow(): HTMLElement {
     this.cellSize * 14 - this.cellSize / 3,
     this.cellSize * 12 - this.cellSize / 3,
     {
-      fillColor: ELEMENTS_COLORS.window.background,
+      fillColor: 'rgb(255, 255, 255)',
       edgingWidth: this.cellSize / 12,
-      edgingColor: ELEMENTS_COLORS.window.innerBorder,
+      edgingColor: 'rgb(94, 92, 94)',
     },
   );
 
   ctx.font = WINDOW_FONT;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillStyle = ELEMENTS_COLORS.window.text;
+  ctx.fillStyle = 'rgb(0, 0, 0)';
 
   ctx.fillText('CONGRATULATIONS!', this.cellSize * 7, this.cellSize * 4);
   ctx.fillText('THE END', this.cellSize * 7, this.cellSize * 8);

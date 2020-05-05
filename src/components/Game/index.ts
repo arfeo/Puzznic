@@ -17,6 +17,7 @@ class Game extends PageComponent {
   private moves: number;
   private cellSize: number;
   private keysDown: KeysDown;
+  private backgroundCanvas: HTMLCanvasElement;
   private elementsCanvas: HTMLCanvasElement;
   private gridCanvas: HTMLCanvasElement;
   private blocksCanvas: HTMLCanvasElement;
@@ -45,6 +46,7 @@ class Game extends PageComponent {
     this.cellSize = getCellSize(CELL_SIZE_VMIN);
     this.blocksIcons = Object.keys(icons).length > 0 ? icons : generateBlocksIconsCorrelation();
 
+    this.backgroundCanvas = document.createElement('canvas');
     this.elementsCanvas = document.createElement('canvas');
     this.gridCanvas = document.createElement('canvas');
     this.blocksCanvas = document.createElement('canvas');

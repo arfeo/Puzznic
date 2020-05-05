@@ -18,22 +18,21 @@ import { Block } from './types';
 
 function renderGameWindow(): HTMLElement {
   const gameWindow: HTMLElement = document.createElement('div');
-  const backgroundCanvas: HTMLCanvasElement = document.createElement('canvas');
   const gameBoard: HTMLElement = document.createElement('div');
   const gridContainer: HTMLElement = document.createElement('div');
 
   gameWindow.className = 'game-window';
-  backgroundCanvas.className = '-background-canvas';
   gameBoard.className = 'game-board';
   gridContainer.className = 'grid-container';
+  this.backgroundCanvas.className = '-background-canvas';
   this.elementsCanvas.className = '-elements-canvas';
   this.gridCanvas.className = '-grid-canvas';
   this.blocksCanvas.className = '-blocks-canvas';
   this.targetCanvas.className = '-target-canvas';
   this.bonusCanvas.className = '-bonus-canvas';
 
-  backgroundCanvas.width = this.cellSize * 14;
-  backgroundCanvas.height = this.cellSize * 12;
+  this.backgroundCanvas.width = this.cellSize * 14;
+  this.backgroundCanvas.height = this.cellSize * 12;
   this.elementsCanvas.width = this.cellSize * 3;
   this.elementsCanvas.height = this.cellSize * 11;
   this.gridCanvas.width = this.cellSize * 10;
@@ -45,7 +44,7 @@ function renderGameWindow(): HTMLElement {
   this.bonusCanvas.width = this.cellSize * 10;
   this.bonusCanvas.height = this.cellSize * 12;
 
-  gameWindow.appendChild(backgroundCanvas);
+  gameWindow.appendChild(this.backgroundCanvas);
   gameWindow.appendChild(gameBoard);
   gameBoard.appendChild(this.elementsCanvas);
   gameBoard.appendChild(gridContainer);
@@ -54,24 +53,20 @@ function renderGameWindow(): HTMLElement {
   gridContainer.appendChild(this.targetCanvas);
   gridContainer.appendChild(this.bonusCanvas);
 
-  renderBackground.call(
-    this,
-    backgroundCanvas.getContext('2d'),
-    backgroundCanvas.width,
-    backgroundCanvas.height,
-  );
-
+  renderBackground.call(this);
   renderLevel.call(this);
 
   return gameWindow;
 }
 
-function renderBackground(ctx: CanvasRenderingContext2D, width: number, height: number): void {
+function renderBackground(): void {
+  const ctx: CanvasRenderingContext2D = this.backgroundCanvas.getContext('2d');
+
   const brickWidth: number = this.cellSize * 2 / 3;
   const brickHeight: number = this.cellSize / 3;
   const borderWidth: number = this.cellSize / 12;
-  const xCount: number = width / brickWidth;
-  const yCount: number = height / (this.cellSize / 3);
+  const xCount: number = this.backgroundCanvas.width / brickWidth;
+  const yCount: number = this.backgroundCanvas.height / (this.cellSize / 3);
 
   for (let y = 0; y <= yCount; y += 1) {
     for (let x = 0; x <= xCount; x += 1) {

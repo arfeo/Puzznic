@@ -1,11 +1,8 @@
 import { ELEMENTS_COLORS, PASSWORD_SYMBOLS, WINDOW_FONT } from '../../constants/pages';
 
-import { drawLineToAngle } from '../../utils/drawing';
+import { drawLineToAngle } from '../../core/utils/drawing';
 import { animateCurrentSlot } from './animations';
 
-/**
- * Function renders the page window
- */
 function renderPasswordWindow(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
@@ -17,9 +14,6 @@ function renderPasswordWindow(): void {
   ctx.fillText('PASSWORD', this.cellSize * 7, this.cellSize * 1.5);
 }
 
-/**
- * Function renders 8 password input slots divided by space after the fourth one
- */
 function renderInputSlots(): void {
   for (let i = 1; i <= 8; i += 1) {
     renderSlot.call(this, i);
@@ -28,12 +22,6 @@ function renderInputSlots(): void {
   animateCurrentSlot.call(this);
 }
 
-/**
- * Function renders a single password input slot by the given index number
- *
- * @param index
- * @param underlined
- */
 function renderSlot(index: number, underlined = true): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   const left: number = this.cellSize + this.cellSize * (index - 1) * 1.5 + (index >= 5 ? this.cellSize * 0.5 : 0);
@@ -60,15 +48,13 @@ function renderSlot(index: number, underlined = true): void {
       top,
       this.cellSize,
       0,
-      'black',
-      2,
+      {
+        edgingColor: 'rgb(0, 0, 0)',
+      },
     );
   }
 }
 
-/**
- * Function renders the block of symbols as defined in `PASSWORD_SYMBOLS` array
- */
 function renderSymbols(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
@@ -99,9 +85,6 @@ function renderSymbols(): void {
   }
 }
 
-/**
- * Function renders the password window's controls: NEXT, BACK, END
- */
 function renderControls(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   const controlX: number = this.cellSize * 1.75;

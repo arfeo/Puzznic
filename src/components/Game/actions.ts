@@ -7,13 +7,6 @@ import { findCornerBlocks } from './utils';
 
 import { IBlock } from '../../types/game';
 
-/**
- * Function returns false if the target can not move in the specified direction
- * (if the next and/or the cell after the next does not contain any map objects);
- * otherwise it returns true
- *
- * @param direction
- */
 function checkTargetMove(direction: string): boolean {
   const { map } = this.level;
   const x: number = this.level.target[1];
@@ -48,12 +41,6 @@ function checkTargetMove(direction: string): boolean {
   return !!nextCell && !!afterNextCell;
 }
 
-/**
- * Function returns an object if a block exists at the given position; otherwise it returns false
- *
- * @param x
- * @param y
- */
 function checkBlockPosition(x: number, y: number): IBlock | boolean {
   const block: IBlock[] = this.level.blocks.filter((item: IBlock) => {
     return item.position[0] === y && item.position[1] === x;
@@ -62,20 +49,10 @@ function checkBlockPosition(x: number, y: number): IBlock | boolean {
   return !!block && block.length > 0 ? block[0] : false;
 }
 
-/**
- * Function returns true if a cell at the specified position contains something besides
- * an empty cell (i.e., wall or block)
- *
- * @param x
- * @param y
- */
 function checkObstacle(x: number, y: number): boolean {
   return this.level.map[y][x] !== 1 || checkBlockPosition.call(this, x, y);
 }
 
-/**
- * Function checks which blocks have no obstacle below and have to fall
- */
 function checkBlocksToFall(): void {
   const { blocks } = this.level;
 
@@ -93,9 +70,6 @@ function checkBlocksToFall(): void {
   });
 }
 
-/**
- * Function checks which blocks form groups (neighbours by X and Y axises)
- */
 function checkBlockGroups(): void {
   const { blocks } = this.level;
   const neighbours: number[] = [];

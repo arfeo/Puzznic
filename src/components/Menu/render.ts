@@ -4,9 +4,6 @@ import {
   WINDOW_FONT,
 } from '../../constants/pages';
 
-/**
- * Function renders the page window
- */
 function renderMenuContent(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
 
@@ -41,9 +38,6 @@ function renderMenuContent(): void {
   renderPointer.call(this);
 }
 
-/**
- * Function renders a pointer arrow against the currently selected menu item
- */
 function renderPointer(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   const yOffset: number = (this.currentItem - 1) * 1.5;

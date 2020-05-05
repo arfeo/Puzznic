@@ -1,11 +1,7 @@
-import { getRandomNum } from '../../utils/common';
+import { getRandomNum } from '../../core/utils/common';
 
 import { IBlock } from '../../types/game';
 
-/**
- * Function returns an object containing correlation
- * of blocks numbers with icon ids
- */
 function generateBlocksIconsCorrelation (): { [key: number]: number } {
   const result: { [key: number]: number } = {};
 
@@ -16,12 +12,6 @@ function generateBlocksIconsCorrelation (): { [key: number]: number } {
   return result;
 }
 
-/**
- * Function returns top left and bottom right positions
- * of blocks in a given block group
- *
- * @param blockIds
- */
 function findCornerBlocks(blockIds: number[]): number[][] {
   if (blockIds.length === 0) {
     return;

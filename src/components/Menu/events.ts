@@ -6,9 +6,6 @@ import { FunctionalKeys } from '../../constants/pages';
 
 import { renderPointer } from './render';
 
-/**
- * Function creates all components's event listeners
- */
 function setUpEventHandlers(): void {
   APP.eventListeners = {
     onKeyDown: keyDownHandler.bind(this),
@@ -17,18 +14,10 @@ function setUpEventHandlers(): void {
   document.body.addEventListener('keydown', APP.eventListeners.onKeyDown);
 }
 
-/**
- * Function removes all components's event listeners
- */
 function removeEventHandlers(): void {
   document.body.removeEventListener('keydown', APP.eventListeners.onKeyDown);
 }
 
-/**
- * Function fires at key down event
- *
- * @param event
- */
 function keyDownHandler(event: KeyboardEvent): void {
   switch (event.key) {
     case FunctionalKeys.Up: {

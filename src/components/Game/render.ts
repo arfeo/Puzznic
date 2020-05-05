@@ -10,27 +10,17 @@ import {
   drawTriangle,
   drawLineToAngle,
   drawCircle,
-} from '../../utils/drawing';
+} from '../../core/utils/drawing';
 
 import { animateTarget } from './animations';
 
 import { IBlock } from '../../types/game';
 
-/**
- * Function creates game window element, game panel and all needed canvases
- */
-function renderGameWindow(): void {
-  const appRoot: HTMLElement = document.getElementById('root');
+function renderGameWindow(): HTMLElement {
   const gameWindow: HTMLElement = document.createElement('div');
   const backgroundCanvas: HTMLCanvasElement = document.createElement('canvas');
   const gameBoard: HTMLElement = document.createElement('div');
   const gridContainer: HTMLElement = document.createElement('div');
-
-  this.elementsCanvas = document.createElement('canvas');
-  this.gridCanvas = document.createElement('canvas');
-  this.blocksCanvas = document.createElement('canvas');
-  this.targetCanvas = document.createElement('canvas');
-  this.bonusCanvas = document.createElement('canvas');
 
   gameWindow.className = 'game-window';
   backgroundCanvas.className = '-background-canvas';
@@ -55,11 +45,6 @@ function renderGameWindow(): void {
   this.bonusCanvas.width = this.cellSize * 10;
   this.bonusCanvas.height = this.cellSize * 12;
 
-  while (appRoot.firstChild) {
-    appRoot.removeChild(appRoot.firstChild);
-  }
-
-  appRoot.appendChild(gameWindow);
   gameWindow.appendChild(backgroundCanvas);
   gameWindow.appendChild(gameBoard);
   gameBoard.appendChild(this.elementsCanvas);
@@ -75,15 +60,12 @@ function renderGameWindow(): void {
     backgroundCanvas.width,
     backgroundCanvas.height,
   );
+
+  renderLevel.call(this);
+
+  return gameWindow;
 }
 
-/**
- * Function renders the game window background (brick wall)
- *
- * @param ctx
- * @param width
- * @param height
- */
 function renderBackground(ctx: CanvasRenderingContext2D, width: number, height: number): void {
   const brickWidth: number = this.cellSize * 2 / 3;
   const brickHeight: number = this.cellSize / 3;
@@ -102,7 +84,9 @@ function renderBackground(ctx: CanvasRenderingContext2D, width: number, height: 
         top,
         brickWidth,
         brickHeight,
-        ELEMENTS_COLORS.brick.background,
+        {
+          fillColor: ELEMENTS_COLORS.brick.background,
+        },
       );
       drawLineToAngle(
         ctx,
@@ -110,8 +94,10 @@ function renderBackground(ctx: CanvasRenderingContext2D, width: number, height: 
         top,
         brickHeight,
         90,
-        ELEMENTS_COLORS.brick.highlight,
-        borderWidth,
+        {
+          edgingColor: ELEMENTS_COLORS.brick.highlight,
+          edgingWidth: borderWidth,
+        },
       );
       drawLineToAngle(
         ctx,
@@ -119,8 +105,10 @@ function renderBackground(ctx: CanvasRenderingContext2D, width: number, height: 
         top,
         brickWidth,
         0,
-        ELEMENTS_COLORS.brick.highlight,
-        borderWidth,
+        {
+          edgingColor: ELEMENTS_COLORS.brick.highlight,
+          edgingWidth: borderWidth,
+        },
       );
       drawLineToAngle(
         ctx,
@@ -128,8 +116,10 @@ function renderBackground(ctx: CanvasRenderingContext2D, width: number, height: 
         top + brickHeight - borderWidth,
         brickWidth,
         0,
-        ELEMENTS_COLORS.brick.border,
-        borderWidth,
+        {
+          edgingColor: ELEMENTS_COLORS.brick.border,
+          edgingWidth: borderWidth,
+        },
       );
       drawLineToAngle(
         ctx,
@@ -137,17 +127,15 @@ function renderBackground(ctx: CanvasRenderingContext2D, width: number, height: 
         top,
         brickHeight,
         90,
-        ELEMENTS_COLORS.brick.border,
-        borderWidth,
+        {
+          edgingColor: ELEMENTS_COLORS.brick.border,
+          edgingWidth: borderWidth,
+        },
       );
     }
   }
 }
 
-/**
- * Function renders game board as described in `constants/levels`
- * for the current level, including initial block states and the target
- */
 function renderLevel(): void {
   const { map, blocks } = this.level;
 
@@ -173,12 +161,6 @@ function renderLevel(): void {
   renderElementsList.call(this);
 }
 
-/**
- * Render a single level map element depending on its type
- *
- * @param x
- * @param y
- */
 function renderMapElement(x: number, y: number): void {
   const ctx: CanvasRenderingContext2D = this.gridCanvas.getContext('2d');
   const elementType: number = this.level.map[y][x];
@@ -193,7 +175,9 @@ function renderMapElement(x: number, y: number): void {
         top,
         this.cellSize,
         this.cellSize,
-        ELEMENTS_COLORS.empty.background,
+        {
+          fillColor: ELEMENTS_COLORS.empty.background,
+        },
       );
       break;
     }
@@ -204,21 +188,27 @@ function renderMapElement(x: number, y: number): void {
         top,
         this.cellSize,
         this.cellSize,
-        ELEMENTS_COLORS.wall.border,
+        {
+          fillColor: ELEMENTS_COLORS.wall.border,
+        },
       );
       drawTriangle(
         ctx,
         [left + this.cellSize / 12, top + this.cellSize / 12],
         [left + this.cellSize - this.cellSize / 6, top + this.cellSize / 12],
         [left + this.cellSize / 12, top + this.cellSize - this.cellSize / 6],
-        ELEMENTS_COLORS.wall.background,
+        {
+          fillColor: ELEMENTS_COLORS.wall.background,
+        },
       );
       drawTriangle(
         ctx,
         [left + this.cellSize / 12, top + this.cellSize - this.cellSize / 6],
         [left + this.cellSize - this.cellSize / 6, top + this.cellSize / 12],
         [left + this.cellSize - this.cellSize / 6, top + this.cellSize - this.cellSize / 6],
-        ELEMENTS_COLORS.wall.shadow,
+        {
+          fillColor: ELEMENTS_COLORS.wall.shadow,
+        },
       );
       drawLineToAngle(
         ctx,
@@ -226,8 +216,10 @@ function renderMapElement(x: number, y: number): void {
         top + this.cellSize - this.cellSize / 24,
         this.cellSize,
         0,
-        ELEMENTS_COLORS.wall.margin,
-        this.cellSize / 12,
+        {
+          edgingColor: ELEMENTS_COLORS.wall.margin,
+          edgingWidth: this.cellSize / 12,
+        },
       );
       drawLineToAngle(
         ctx,
@@ -235,8 +227,10 @@ function renderMapElement(x: number, y: number): void {
         top + this.cellSize,
         this.cellSize,
         270,
-        ELEMENTS_COLORS.wall.margin,
-        this.cellSize / 12,
+        {
+          edgingColor: ELEMENTS_COLORS.wall.margin,
+          edgingWidth: this.cellSize / 12,
+        },
       );
       break;
     }
@@ -244,14 +238,6 @@ function renderMapElement(x: number, y: number): void {
   }
 }
 
-/**
- * Function renders a single block at the given coordinates
- *
- * @param ctx
- * @param type
- * @param left
- * @param top
- */
 function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, top: number): void {
   drawRectangle(
     ctx,
@@ -259,7 +245,9 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     top,
     this.cellSize,
     this.cellSize,
-    ELEMENTS_COLORS.block.border,
+    {
+      fillColor: ELEMENTS_COLORS.block.border,
+    },
   );
   drawRectangle(
     ctx,
@@ -267,7 +255,9 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     top + this.cellSize / 6,
     this.cellSize * 2 / 3,
     this.cellSize * 2 / 3,
-    ELEMENTS_COLORS.block.background,
+    {
+      fillColor: ELEMENTS_COLORS.block.background,
+    },
   );
   drawLineToAngle(
     ctx,
@@ -275,8 +265,10 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     top + this.cellSize / 6,
     this.cellSize * 2 / 3,
     90,
-    ELEMENTS_COLORS.block.highlight,
-    this.cellSize / 12,
+    {
+      edgingColor: ELEMENTS_COLORS.block.highlight,
+      edgingWidth: this.cellSize / 12,
+    },
   );
   drawLineToAngle(
     ctx,
@@ -284,8 +276,10 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     top + this.cellSize * 3 / 24,
     this.cellSize * 2 / 3,
     0,
-    ELEMENTS_COLORS.block.highlight,
-    this.cellSize / 12,
+    {
+      edgingColor: ELEMENTS_COLORS.block.highlight,
+      edgingWidth: this.cellSize / 12,
+    },
   );
   drawLineToAngle(
     ctx,
@@ -293,8 +287,10 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     top + this.cellSize * 21 / 24,
     this.cellSize * 2 / 3,
     0,
-    ELEMENTS_COLORS.block.background,
-    this.cellSize / 12,
+    {
+      edgingColor: ELEMENTS_COLORS.block.background,
+      edgingWidth: this.cellSize / 12,
+    },
   );
   drawLineToAngle(
     ctx,
@@ -302,8 +298,10 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     top + this.cellSize / 6,
     this.cellSize * 2 / 3,
     90,
-    ELEMENTS_COLORS.block.background,
-    this.cellSize / 12,
+    {
+      edgingColor: ELEMENTS_COLORS.block.background,
+      edgingWidth: this.cellSize / 12,
+    }
   );
   drawRectangle(
     ctx,
@@ -311,7 +309,9 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     top,
     this.cellSize / 12,
     this.cellSize / 12,
-    ELEMENTS_COLORS.empty.background,
+    {
+      fillColor: ELEMENTS_COLORS.empty.background,
+    },
   );
   drawRectangle(
     ctx,
@@ -319,7 +319,9 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     top,
     this.cellSize / 12,
     this.cellSize / 12,
-    ELEMENTS_COLORS.empty.background,
+    {
+      fillColor: ELEMENTS_COLORS.empty.background,
+    },
   );
   drawRectangle(
     ctx,
@@ -327,7 +329,9 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     top + this.cellSize * 11 / 12,
     this.cellSize / 12,
     this.cellSize / 12,
-    ELEMENTS_COLORS.empty.background,
+    {
+      fillColor: ELEMENTS_COLORS.empty.background,
+    },
   );
   drawRectangle(
     ctx,
@@ -335,7 +339,9 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
     top + this.cellSize * 11 / 12,
     this.cellSize / 12,
     this.cellSize / 12,
-    ELEMENTS_COLORS.empty.background,
+    {
+      fillColor: ELEMENTS_COLORS.empty.background,
+    },
   );
 
   if (this.isIconModeOn) {
@@ -361,14 +367,6 @@ function renderBlock(ctx: CanvasRenderingContext2D, type: number, left: number, 
   }
 }
 
-/**
- * Function renders a block icon according to the specified id
- *
- * @param ctx
- * @param id
- * @param left
- * @param top
- */
 function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number, top: number): void {
   switch (id) {
     case 1: {
@@ -386,7 +384,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           left + this.cellSize / 2,
           top + this.cellSize * 3 / 4,
         ],
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       drawTriangle(
         ctx,
@@ -402,7 +402,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           left + this.cellSize / 2,
           top + this.cellSize * 3 / 4,
         ],
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       break;
     }
@@ -413,7 +415,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize / 3,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       drawRectangle(
         ctx,
@@ -421,7 +425,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize * 3 / 12,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       drawRectangle(
         ctx,
@@ -429,7 +435,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize / 3,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       drawRectangle(
         ctx,
@@ -437,7 +445,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize / 4,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       drawRectangle(
         ctx,
@@ -445,7 +455,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize * 2 / 3,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       drawRectangle(
         ctx,
@@ -453,7 +465,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize * 7 / 12,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       drawRectangle(
         ctx,
@@ -461,7 +475,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize * 2 / 3,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       drawRectangle(
         ctx,
@@ -469,7 +485,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize * 7 / 12,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       break;
     }
@@ -480,7 +498,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize / 3,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       drawRectangle(
         ctx,
@@ -488,7 +508,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize / 4,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       drawRectangle(
         ctx,
@@ -496,7 +518,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize / 2,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       drawRectangle(
         ctx,
@@ -504,7 +528,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize * 5 / 12,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       drawRectangle(
         ctx,
@@ -512,7 +538,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize / 2,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       drawRectangle(
         ctx,
@@ -520,7 +548,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize * 5 / 12,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       drawRectangle(
         ctx,
@@ -528,7 +558,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize * 2 / 3,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       drawRectangle(
         ctx,
@@ -536,7 +568,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize * 7 / 12,
         this.cellSize / 6,
         this.cellSize / 6,
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       break;
     }
@@ -555,7 +589,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           left + this.cellSize / 2,
           top + this.cellSize * 3 / 8,
         ],
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       drawTriangle(
         ctx,
@@ -571,7 +607,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           left + this.cellSize / 2,
           top + this.cellSize * 3 / 4,
         ],
-        ELEMENTS_COLORS.icon.color3,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color3,
+        },
       );
       drawTriangle(
         ctx,
@@ -587,7 +625,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           left + this.cellSize / 2,
           top + this.cellSize * 3 / 4,
         ],
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       break;
     }
@@ -606,7 +646,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           left + this.cellSize / 2,
           top + this.cellSize / 2,
         ],
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       drawTriangle(
         ctx,
@@ -622,7 +664,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           left + this.cellSize / 2,
           top + this.cellSize * 3 / 4,
         ],
-        ELEMENTS_COLORS.icon.color3,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color3,
+        },
       );
       drawTriangle(
         ctx,
@@ -638,7 +682,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           left + this.cellSize / 2,
           top + this.cellSize * 3 / 4,
         ],
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       drawTriangle(
         ctx,
@@ -654,7 +700,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
           left + this.cellSize * 3 / 4,
           top + this.cellSize / 2,
         ],
-        ELEMENTS_COLORS.icon.color3,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color3,
+        },
       );
       break;
     }
@@ -665,7 +713,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize / 3,
         this.cellSize / 2,
         this.cellSize / 2,
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       drawRectangle(
         ctx,
@@ -673,7 +723,9 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         top + this.cellSize / 4,
         this.cellSize / 2,
         this.cellSize / 2,
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       break;
     }
@@ -683,21 +735,27 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         left + this.cellSize * 13 / 24,
         top + this.cellSize * 13 / 24,
         this.cellSize / 4,
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       drawCircle(
         ctx,
         left + this.cellSize / 2,
         top + this.cellSize / 2,
         this.cellSize / 4,
-        ELEMENTS_COLORS.icon.color3,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color3,
+        },
       );
       drawCircle(
         ctx,
         left + this.cellSize * 11 / 24,
         top + this.cellSize * 11 / 24,
         this.cellSize / 8,
-        ELEMENTS_COLORS.icon.color1,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color1,
+        },
       );
       break;
     }
@@ -707,14 +765,18 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
         left + this.cellSize * 13 / 24,
         top + this.cellSize * 13 / 24,
         this.cellSize / 12,
-        ELEMENTS_COLORS.icon.color2,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color2,
+        },
       );
       drawCircle(
         ctx,
         left + this.cellSize / 2,
         top + this.cellSize / 2,
         this.cellSize / 12,
-        ELEMENTS_COLORS.icon.color3,
+        {
+          fillColor: ELEMENTS_COLORS.icon.color3,
+        },
       );
       break;
     }
@@ -722,11 +784,6 @@ function renderBlockIcon(ctx: CanvasRenderingContext2D, id: number, left: number
   }
 }
 
-/**
- * Function renders the target -- a border with rectangle shape in the specified color
- *
- * @param color
- */
 function renderTarget(color: string): void {
   const ctx: CanvasRenderingContext2D = this.targetCanvas.getContext('2d');
   const top: number = this.cellSize * this.level.target[0];
@@ -745,9 +802,10 @@ function renderTarget(color: string): void {
     top + this.cellSize / 12,
     this.cellSize * 5 / 6,
     this.cellSize * 5 / 6,
-    null,
-    this.cellSize / 6,
-    color,
+    {
+      edgingWidth: this.cellSize / 6,
+      edgingColor: color,
+    },
   );
   drawRectangle(
     ctx,
@@ -755,7 +813,9 @@ function renderTarget(color: string): void {
     top,
     this.cellSize / 12,
     this.cellSize / 12,
-    ELEMENTS_COLORS.empty.background,
+    {
+      fillColor: ELEMENTS_COLORS.empty.background,
+    },
   );
   drawRectangle(
     ctx,
@@ -763,7 +823,9 @@ function renderTarget(color: string): void {
     top,
     this.cellSize / 12,
     this.cellSize / 12,
-    ELEMENTS_COLORS.empty.background,
+    {
+      fillColor: ELEMENTS_COLORS.empty.background,
+    },
   );
   drawRectangle(
     ctx,
@@ -771,7 +833,9 @@ function renderTarget(color: string): void {
     top + this.cellSize * 11 / 12,
     this.cellSize / 12,
     this.cellSize / 12,
-    ELEMENTS_COLORS.empty.background,
+    {
+      fillColor: ELEMENTS_COLORS.empty.background,
+    },
   );
   drawRectangle(
     ctx,
@@ -779,13 +843,12 @@ function renderTarget(color: string): void {
     top + this.cellSize - this.cellSize / 12,
     this.cellSize / 12,
     this.cellSize / 12,
-    ELEMENTS_COLORS.empty.background,
+    {
+      fillColor: ELEMENTS_COLORS.empty.background,
+    },
   );
 }
 
-/**
- * Function renders the list of currently available blocks (grouped by types) and their count
- */
 function renderElementsList(): void {
   const { blocks } = this.level;
 

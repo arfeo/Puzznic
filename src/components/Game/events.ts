@@ -8,34 +8,6 @@ import { checkBlockPosition, checkObstacle, checkTargetMove } from './actions';
 import { animateBlockMove } from './animations';
 import { renderLevel } from './render';
 
-/**
- * Function creates all game's event listeners
- */
-function setUpEventHandlers(): void {
-  APP.eventListeners = {
-    onKeyDown: keyDownHandler.bind(this),
-    onKeyUp: keyUpHandler.bind(this),
-  };
-
-  setActiveKey.call(this);
-
-  document.body.addEventListener('keydown', APP.eventListeners.onKeyDown);
-  document.body.addEventListener('keyup', APP.eventListeners.onKeyUp);
-}
-
-/**
- * Function removes all game's event listeners
- */
-function removeEventHandlers(): void {
-  document.body.removeEventListener('keydown', APP.eventListeners.onKeyDown);
-  document.body.removeEventListener('keyup', APP.eventListeners.onKeyUp);
-}
-
-/**
- * Function fires at key down event
- *
- * @param event
- */
 function keyDownHandler(event: KeyboardEvent): void {
   let key = '';
 
@@ -136,9 +108,6 @@ function keyDownHandler(event: KeyboardEvent): void {
   }
 }
 
-/**
- * Function fires at key up event
- */
 function keyUpHandler(): void {
   setActiveKey.call(this);
 
@@ -146,13 +115,7 @@ function keyUpHandler(): void {
   this.currentBlock = null;
 }
 
-/**
- * Function stores currently pressed key (if any) in a state variable;
- * if no key type is passed, all previously stored states are cleared
- *
- * @param type
- */
-function setActiveKey(type?: string): void {
+function setActiveKey(key?: string): void {
   this.keysDown = {
     catch: false,
     up: false,
@@ -161,12 +124,12 @@ function setActiveKey(type?: string): void {
     left: false,
   };
 
-  if (type) {
-    this.keysDown[type] = true;
+  if (key) {
+    this.keysDown[key] = true;
   }
 }
 
 export {
-  setUpEventHandlers,
-  removeEventHandlers,
+  keyDownHandler,
+  keyUpHandler,
 };

@@ -11,16 +11,13 @@ import { checkBlockGroups, checkBlocksToFall, checkObstacle } from './actions';
 
 import { IBlock } from '../../types/game';
 
-/**
- * Function animates the target
- */
 function animateTarget(): void {
   let start = performance.now();
   let state = 1;
 
   const animate = (time: number): void => {
     if (this.isLevelCompleted) {
-      return cancelAnimationFrame(this.animateTarget);
+      return cancelAnimationFrame(this.animations.animateTarget);
     }
 
     if (time - start >= this.targetBlinkDelay) {
@@ -34,21 +31,12 @@ function animateTarget(): void {
 
     renderTarget.call(this, ELEMENTS_COLORS.target[`state${state}`]);
 
-    this.animateTarget = requestAnimationFrame(animate);
+    this.animations.animateTarget = requestAnimationFrame(animate);
   };
 
-  this.animateTarget = requestAnimationFrame(animate);
+  this.animations.animateTarget = requestAnimationFrame(animate);
 }
 
-/**
- * Function animates block move; if the block has to be moved to the left or to the right,
- * no animation needed, block just instantly moves to the next cell;
- * otherwise (in case of falling), the block moves smoothly
- *
- * @param block
- * @param nextX
- * @param nextY
- */
 function animateBlockMove(block: IBlock, nextX: number, nextY: number): void {
   if (block.position === undefined) {
     return;
@@ -141,11 +129,6 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number): void {
   checkBlocksToFall.call(this);
 }
 
-/**
- * Function animates elimination of the specified block
- *
- * @param blockId
- */
 function animateBlockElimination(blockId: number): Promise<void> {
   return new Promise((resolve) => {
     const ctx: CanvasRenderingContext2D = this.blocksCanvas.getContext('2d');
@@ -207,14 +190,6 @@ function animateBlockElimination(blockId: number): Promise<void> {
   });
 }
 
-/**
- * Function animates bonus size label, fading in and out
- * whilst floating above the given point's coords
- *
- * @param left
- * @param top
- * @param size
- */
 function animateBonusSize(left: number, top: number, size: number): void {
   const ctx: CanvasRenderingContext2D = this.bonusCanvas.getContext('2d');
   let frame: number;

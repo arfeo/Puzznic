@@ -4,9 +4,6 @@ import { GameOver } from '../GameOver';
 import { APP } from '../../constants/global';
 import { FunctionalKeys } from '../../constants/pages';
 
-/**
- * Function creates all components's event listeners
- */
 function setUpEventHandlers(): void {
   APP.eventListeners = {
     onKeyDown: (event: KeyboardEvent) => {

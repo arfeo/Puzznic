@@ -5,9 +5,6 @@ import { animateScorePointsTransition } from './animations';
 
 import { ILevel } from '../../types/game';
 
-/**
- * Function renders the page window
- */
 function renderLevelScoreWindow(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   const nextLevel: ILevel = LEVELS.find((level: ILevel) => level.id === this.game.level.id + 1);

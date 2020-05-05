@@ -1,42 +1,55 @@
+import { PageComponent } from '../../core/components/Page';
+
 import { LEVELS } from '../../constants/levels';
 import { TARGET_BLINK_DELAY } from '../../constants/game';
 import { CELL_SIZE_VMIN } from '../../constants/global';
 
-import { renderGameWindow, renderLevel } from './render';
-import { setCellSize } from '../../utils/common';
-import { removeEventHandlers, setUpEventHandlers } from './events';
+import { renderGameWindow } from './render';
+import { getCellSize } from '../../core/utils/game';
+import { keyDownHandler, keyUpHandler } from './events';
 import { generateBlocksIconsCorrelation } from './utils';
 
 import { IBlock, IKeysDown, ILevel } from '../../types/game';
 
-class Game {
-  level: ILevel;
-  score: number;
-  moves: number;
-  cellSize: number;
-  keysDown: IKeysDown;
-  elementsCanvas: HTMLCanvasElement;
-  gridCanvas: HTMLCanvasElement;
-  blocksCanvas: HTMLCanvasElement;
-  targetCanvas: HTMLCanvasElement;
-  bonusCanvas: HTMLCanvasElement;
-  animateTarget: number;
-  targetBlinkDelay: number;
-  currentBlock: IBlock;
-  blocksMoving: number[];
-  clearBonus: number;
-  blocksIcons: { [key: number]: number };
-  isIconModeOn: boolean;
-  isLevelCompleted: boolean;
-  isGameOver: boolean;
+class Game extends PageComponent {
+  private level: ILevel;
+  private score: number;
+  private moves: number;
+  private cellSize: number;
+  private keysDown: IKeysDown;
+  private elementsCanvas: HTMLCanvasElement;
+  private gridCanvas: HTMLCanvasElement;
+  private blocksCanvas: HTMLCanvasElement;
+  private targetCanvas: HTMLCanvasElement;
+  private bonusCanvas: HTMLCanvasElement;
+  private targetBlinkDelay: number;
+  private currentBlock: IBlock;
+  private blocksMoving: number[];
+  private clearBonus: number;
+  private blocksIcons: { [key: number]: number };
+  private isIconModeOn: boolean;
+  private isLevelCompleted: boolean;
+  private isGameOver: boolean;
 
-  constructor(level = 1, score = 0, isIconMode = true, icons: { [key: number]: number } = {}) {
+  public animations: {
+    animateTarget: number;
+  };
+
+  public init(level = 1, score = 0, isIconMode = true, icons: { [key: number]: number } = {}): void {
     this.level = JSON.parse(JSON.stringify(LEVELS.find((item: ILevel) => item.id === level)));
     this.score = score;
     this.moves = 0;
 
-    this.cellSize = setCellSize(CELL_SIZE_VMIN);
+    this.appRoot = document.getElementById('root');
+
+    this.cellSize = getCellSize(CELL_SIZE_VMIN);
     this.blocksIcons = Object.keys(icons).length > 0 ? icons : generateBlocksIconsCorrelation();
+
+    this.elementsCanvas = document.createElement('canvas');
+    this.gridCanvas = document.createElement('canvas');
+    this.blocksCanvas = document.createElement('canvas');
+    this.targetCanvas = document.createElement('canvas');
+    this.bonusCanvas = document.createElement('canvas');
 
     this.targetBlinkDelay = TARGET_BLINK_DELAY;
 
@@ -48,20 +61,34 @@ class Game {
     this.isLevelCompleted = false;
     this.isGameOver = false;
 
-    this.render();
+    this.keysDown = {
+      catch: false,
+      up: false,
+      right: false,
+      down: false,
+      left: false,
+    };
+
+    this.eventHandlers = [
+      {
+        target: document,
+        type: 'keydown',
+        listener: keyDownHandler.bind(this),
+      },
+      {
+        target: document,
+        type: 'keyup',
+        listener: keyUpHandler.bind(this),
+      },
+    ];
+
+    this.animations = {
+      animateTarget: null,
+    };
   }
 
-  render(): void {
-    renderGameWindow.call(this);
-    renderLevel.call(this);
-
-    setUpEventHandlers.call(this);
-  }
-
-  destroy(): void {
-    removeEventHandlers.call(this);
-
-    cancelAnimationFrame(this.animateTarget);
+  render(): HTMLElement {
+    return renderGameWindow.call(this);
   }
 }
 

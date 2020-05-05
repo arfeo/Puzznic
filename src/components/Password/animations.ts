@@ -1,8 +1,5 @@
 import { renderSlot } from './render';
 
-/**
- * Function animates the current password input slot: its horizontal bottom line blinks
- */
 function animateCurrentSlot(): void {
   let start: number = performance.now();
   let isUnderlined = true;

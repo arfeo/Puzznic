@@ -1,9 +1,5 @@
 import { ELEMENTS_COLORS, SCORE_ANIMATION_SPEED } from '../../constants/pages';
 
-/**
- * Function animates transition of score points
- * from the clear bonus to the overall game score
- */
 function animateScorePointsTransition(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
   let scoreCloned: number = this.game.score;

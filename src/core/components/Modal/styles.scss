@@ -1,0 +1,66 @@
+body {
+  position: relative;
+}
+
+.modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+
+  .modal-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100001;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-window {
+    position: relative;
+    height: auto;
+    padding: 2vmin;
+    background-color: rgb(176, 176, 176);
+    z-index: 100002;
+    font-size: 2vmin;
+    color: rgb(0, 0, 0);
+
+    &.large {
+      width: 80vmin;
+    }
+
+    &.medium {
+      width: 50vmin;
+    }
+
+    &.small {
+      width: 30vmin;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 0.5vmin;
+      right: 0.7vmin;
+      color: rgb(76, 76, 76);
+
+      &:before {
+        content: '\2715';
+        cursor: pointer;
+      }
+
+      &:hover {
+        color: rgb(0, 0, 0);
+      }
+    }
+
+    .modal-body {
+      padding-right: 2vmin;
+    }
+  }
+}

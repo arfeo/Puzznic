@@ -3,8 +3,8 @@ import { Game } from '../../Game';
 import { ELEMENTS_COLORS } from '../../../constants/pages';
 import { CELL_SIZE_VMIN } from '../../../constants/global';
 
-import { setCellSize } from '../../../utils/common';
-import { drawRectangle } from '../../../utils/drawing';
+import { getCellSize } from '../../../core/utils/game';
+import { drawRectangle } from '../../../core/utils/drawing';
 
 abstract class Page {
   game: Game;
@@ -17,7 +17,7 @@ abstract class Page {
     const appRoot: HTMLElement = document.getElementById('root');
     const pageWindow: HTMLElement = document.createElement('div');
 
-    this.cellSize = setCellSize(CELL_SIZE_VMIN);
+    this.cellSize = getCellSize(CELL_SIZE_VMIN);
 
     this.pageCanvas = document.createElement('canvas');
 
@@ -43,9 +43,11 @@ abstract class Page {
         0,
         this.cellSize * 14,
         this.cellSize * 12,
-        ELEMENTS_COLORS.window.background,
-        this.cellSize / 3,
-        ELEMENTS_COLORS.window.outerBorder,
+        {
+          fillColor: ELEMENTS_COLORS.window.background,
+          edgingWidth: this.cellSize / 3,
+          edgingColor: ELEMENTS_COLORS.window.outerBorder,
+        },
       );
       drawRectangle(
         ctx,
@@ -53,9 +55,11 @@ abstract class Page {
         this.cellSize / 6,
         this.cellSize * 14 - this.cellSize / 3,
         this.cellSize * 12 - this.cellSize / 3,
-        ELEMENTS_COLORS.window.background,
-        this.cellSize / 12,
-        ELEMENTS_COLORS.window.innerBorder,
+        {
+          fillColor: ELEMENTS_COLORS.window.background,
+          edgingWidth: this.cellSize / 12,
+          edgingColor: ELEMENTS_COLORS.window.innerBorder,
+        },
       );
     }
 

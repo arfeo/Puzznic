@@ -9,10 +9,8 @@ import { onKeyDown } from './events';
 class GameOver extends PageComponent {
   private cellSize: number;
   private pageCanvas: HTMLCanvasElement;
-  private isBordered: boolean;
 
-  public init(isBordered = true): void {
-    this.isBordered = isBordered;
+  public init(): void {
     this.cellSize = getCellSize(CELL_SIZE_VMIN);
 
     this.appRoot = document.getElementById('root');

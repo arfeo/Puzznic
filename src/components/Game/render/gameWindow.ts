@@ -1,3 +1,5 @@
+import { GRID_WIDTH, PAGE_HEIGHT, PAGE_WIDTH } from '../../../constants/game';
+
 import { renderBackground } from './background';
 import { renderMap } from './map';
 import { renderElementsList } from './elementsList';
@@ -18,18 +20,18 @@ function renderGameWindow(): HTMLElement {
   this.targetCanvas.className = '-target-canvas';
   this.bonusCanvas.className = '-bonus-canvas';
 
-  this.backgroundCanvas.width = this.cellSize * 14;
-  this.backgroundCanvas.height = this.cellSize * 12;
+  this.backgroundCanvas.width = this.cellSize * PAGE_WIDTH;
+  this.backgroundCanvas.height = this.cellSize * PAGE_HEIGHT;
   this.elementsCanvas.width = this.cellSize * 3;
   this.elementsCanvas.height = this.cellSize * 11;
-  this.gridCanvas.width = this.cellSize * 10;
-  this.gridCanvas.height = this.cellSize * 12;
-  this.blocksCanvas.width = this.cellSize * 10;
-  this.blocksCanvas.height = this.cellSize * 12;
-  this.targetCanvas.width = this.cellSize * 10;
-  this.targetCanvas.height = this.cellSize * 12;
-  this.bonusCanvas.width = this.cellSize * 10;
-  this.bonusCanvas.height = this.cellSize * 12;
+  this.gridCanvas.width = this.cellSize * GRID_WIDTH;
+  this.gridCanvas.height = this.cellSize * PAGE_HEIGHT;
+  this.blocksCanvas.width = this.cellSize * GRID_WIDTH;
+  this.blocksCanvas.height = this.cellSize * PAGE_HEIGHT;
+  this.targetCanvas.width = this.cellSize * GRID_WIDTH;
+  this.targetCanvas.height = this.cellSize * PAGE_HEIGHT;
+  this.bonusCanvas.width = this.cellSize * GRID_WIDTH;
+  this.bonusCanvas.height = this.cellSize * PAGE_HEIGHT;
 
   gameWindow.appendChild(this.backgroundCanvas);
   gameWindow.appendChild(gameBoard);

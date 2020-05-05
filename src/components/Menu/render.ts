@@ -1,4 +1,5 @@
 import { WINDOW_FONT } from '../../constants/pages';
+import { PAGE_HEIGHT, PAGE_WIDTH } from '../../constants/game';
 
 function renderMenuContent(): HTMLElement {
   const pageWindow: HTMLElement = document.createElement('div');
@@ -7,8 +8,8 @@ function renderMenuContent(): HTMLElement {
   pageWindow.className = 'page-window';
   this.pageCanvas.className = '-page-canvas';
 
-  this.pageCanvas.width = this.cellSize * 14;
-  this.pageCanvas.height = this.cellSize * 12;
+  this.pageCanvas.width = this.cellSize * PAGE_WIDTH;
+  this.pageCanvas.height = this.cellSize * PAGE_HEIGHT;
 
   // Logo
   ctx.save();

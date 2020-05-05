@@ -1,4 +1,5 @@
 import { PASSWORD_SYMBOLS, WINDOW_FONT } from '../../constants/pages';
+import { PAGE_HEIGHT, PAGE_WIDTH } from '../../constants/game';
 
 import { drawLineToAngle } from '../../core/utils/drawing';
 import { animateCurrentSlot } from './animations';
@@ -10,8 +11,8 @@ function renderPasswordWindow(): HTMLElement {
   pageWindow.className = 'page-window';
   this.pageCanvas.className = '-page-canvas';
 
-  this.pageCanvas.width = this.cellSize * 14;
-  this.pageCanvas.height = this.cellSize * 12;
+  this.pageCanvas.width = this.cellSize * PAGE_WIDTH;
+  this.pageCanvas.height = this.cellSize * PAGE_HEIGHT;
 
   ctx.font = WINDOW_FONT;
   ctx.textAlign = 'center';

@@ -9,7 +9,7 @@ import { getCellSize } from '../../core/utils/game';
 import { keyDownHandler, keyUpHandler } from './events';
 import { generateBlocksIconsCorrelation } from './helpers';
 
-import { Block, KeysDown, Level } from './types';
+import { Block, BlockIcons, KeysDown, Level } from './types';
 
 class Game extends PageComponent {
   private level: Level;
@@ -27,7 +27,7 @@ class Game extends PageComponent {
   private currentBlock: Block;
   private blocksMoving: number[];
   private clearBonus: number;
-  private blocksIcons: { [key: number]: number };
+  private blocksIcons: BlockIcons;
   private isIconModeOn: boolean;
   private isLevelCompleted: boolean;
   private isGameOver: boolean;
@@ -36,16 +36,15 @@ class Game extends PageComponent {
     animateTarget: number;
   };
 
-  public init(level = 1, score = 0, isIconMode = true, icons: { [key: number]: number } = {}): void {
+  public init(level = 1, score = 0, isIconMode = true, icons: BlockIcons = {}): void {
     this.level = JSON.parse(JSON.stringify(LEVELS.find((item: Level) => item.id === level)));
     this.score = score;
     this.moves = 0;
 
-    this.appRoot = document.getElementById('root');
-
     this.cellSize = getCellSize(CELL_SIZE_VMIN);
     this.blocksIcons = Object.keys(icons).length > 0 ? icons : generateBlocksIconsCorrelation();
 
+    this.appRoot = document.getElementById('root');
     this.backgroundCanvas = document.createElement('canvas');
     this.elementsCanvas = document.createElement('canvas');
     this.gridCanvas = document.createElement('canvas');

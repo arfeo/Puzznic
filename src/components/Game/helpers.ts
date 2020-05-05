@@ -1,9 +1,9 @@
 import { getRandomNum } from '../../core/utils/common';
 
-import { Block } from './types';
+import { Block, BlockIcons } from './types';
 
-function generateBlocksIconsCorrelation (): { [key: number]: number } {
-  const result: { [key: number]: number } = {};
+function generateBlocksIconsCorrelation (): BlockIcons {
+  const result: BlockIcons = {};
 
   for (let i = 1; i <= 8; i+= 1) {
     result[i] = getRandomNum(1, 8, Object.values(result));

@@ -13,6 +13,10 @@ export interface Block {
   position: number[];
 }
 
+export interface BlockIcons {
+  [key: number]: number;
+}
+
 export interface KeysDown {
   catch: boolean;
   up: boolean;

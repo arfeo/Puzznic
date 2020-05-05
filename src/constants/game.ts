@@ -14,6 +14,10 @@ export enum FunctionalKeys {
   Restart = 'r',
 }
 
+export const TARGET_BLINK_DELAY = 300;
+
+export const BLOCK_FALL_SPEED = 10;
+
 export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
   icon: {
     color1: 'rgb(255, 255, 255)',
@@ -26,7 +30,3 @@ export const ELEMENTS_COLORS: { [key: string]: { [key: string]: string } } = {
     state3: 'rgb(255, 255, 255)',
   },
 };
-
-export const TARGET_BLINK_DELAY = 300;
-
-export const BLOCK_FALL_SPEED = 10;

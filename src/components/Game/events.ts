@@ -3,9 +3,9 @@ import { Menu } from '../Menu';
 
 import { FunctionalKeys, TARGET_BLINK_DELAY } from '../../constants/game';
 
+import { renderLevel } from './render';
 import { checkBlockPosition, checkObstacle, checkTargetMove } from './actions';
 import { animateBlockMove } from './animations';
-import { renderLevel } from './render';
 
 function keyDownHandler(event: KeyboardEvent): void {
   let key = '';

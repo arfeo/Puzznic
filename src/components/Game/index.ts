@@ -4,10 +4,11 @@ import { LEVELS } from '../../constants/levels';
 import { TARGET_BLINK_DELAY } from '../../constants/game';
 import { CELL_SIZE_VMIN } from '../../constants/global';
 
-import { renderGameWindow } from './render';
 import { getCellSize } from '../../core/utils/game';
 import { keyDownHandler, keyUpHandler } from './events';
 import { generateBlocksIconsCorrelation } from './helpers';
+import { animateTarget } from './animations';
+import { renderGameWindow } from './render';
 
 import { Block, BlockIcons, KeysDown, Level } from './types';
 
@@ -86,6 +87,10 @@ class Game extends PageComponent {
     this.animations = {
       animateTarget: null,
     };
+  }
+
+  public afterMount(): void {
+    animateTarget.call(this);
   }
 
   public render(): HTMLElement {

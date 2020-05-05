@@ -9,7 +9,7 @@ import {
 import { renderBlock, renderElementsList, renderTarget } from './render';
 import { checkBlockGroups, checkBlocksToFall, checkObstacle } from './actions';
 
-import { IBlock } from '../../types/game';
+import { Block } from './types';
 
 function animateTarget(): void {
   let start = performance.now();
@@ -37,7 +37,7 @@ function animateTarget(): void {
   this.animations.animateTarget = requestAnimationFrame(animate);
 }
 
-function animateBlockMove(block: IBlock, nextX: number, nextY: number): void {
+function animateBlockMove(block: Block, nextX: number, nextY: number): void {
   if (block.position === undefined) {
     return;
   }
@@ -46,7 +46,7 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number): void {
   const isInstant: boolean = nextY === block.position[0];
 
   this.level.blocks = [
-    ...this.level.blocks.filter((item: IBlock) => item.id !== block.id),
+    ...this.level.blocks.filter((item: Block) => item.id !== block.id),
     {
       ...block,
       position: [nextY, nextX],
@@ -132,7 +132,7 @@ function animateBlockMove(block: IBlock, nextX: number, nextY: number): void {
 function animateBlockElimination(blockId: number): Promise<void> {
   return new Promise((resolve) => {
     const ctx: CanvasRenderingContext2D = this.blocksCanvas.getContext('2d');
-    const block: IBlock[] = this.level.blocks.filter((item: IBlock) => {
+    const block: Block[] = this.level.blocks.filter((item: Block) => {
       return item.id === blockId;
     });
 
@@ -153,7 +153,7 @@ function animateBlockElimination(blockId: number): Promise<void> {
             this.cellSize,
           );
 
-          this.level.blocks = this.level.blocks.filter((item: IBlock) => {
+          this.level.blocks = this.level.blocks.filter((item: Block) => {
             return item.id !== blockId;
           });
 

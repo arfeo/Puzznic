@@ -7,23 +7,23 @@ import { CELL_SIZE_VMIN } from '../../constants/global';
 import { renderGameWindow } from './render';
 import { getCellSize } from '../../core/utils/game';
 import { keyDownHandler, keyUpHandler } from './events';
-import { generateBlocksIconsCorrelation } from './utils';
+import { generateBlocksIconsCorrelation } from './helpers';
 
-import { IBlock, IKeysDown, ILevel } from '../../types/game';
+import { Block, KeysDown, Level } from './types';
 
 class Game extends PageComponent {
-  private level: ILevel;
+  private level: Level;
   private score: number;
   private moves: number;
   private cellSize: number;
-  private keysDown: IKeysDown;
+  private keysDown: KeysDown;
   private elementsCanvas: HTMLCanvasElement;
   private gridCanvas: HTMLCanvasElement;
   private blocksCanvas: HTMLCanvasElement;
   private targetCanvas: HTMLCanvasElement;
   private bonusCanvas: HTMLCanvasElement;
   private targetBlinkDelay: number;
-  private currentBlock: IBlock;
+  private currentBlock: Block;
   private blocksMoving: number[];
   private clearBonus: number;
   private blocksIcons: { [key: number]: number };
@@ -36,7 +36,7 @@ class Game extends PageComponent {
   };
 
   public init(level = 1, score = 0, isIconMode = true, icons: { [key: number]: number } = {}): void {
-    this.level = JSON.parse(JSON.stringify(LEVELS.find((item: ILevel) => item.id === level)));
+    this.level = JSON.parse(JSON.stringify(LEVELS.find((item: Level) => item.id === level)));
     this.score = score;
     this.moves = 0;
 

@@ -14,7 +14,7 @@ import {
 
 import { animateTarget } from './animations';
 
-import { IBlock } from '../../types/game';
+import { Block } from './types';
 
 function renderGameWindow(): HTMLElement {
   const gameWindow: HTMLElement = document.createElement('div');
@@ -862,7 +862,7 @@ function renderElementsList(): void {
   ctx.clearRect(0, 0, this.cellSize * 3, this.cellSize * 11);
 
   for (let i = 1; i <= 8; i += 1) {
-    const elements: IBlock[] = blocks.filter((block: IBlock) => {
+    const elements: Block[] = blocks.filter((block: Block) => {
       return block.type === i;
     });
 

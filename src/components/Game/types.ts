@@ -1,19 +1,19 @@
-export interface ILevel {
+export interface Level {
   id: number;
   map: number[][];
   target: number[];
-  blocks: IBlock[];
+  blocks: Block[];
   bonus: number;
   password?: string;
 }
 
-export interface IBlock {
+export interface Block {
   id: number;
   type: number;
   position: number[];
 }
 
-export interface IKeysDown {
+export interface KeysDown {
   catch: boolean;
   up: boolean;
   right: boolean;

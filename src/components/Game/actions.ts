@@ -3,9 +3,9 @@ import { LevelScore } from '../LevelScore';
 import { APP } from '../../constants/global';
 
 import { animateBlockMove, animateBlockElimination, animateBonusSize } from './animations';
-import { findCornerBlocks } from './utils';
+import { findCornerBlocks } from './helpers';
 
-import { IBlock } from '../../types/game';
+import { Block } from './types';
 
 function checkTargetMove(direction: string): boolean {
   const { map } = this.level;
@@ -41,8 +41,8 @@ function checkTargetMove(direction: string): boolean {
   return !!nextCell && !!afterNextCell;
 }
 
-function checkBlockPosition(x: number, y: number): IBlock | boolean {
-  const block: IBlock[] = this.level.blocks.filter((item: IBlock) => {
+function checkBlockPosition(x: number, y: number): Block | boolean {
+  const block: Block[] = this.level.blocks.filter((item: Block) => {
     return item.position[0] === y && item.position[1] === x;
   });
 
@@ -60,7 +60,7 @@ function checkBlocksToFall(): void {
     return;
   }
 
-  blocks.map((block: IBlock) => {
+  blocks.map((block: Block) => {
     const x: number = block.position[1];
     const y: number = block.position[0];
 
@@ -78,13 +78,13 @@ function checkBlockGroups(): void {
     return;
   }
 
-  blocks.map((block: IBlock) => {
-    const nextToRight: IBlock[] = blocks.filter((item: IBlock) => {
+  blocks.map((block: Block) => {
+    const nextToRight: Block[] = blocks.filter((item: Block) => {
       return item.position[0] === block.position[0] + 1 &&
         item.position[1] === block.position[1] &&
         item.type === block.type;
     });
-    const nextToBottom: IBlock[] = blocks.filter((item: IBlock) => {
+    const nextToBottom: Block[] = blocks.filter((item: Block) => {
       return item.position[1] === block.position[1] + 1 &&
         item.position[0] === block.position[0] &&
         item.type === block.type;

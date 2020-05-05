@@ -1,4 +1,4 @@
-import { IGlobals } from '../types/global';
+import { IGlobals } from '../typings/global';
 
 export const APP: IGlobals = {
   pageInstance: null,

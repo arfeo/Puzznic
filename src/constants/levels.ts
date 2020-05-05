@@ -1,4 +1,4 @@
-import { ILevel } from '../types/game';
+import { Level } from '../components/Game/types';
 
 /**
  * Map legend:
@@ -8,7 +8,7 @@ import { ILevel } from '../types/game';
  * 2 - Wall
  */
 
-export const LEVELS: ILevel[] = [
+export const LEVELS: Level[] = [
   {
     id: 1,
     map: [

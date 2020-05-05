@@ -1,6 +1,6 @@
 import { getRandomNum } from '../../core/utils/common';
 
-import { IBlock } from '../../types/game';
+import { Block } from './types';
 
 function generateBlocksIconsCorrelation (): { [key: number]: number } {
   const result: { [key: number]: number } = {};
@@ -22,7 +22,7 @@ function findCornerBlocks(blockIds: number[]): number[][] {
   let bottomRight: number[] = [];
 
   for (let i = 0; i < blockIds.length; i += 1) {
-    const currentBlockPosition: number[] = blocks.find((item: IBlock) => {
+    const currentBlockPosition: number[] = blocks.find((item: Block) => {
       return item.id === blockIds[i];
     }).position;
 

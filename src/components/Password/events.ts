@@ -7,7 +7,7 @@ import { FunctionalKeys, PASSWORD_SYMBOLS } from '../../constants/pages';
 
 import { renderControls, renderInputSlots, renderSymbols } from './render';
 
-import { ILevel } from '../../types/game';
+import { Level } from '../Game/types';
 
 function setUpEventHandlers(): void {
   APP.eventListeners = {
@@ -124,7 +124,7 @@ function keyDownHandler(event: KeyboardEvent): void {
             break;
           }
           case 3: {
-            const level: ILevel = LEVELS.find((item: ILevel) => {
+            const level: Level = LEVELS.find((item: Level) => {
               return item.password === this.password.join('').toLowerCase();
             });
 

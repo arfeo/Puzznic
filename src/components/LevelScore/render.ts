@@ -3,11 +3,11 @@ import { ELEMENTS_COLORS, WINDOW_FONT } from '../../constants/pages';
 
 import { animateScorePointsTransition } from './animations';
 
-import { ILevel } from '../../types/game';
+import { Level } from '../Game/types';
 
 function renderLevelScoreWindow(): void {
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
-  const nextLevel: ILevel = LEVELS.find((level: ILevel) => level.id === this.game.level.id + 1);
+  const nextLevel: Level = LEVELS.find((level: Level) => level.id === this.game.level.id + 1);
   const password: string = nextLevel ? nextLevel.password : null;
 
   this.game.isLevelCompleted = true;

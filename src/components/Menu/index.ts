@@ -3,7 +3,7 @@ import { PageComponent } from '../../core/components/Page';
 import { CELL_SIZE_VMIN } from '../../constants/global';
 
 import { getCellSize } from '../../core/utils/game';
-import { keyDownHandler } from './events';
+import { onKeyDown } from './events';
 import { renderMenuContent } from './render';
 
 class Menu extends PageComponent {
@@ -23,7 +23,7 @@ class Menu extends PageComponent {
       {
         target: document,
         type: 'keydown',
-        listener: keyDownHandler.bind(this),
+        listener: onKeyDown.bind(this),
       },
     ];
   }

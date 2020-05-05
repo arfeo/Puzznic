@@ -41,7 +41,7 @@ function checkTargetMove(direction: string): boolean {
 
 function checkBlockPosition(x: number, y: number): Block | boolean {
   const block: Block[] = this.level.blocks.filter((item: Block) => {
-    return item.position[0] === y && item.position[1] === x;
+    return item && item.position[0] === y && item.position[1] === x;
   });
 
   return !!block && block.length > 0 ? block[0] : false;

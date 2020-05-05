@@ -8,7 +8,7 @@ import { renderControls, renderInputSlots, renderSymbols } from './render';
 
 import { Level } from '../Game/types';
 
-function keyDownHandler(event: KeyboardEvent): void {
+function onKeyDown(event: KeyboardEvent): void {
   switch (event.key) {
     case FunctionalKeys.Up: {
       if (this.currentControl > 0) {
@@ -145,4 +145,4 @@ function keyDownHandler(event: KeyboardEvent): void {
   }
 }
 
-export { keyDownHandler };
+export { onKeyDown };

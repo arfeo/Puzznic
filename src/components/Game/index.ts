@@ -5,7 +5,7 @@ import { TARGET_BLINK_DELAY } from '../../constants/game';
 import { CELL_SIZE_VMIN } from '../../constants/global';
 
 import { getCellSize } from '../../core/utils/game';
-import { keyDownHandler, keyUpHandler } from './events';
+import { onKeyDown, onKeyUp } from './events';
 import { generateBlocksIconsCorrelation } from './helpers';
 import { animateTarget } from './animations';
 import { renderGameWindow } from './render';
@@ -75,12 +75,12 @@ class Game extends PageComponent {
       {
         target: document,
         type: 'keydown',
-        listener: keyDownHandler.bind(this),
+        listener: onKeyDown.bind(this),
       },
       {
         target: document,
         type: 'keyup',
-        listener: keyUpHandler.bind(this),
+        listener: onKeyUp.bind(this),
       },
     ];
 

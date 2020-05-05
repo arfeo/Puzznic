@@ -3,7 +3,7 @@ import { PageComponent } from '../../core/components/Page';
 import { CELL_SIZE_VMIN } from '../../constants/global';
 
 import { getCellSize } from '../../core/utils/game';
-import { keyDownHandler } from './events';
+import { onKeyDown } from './events';
 import { renderPasswordWindow } from './render';
 
 class Password extends PageComponent {
@@ -33,7 +33,7 @@ class Password extends PageComponent {
       {
         target: document,
         type: 'keydown',
-        listener: keyDownHandler.bind(this),
+        listener: onKeyDown.bind(this),
       },
     ];
 

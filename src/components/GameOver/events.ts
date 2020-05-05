@@ -1,7 +1,7 @@
 import { FunctionalKeys } from '../../constants/pages';
 import { Menu } from '../Menu';
 
-function keyDownHandler(event: KeyboardEvent): void {
+function onKeyDown(event: KeyboardEvent): void {
   if (event.key === FunctionalKeys.Continue) {
     this.destroy();
 
@@ -9,4 +9,4 @@ function keyDownHandler(event: KeyboardEvent): void {
   }
 }
 
-export { keyDownHandler };
+export { onKeyDown };

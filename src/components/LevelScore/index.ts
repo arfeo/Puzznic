@@ -6,7 +6,7 @@ import { CELL_SIZE_VMIN } from '../../constants/global';
 import { getCellSize } from '../../core/utils/game';
 import { renderLevelScoreWindow } from './render';
 import { animateScorePoints } from './animations';
-import { keyDownHandler } from './events';
+import { onKeyDown } from './events';
 
 class LevelScore extends PageComponent {
   private game: Game;
@@ -29,7 +29,7 @@ class LevelScore extends PageComponent {
       {
         target: document,
         type: 'keydown',
-        listener: keyDownHandler.bind(this),
+        listener: onKeyDown.bind(this),
       },
     ];
 

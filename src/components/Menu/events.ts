@@ -5,7 +5,7 @@ import { FunctionalKeys } from '../../constants/pages';
 
 import { renderPointer } from './render';
 
-function keyDownHandler(event: KeyboardEvent): void {
+function onKeyDown(event: KeyboardEvent): void {
   switch (event.key) {
     case FunctionalKeys.Up: {
       if (this.currentItem > 1) {
@@ -43,4 +43,4 @@ function keyDownHandler(event: KeyboardEvent): void {
   }
 }
 
-export { keyDownHandler };
+export { onKeyDown };

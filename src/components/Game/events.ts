@@ -7,7 +7,7 @@ import { renderMap } from './render';
 import { checkBlockPosition, checkObstacle, checkTargetMove } from './actions';
 import { animateBlockMove } from './animations';
 
-function keyDownHandler(event: KeyboardEvent): void {
+function onKeyDown(event: KeyboardEvent): void {
   let key = '';
 
   switch (event.key) {
@@ -107,7 +107,7 @@ function keyDownHandler(event: KeyboardEvent): void {
   }
 }
 
-function keyUpHandler(): void {
+function onKeyUp(): void {
   setActiveKey.call(this);
 
   this.targetBlinkDelay = TARGET_BLINK_DELAY;
@@ -129,6 +129,6 @@ function setActiveKey(key?: string): void {
 }
 
 export {
-  keyDownHandler,
-  keyUpHandler,
+  onKeyDown,
+  onKeyUp,
 };

@@ -32,7 +32,7 @@ function animateTarget(): void {
 }
 
 function animateBlockMove(block: Block, nextX: number, nextY: number): void {
-  if (block.position === undefined) {
+  if (!block || block.position === undefined) {
     return;
   }
 

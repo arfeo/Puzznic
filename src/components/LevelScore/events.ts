@@ -3,7 +3,7 @@ import { GameOver } from '../GameOver';
 
 import { FunctionalKeys } from '../../constants/pages';
 
-function keyDownHandler(event: KeyboardEvent): void {
+function onKeyDown(event: KeyboardEvent): void {
   if (event.key === FunctionalKeys.Continue) {
     if (this.game.isLevelCompleted) {
       if (!this.game.isGameOver) {
@@ -19,4 +19,4 @@ function keyDownHandler(event: KeyboardEvent): void {
   }
 }
 
-export { keyDownHandler };
+export { onKeyDown };

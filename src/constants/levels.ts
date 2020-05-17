@@ -1482,7 +1482,7 @@ export const LEVELS: Level[] = [
       { id: 10, type: 4, position: [4, 5] },
     ],
     target: [4, 5],
-    bonus: 500,
+    bonus: 600,
     password: 'uchimura',
   },
 ];

@@ -5,6 +5,7 @@ import { TARGET_BLINK_DELAY } from '../../constants/game';
 import { CELL_SIZE_VMIN } from '../../constants/global';
 
 import { getCellSize } from '../../core/utils/game';
+import { checkBlocksToFall } from './actions';
 import { onKeyDown, onKeyUp } from './events';
 import { generateBlocksIconsCorrelation } from './helpers';
 import { animateTarget } from './animations';
@@ -91,6 +92,10 @@ class Game extends PageComponent {
 
   public afterMount(): void {
     animateTarget.call(this);
+  }
+
+  public loop(): void {
+    checkBlocksToFall.call(this);
   }
 
   public render(): HTMLElement {

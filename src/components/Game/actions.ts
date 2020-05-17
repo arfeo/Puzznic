@@ -130,8 +130,6 @@ function checkBlockGroups(): void {
 
           new LevelScore(this);
         }, 1000);
-      } else {
-        checkBlocksToFall.call(this);
       }
     });
   }

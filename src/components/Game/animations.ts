@@ -1,7 +1,7 @@
 import { BLOCK_FALL_SPEED, ELEMENTS_COLORS } from '../../constants/game';
 
 import { renderBlock, renderElementsList, renderTarget } from './render';
-import { checkBlockGroups, checkBlocksToFall, checkObstacle } from './actions';
+import { checkBlockGroups, checkObstacle } from './actions';
 
 import { Block } from './types';
 
@@ -119,8 +119,6 @@ function animateBlockMove(block: Block, nextX: number, nextY: number): void {
 
     frame = requestAnimationFrame(animate);
   }
-
-  checkBlocksToFall.call(this);
 }
 
 function animateBlockElimination(blockId: number): Promise<void> {

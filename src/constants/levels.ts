@@ -977,6 +977,7 @@ export const LEVELS: Level[] = [
       { id: 10, type: 8, position: [7, 3] },
       { id: 11, type: 8, position: [4, 6] },
       { id: 12, type: 2, position: [3, 4] },
+      { id: 13, type: 1, position: [3, 3] },
     ],
     target: [2, 4],
     bonus: 700,

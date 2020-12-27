@@ -31,7 +31,7 @@ function onKeyDown(event: KeyboardEvent): void {
         case MenuItems.PlayItem: {
           this.destroy();
 
-          new Game(2);
+          new Game();
           break;
         }
         case MenuItems.PasswordItem: {

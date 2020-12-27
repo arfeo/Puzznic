@@ -141,8 +141,6 @@ function checkBlockGroups(): void {
         }, 1000);
       }
     });
-
-    console.info(this.clearBonus);
   }
 }
 

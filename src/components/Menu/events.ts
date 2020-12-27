@@ -5,6 +5,11 @@ import { FunctionalKeys } from '../../constants/pages';
 
 import { renderPointer } from './render';
 
+enum MenuItems {
+  PlayItem = 1,
+  PasswordItem,
+}
+
 function onKeyDown(event: KeyboardEvent): void {
   switch (event.key) {
     case FunctionalKeys.Up: {
@@ -15,7 +20,7 @@ function onKeyDown(event: KeyboardEvent): void {
       break;
     }
     case FunctionalKeys.Down: {
-      if (this.currentItem < 2) {
+      if (this.currentItem < Object.keys(MenuItems).length / 2) {
         this.currentItem += 1;
         renderPointer.call(this);
       }
@@ -23,13 +28,13 @@ function onKeyDown(event: KeyboardEvent): void {
     }
     case FunctionalKeys.Continue: {
       switch (this.currentItem) {
-        case 1: {
+        case MenuItems.PlayItem: {
           this.destroy();
 
-          new Game();
+          new Game(2);
           break;
         }
-        case 2: {
+        case MenuItems.PasswordItem: {
           this.destroy();
 
           new Password();

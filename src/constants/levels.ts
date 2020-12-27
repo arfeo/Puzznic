@@ -34,7 +34,6 @@ export const LEVELS: Level[] = [
       { id: 5, type: 1, position: [9, 5] },
       { id: 6, type: 1, position: [8, 6] },
     ],
-    bonus: 400,
   },
   {
     id: 2,
@@ -65,7 +64,6 @@ export const LEVELS: Level[] = [
       { id: 9, type: 4, position: [9, 4] },
       { id: 10, type: 4, position: [9, 6] },
     ],
-    bonus: 400,
     password: 'itohmiwa',
   },
   {
@@ -95,7 +93,6 @@ export const LEVELS: Level[] = [
       { id: 7, type: 3, position: [7, 2] },
       { id: 8, type: 3, position: [7, 7] },
     ],
-    bonus: 500,
     password: 'sawaitoh',
   },
   {
@@ -125,7 +122,6 @@ export const LEVELS: Level[] = [
       { id: 7, type: 3, position: [6, 3] },
       { id: 8, type: 3, position: [6, 5] },
     ],
-    bonus: 500,
     password: 'gotagoto',
   },
   {
@@ -156,7 +152,6 @@ export const LEVELS: Level[] = [
       { id: 8, type: 4, position: [5, 6] },
       { id: 9, type: 4, position: [7, 6] },
     ],
-    bonus: 400,
     password: 'don.doko',
   },
   {
@@ -185,7 +180,6 @@ export const LEVELS: Level[] = [
       { id: 6, type: 3, position: [6, 3] },
       { id: 7, type: 3, position: [7, 4] },
     ],
-    bonus: 400,
     password: 'puzznic.',
   },
   {
@@ -222,7 +216,6 @@ export const LEVELS: Level[] = [
       { id: 14, type: 4, position: [8, 2] },
       { id: 15, type: 4, position: [9, 3] },
     ],
-    bonus: 500,
     password: 'yupontan',
   },
   {
@@ -252,7 +245,6 @@ export const LEVELS: Level[] = [
       { id: 7, type: 3, position: [6, 5] },
       { id: 8, type: 3, position: [5, 6] },
     ],
-    bonus: 500,
     password: 'zun.doko',
   },
   {
@@ -286,7 +278,6 @@ export const LEVELS: Level[] = [
       { id: 11, type: 4, position: [8, 6] },
       { id: 12, type: 4, position: [6, 7] },
     ],
-    bonus: 600,
     password: 'zun.tata',
   },
   {
@@ -316,7 +307,6 @@ export const LEVELS: Level[] = [
       { id: 7, type: 3, position: [6, 3] },
       { id: 8, type: 3, position: [7, 4] },
     ],
-    bonus: 500,
     password: 'takamine',
   },
   {
@@ -348,7 +338,6 @@ export const LEVELS: Level[] = [
       { id: 10, type: 4, position: [10, 5] },
     ],
     target: [4, 7],
-    bonus: 300,
     password: 'nisiyama',
   },
   {
@@ -381,7 +370,6 @@ export const LEVELS: Level[] = [
       { id: 11, type: 4, position: [9, 3] },
     ],
     target: [3, 7],
-    bonus: 500,
     password: 'darius..',
   },
   {
@@ -411,7 +399,6 @@ export const LEVELS: Level[] = [
       { id: 8, type: 5, position: [8, 4] },
     ],
     target: [4, 8],
-    bonus: 500,
     password: 'flippull',
   },
   {
@@ -440,7 +427,6 @@ export const LEVELS: Level[] = [
       { id: 7, type: 2, position: [8, 6] },
     ],
     target: [7, 4],
-    bonus: 400,
     password: 'naomi.n.',
   },
   {
@@ -472,7 +458,6 @@ export const LEVELS: Level[] = [
       { id: 10, type: 4, position: [8, 6] },
     ],
     target: [5, 4],
-    bonus: 500,
     password: 'yuyanisi',
   },
   {
@@ -513,7 +498,6 @@ export const LEVELS: Level[] = [
       { id: 19, type: 1, position: [9, 5] },
     ],
     target: [2, 6],
-    bonus: 1000,
     password: 'mogumogu',
   },
   {
@@ -548,7 +532,6 @@ export const LEVELS: Level[] = [
       { id: 13, type: 3, position: [4, 5] },
     ],
     target: [4, 7],
-    bonus: 600,
     password: 'tomoyo.h',
   },
   {
@@ -582,7 +565,6 @@ export const LEVELS: Level[] = [
       { id: 12, type: 7, position: [10, 4] },
     ],
     target: [2, 7],
-    bonus: 700,
     password: 'takasuzu',
   },
   {
@@ -620,7 +602,6 @@ export const LEVELS: Level[] = [
       { id: 16, type: 2, position: [8, 2] },
     ],
     target: [2, 6],
-    bonus: 800,
     password: 'akitoshi',
   },
   {
@@ -650,7 +631,6 @@ export const LEVELS: Level[] = [
       { id: 8, type: 6, position: [7, 4] },
     ],
     target: [4, 4],
-    bonus: 500,
     password: 'horimoto',
   },
   {
@@ -685,7 +665,6 @@ export const LEVELS: Level[] = [
       { id: 13, type: 6, position: [6, 2] },
     ],
     target: [3, 4],
-    bonus: 700,
     password: 'babuchan',
   },
   {
@@ -715,7 +694,6 @@ export const LEVELS: Level[] = [
       { id: 8, type: 8, position: [9, 6] },
     ],
     target: [5, 5],
-    bonus: 600,
     password: 'dokugasu',
   },
   {
@@ -746,7 +724,6 @@ export const LEVELS: Level[] = [
       { id: 9, type: 1, position: [6, 5] },
     ],
     target: [5, 4],
-    bonus: 500,
     password: 'sugapee.',
   },
   {
@@ -774,7 +751,6 @@ export const LEVELS: Level[] = [
       { id: 6, type: 2, position: [7, 4] },
     ],
     target: [3, 2],
-    bonus: 400,
     password: 'inemuri.',
   },
   {
@@ -811,7 +787,6 @@ export const LEVELS: Level[] = [
       { id: 15, type: 8, position: [7, 7] },
     ],
     target: [6, 7],
-    bonus: 700,
     password: 'sexyitoh',
   },
   {
@@ -841,7 +816,6 @@ export const LEVELS: Level[] = [
       { id: 8, type: 7, position: [7, 6] },
     ],
     target: [5, 4],
-    bonus: 500,
     password: 'serahosi',
   },
   {
@@ -876,7 +850,6 @@ export const LEVELS: Level[] = [
       { id: 13, type: 8, position: [5, 4] },
     ],
     target: [2, 7],
-    bonus: 800,
     password: 'mukashi.',
   },
   {
@@ -911,7 +884,6 @@ export const LEVELS: Level[] = [
       { id: 13, type: 5, position: [4, 5] },
     ],
     target: [2, 4],
-    bonus: 700,
     password: 'aru.toko',
   },
   {
@@ -945,7 +917,6 @@ export const LEVELS: Level[] = [
       { id: 12, type: 6, position: [6, 7] },
     ],
     target: [3, 6],
-    bonus: 700,
     password: 'roniojii',
   },
   {
@@ -980,7 +951,6 @@ export const LEVELS: Level[] = [
       { id: 13, type: 1, position: [3, 3] },
     ],
     target: [2, 4],
-    bonus: 700,
     password: 'santo.ob',
   },
   {
@@ -1022,7 +992,6 @@ export const LEVELS: Level[] = [
       { id: 20, type: 6, position: [10, 4] },
     ],
     target: [3, 6],
-    bonus: 1100,
     password: 'aasanga.',
   },
   {
@@ -1061,7 +1030,6 @@ export const LEVELS: Level[] = [
       { id: 17, type: 6, position: [9, 6] },
     ],
     target: [2, 4],
-    bonus: 1000,
     password: 'sundeima',
   },
   {
@@ -1094,7 +1062,6 @@ export const LEVELS: Level[] = [
       { id: 11, type: 5, position: [8, 4] },
     ],
     target: [4, 5],
-    bonus: 500,
     password: 'sitamaru',
   },
   {
@@ -1127,7 +1094,6 @@ export const LEVELS: Level[] = [
       { id: 11, type: 5, position: [8, 7] },
     ],
     target: [4, 6],
-    bonus: 600,
     password: 'nintendo',
   },
   {
@@ -1181,7 +1147,6 @@ export const LEVELS: Level[] = [
       { id: 32, type: 4, position: [2, 6] },
     ],
     target: [1, 4],
-    bonus: 1300,
     password: 'gameboy.',
   },
   {
@@ -1228,7 +1193,6 @@ export const LEVELS: Level[] = [
       { id: 25, type: 6, position: [10, 7] },
     ],
     target: [6, 6],
-    bonus: 1300,
     password: 'chase.hq',
   },
   {
@@ -1261,7 +1225,6 @@ export const LEVELS: Level[] = [
       { id: 11, type: 7, position: [5, 6] },
     ],
     target: [3, 3],
-    bonus: 400,
     password: 'bakatono',
   },
   {
@@ -1296,7 +1259,6 @@ export const LEVELS: Level[] = [
       { id: 13, type: 1, position: [9, 1] },
     ],
     target: [3, 7],
-    bonus: 700,
     password: 'kodomoni',
   },
   {
@@ -1330,7 +1292,6 @@ export const LEVELS: Level[] = [
       { id: 12, type: 6, position: [7, 6] },
     ],
     target: [3, 5],
-    bonus: 600,
     password: 'makeruna',
   },
   {
@@ -1366,7 +1327,6 @@ export const LEVELS: Level[] = [
       { id: 14, type: 5, position: [8, 6] },
     ],
     target: [2, 5],
-    bonus: 700,
     password: 'hattori.',
   },
   {
@@ -1406,7 +1366,6 @@ export const LEVELS: Level[] = [
       { id: 18, type: 2, position: [4, 5] },
     ],
     target: [3, 3],
-    bonus: 800,
     password: 'meijin..',
   },
   {
@@ -1450,7 +1409,6 @@ export const LEVELS: Level[] = [
       { id: 22, type: 8, position: [9, 7] },
     ],
     target: [3, 6],
-    bonus: 700,
     password: 'dontmaid',
   },
   {
@@ -1482,7 +1440,6 @@ export const LEVELS: Level[] = [
       { id: 10, type: 4, position: [4, 5] },
     ],
     target: [4, 5],
-    bonus: 600,
     password: 'uchimura',
   },
   {
@@ -1522,7 +1479,6 @@ export const LEVELS: Level[] = [
       { id: 18, type: 4, position: [8, 5] },
     ],
     target: [4, 5],
-    bonus: 900,
     password: 'nogunogu',
   },
   {
@@ -1564,7 +1520,6 @@ export const LEVELS: Level[] = [
       { id: 20, type: 3, position: [3, 5] },
     ],
     target: [3, 6],
-    bonus: 900,
     password: 'tentsuki',
   },
   {
@@ -1599,7 +1554,6 @@ export const LEVELS: Level[] = [
       { id: 13, type: 4, position: [6, 4] },
     ],
     target: [3, 3],
-    bonus: 700,
     password: 'pcno.sci',
   },
   {
@@ -1630,7 +1584,6 @@ export const LEVELS: Level[] = [
       { id: 9, type: 3, position: [4, 8] },
     ],
     target: [4, 8],
-    bonus: 500,
     password: 'kyomo...',
   },
   {
@@ -1669,7 +1622,6 @@ export const LEVELS: Level[] = [
       { id: 17, type: 4, position: [9, 6] },
     ],
     target: [2, 6],
-    bonus: 1000,
     password: 'ichinich',
   },
   {
@@ -1702,7 +1654,6 @@ export const LEVELS: Level[] = [
       { id: 11, type: 7, position: [5, 2] },
     ],
     target: [4, 7],
-    bonus: 600,
     password: 'iganbaro',
   },
   {
@@ -1743,7 +1694,6 @@ export const LEVELS: Level[] = [
       { id: 19, type: 1, position: [10, 5] },
     ],
     target: [1, 6],
-    bonus: 1100,
     password: 'password',
   },
   {
@@ -1780,7 +1730,6 @@ export const LEVELS: Level[] = [
       { id: 15, type: 1, position: [3, 6] },
     ],
     target: [2, 6],
-    bonus: 700,
     password: 'minasama',
   },
   {
@@ -1826,7 +1775,6 @@ export const LEVELS: Level[] = [
       { id: 24, type: 3, position: [5, 6] },
     ],
     target: [3, 7],
-    bonus: 1300,
     password: 'no.okage',
   },
   {
@@ -1862,7 +1810,6 @@ export const LEVELS: Level[] = [
       { id: 14, type: 1, position: [3, 3] },
     ],
     target: [3, 3],
-    bonus: 800,
     password: 'de.nanto',
   },
   {
@@ -1900,7 +1847,6 @@ export const LEVELS: Level[] = [
       { id: 16, type: 1, position: [5, 3] },
     ],
     target: [2, 6],
-    bonus: 800,
     password: 'kashiaga',
   },
   {
@@ -1941,7 +1887,6 @@ export const LEVELS: Level[] = [
       { id: 19, type: 1, position: [9, 3] },
     ],
     target: [1, 4],
-    bonus: 1100,
     password: 'rimasita',
   },
   {
@@ -1976,7 +1921,6 @@ export const LEVELS: Level[] = [
       { id: 13, type: 1, position: [6, 5] },
     ],
     target: [1, 5],
-    bonus: 1000,
     password: 'thankyou',
   },
   {
@@ -2014,7 +1958,6 @@ export const LEVELS: Level[] = [
       { id: 16, type: 1, position: [6, 1] },
     ],
     target: [3, 3],
-    bonus: 900,
     password: 'maidooka',
   },
   {
@@ -2049,7 +1992,6 @@ export const LEVELS: Level[] = [
       { id: 13, type: 5, position: [4, 3] },
     ],
     target: [2, 5],
-    bonus: 800,
     password: 'iageitad',
   },
   {
@@ -2086,7 +2028,6 @@ export const LEVELS: Level[] = [
       { id: 15, type: 8, position: [6, 8] },
     ],
     target: [4, 7],
-    bonus: 900,
     password: 'akimashi',
   },
   {
@@ -2124,7 +2065,6 @@ export const LEVELS: Level[] = [
       { id: 16, type: 1, position: [4, 7] },
     ],
     target: [1, 5],
-    bonus: 900,
     password: 'tearigat',
   },
   {
@@ -2164,7 +2104,6 @@ export const LEVELS: Level[] = [
       { id: 18, type: 4, position: [7, 4] },
     ],
     target: [3, 5],
-    bonus: 800,
     password: 'ougozaim',
   },
   {
@@ -2207,7 +2146,6 @@ export const LEVELS: Level[] = [
       { id: 21, type: 1, position: [4, 3] },
     ],
     target: [4, 5],
-    bonus: 1100,
     password: 'asu.kong',
   },
   {
@@ -2250,7 +2188,6 @@ export const LEVELS: Level[] = [
       { id: 21, type: 2, position: [4, 2] },
     ],
     target: [4, 8],
-    bonus: 1000,
     password: 'omohikit',
   },
   {
@@ -2291,7 +2228,6 @@ export const LEVELS: Level[] = [
       { id: 19, type: 6, position: [6, 4] },
     ],
     target: [3, 4],
-    bonus: 600,
     password: 'atenohod',
   },
   {
@@ -2333,7 +2269,6 @@ export const LEVELS: Level[] = [
       { id: 20, type: 3, position: [6, 6] },
     ],
     target: [6, 6],
-    bonus: 600,
     password: 'o.yorosh',
   },
 ];

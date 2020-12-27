@@ -3,7 +3,6 @@ export interface Level {
   map: number[][];
   target: number[];
   blocks: Block[];
-  bonus: number;
   password?: string;
 }
 

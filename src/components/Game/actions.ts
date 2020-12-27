@@ -82,6 +82,7 @@ function checkBlockGroups(): void {
         item.position[1] === block.position[1] &&
         item.type === block.type;
     });
+
     const nextToBottom: Block[] = blocks.filter((item: Block) => {
       return item.position[1] === block.position[1] + 1 &&
         item.position[0] === block.position[0] &&
@@ -89,27 +90,35 @@ function checkBlockGroups(): void {
     });
 
     if (nextToRight && nextToRight.length > 0) {
-      if (neighbours.indexOf(block.id) === -1) {
+      if (!neighbours.includes(block.id)) {
         neighbours.push(block.id);
       }
 
-      if (neighbours.indexOf(nextToRight[0].id) === -1) {
+      if (!neighbours.includes(nextToRight[0].id)) {
         neighbours.push(nextToRight[0].id);
       }
     }
 
     if (nextToBottom && nextToBottom.length > 0) {
-      if (neighbours.indexOf(block.id) === -1) {
+      if (!neighbours.includes(block.id)) {
         neighbours.push(block.id);
       }
 
-      if (neighbours.indexOf(nextToBottom[0].id) === -1) {
+      if (!neighbours.includes(nextToBottom[0].id)) {
         neighbours.push(nextToBottom[0].id);
       }
     }
   });
 
   if (neighbours.length > 0) {
+    if (neighbours.length === 2) {
+      this.clearBonus += 100;
+    }
+
+    if (neighbours.length === 3) {
+      this.clearBonus += 200;
+    }
+
     if (neighbours.length >= 4) {
       const corners: number[][] = findCornerBlocks.call(this, neighbours);
       const topLeft: number[] = corners[0];
@@ -132,6 +141,8 @@ function checkBlockGroups(): void {
         }, 1000);
       }
     });
+
+    console.info(this.clearBonus);
   }
 }
 

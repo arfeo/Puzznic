@@ -19,7 +19,6 @@ function renderLevelScoreWindow(): HTMLElement {
   this.pageCanvas.height = this.cellSize * PAGE_HEIGHT;
 
   this.game.isLevelCompleted = true;
-  this.game.clearBonus += this.game.level.bonus;
 
   drawRectangle(
     ctx,

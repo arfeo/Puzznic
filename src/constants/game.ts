@@ -3,17 +3,6 @@ export enum MapDefinitions {
   Wall,
 }
 
-export enum FunctionalKeys {
-  Catch = 'Shift',
-  Up = 'ArrowUp',
-  Right = 'ArrowRight',
-  Down = 'ArrowDown',
-  Left = 'ArrowLeft',
-  SwitchIconMode = ' ',
-  GoToMenu = 'Escape',
-  Restart = 'R',
-}
-
 export const PAGE_WIDTH = 14;
 export const PAGE_HEIGHT = 12;
 export const GRID_WIDTH = 10;

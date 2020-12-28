@@ -2,7 +2,7 @@ import { Menu } from '../Menu';
 import { Game } from '../Game';
 
 import { LEVELS } from '../../constants/levels';
-import { FunctionalKeys, PASSWORD_SYMBOLS } from '../../constants/pages';
+import { PASSWORD_SYMBOLS, FunctionalKeys } from '../../constants/pages';
 
 import { renderControls, renderInputSlots, renderSymbols } from './render';
 

@@ -1,7 +1,8 @@
 import { Game } from './index';
 import { Menu } from '../Menu';
 
-import { FunctionalKeys, TARGET_BLINK_DELAY } from '../../constants/game';
+import { TARGET_BLINK_DELAY } from '../../constants/game';
+import { FunctionalKeys } from '../../constants/pages';
 
 import { renderElementsList, renderMap } from './render';
 import { checkBlockPosition, checkObstacle, checkTargetMove } from './actions';

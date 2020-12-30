@@ -1,6 +1,8 @@
 import { WINDOW_FONT } from '../../constants/pages';
 import { PAGE_HEIGHT, PAGE_WIDTH } from '../../constants/game';
 
+import { drawTriangle } from '../../core/utils/drawing';
+
 function renderMenuContent(): HTMLElement {
   const pageWindow: HTMLElement = document.createElement('div');
   const ctx: CanvasRenderingContext2D = this.pageCanvas.getContext('2d');
@@ -57,12 +59,15 @@ function renderPointer(): void {
     this.cellSize * 2.5,
   );
 
-  ctx.font = WINDOW_FONT;
-  ctx.textAlign = 'left';
-  ctx.textBaseline = 'bottom';
-  ctx.fillStyle = 'rgb(0, 0, 0)';
-
-  ctx.fillText('➧', this.cellSize * 4, this.cellSize * (yOffset + 7.55));
+  drawTriangle(
+    ctx,
+    [this.cellSize * 4, this.cellSize * (yOffset + 6.8)],
+    [this.cellSize * 4 + 30, this.cellSize * (yOffset + 7.1)],
+    [this.cellSize * 4, this.cellSize * (yOffset + 7.4)],
+    {
+      fillColor: 'rgb(0, 0, 0)',
+    },
+  );
 }
 
 export { renderMenuContent, renderPointer };

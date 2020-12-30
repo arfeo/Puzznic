@@ -26,12 +26,12 @@ export const LEVELS: Level[] = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ],
     blocks: [
-      { id: 1, type: 1, position: [5, 3] },
-      { id: 2, type: 2, position: [5, 4] },
-      { id: 3, type: 2, position: [8, 3] },
-      { id: 4, type: 2, position: [9, 4] },
-      { id: 5, type: 1, position: [9, 5] },
-      { id: 6, type: 1, position: [8, 6] },
+      { id: 1, type: 6, position: [5, 3] },
+      { id: 2, type: 7, position: [5, 4] },
+      { id: 3, type: 7, position: [8, 3] },
+      { id: 4, type: 7, position: [9, 4] },
+      { id: 5, type: 6, position: [9, 5] },
+      { id: 6, type: 6, position: [8, 6] },
     ],
   },
   {

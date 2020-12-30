@@ -7,14 +7,14 @@ import { CELL_SIZE_VMIN } from '../../constants/global';
 import { getCellSize } from '../../core/utils/game';
 import { checkBlocksToFall } from './actions';
 import { onKeyDown, onKeyUp } from './events';
-import { generateBlocksIconsCorrelation } from './helpers';
+import { generateBlocksIconsCorrelation, getInitialTargetPosition } from './helpers';
 import { animateTarget } from './animations';
 import { renderGameWindow } from './render';
 
 import { Block, BlockIcons, KeysDown, Level } from './types';
 
 class Game extends PageComponent {
-  private level: Level;
+  private level: Level & { target: [number, number] };
   private score: number;
   private moves: number;
   private cellSize: number;
@@ -42,6 +42,8 @@ class Game extends PageComponent {
     this.level = JSON.parse(JSON.stringify(LEVELS.find((item: Level) => item.id === level)));
     this.score = score;
     this.moves = 0;
+
+    this.level.target = getInitialTargetPosition(this.level);
 
     this.cellSize = getCellSize(CELL_SIZE_VMIN);
     this.blocksIcons = Object.keys(icons).length > 0 ? icons : generateBlocksIconsCorrelation();

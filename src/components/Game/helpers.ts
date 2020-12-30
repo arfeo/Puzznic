@@ -1,6 +1,20 @@
 import { getRandomNum } from '../../core/utils/common';
 
-import { Block, BlockIcons } from './types';
+import { Block, BlockIcons, Level } from './types';
+
+function getInitialTargetPosition(level: Level): [number, number] {
+  const topBlocksY: number = level.blocks.reduce((min: number, curr: Block) => {
+    return curr.position[0] < min ? curr.position[0] : min;
+  }, 11);
+
+  const topBlocksX: number = level.blocks.filter((block: Block) => {
+    return block.position[0] === topBlocksY;
+  }).reduce((max: number, curr: Block) => {
+    return curr.position[1] > max ? curr.position[1] : max;
+  }, 0);
+
+  return [topBlocksY, topBlocksX];
+}
 
 function generateBlocksIconsCorrelation (): BlockIcons {
   const result: BlockIcons = {};
@@ -46,4 +60,8 @@ function findCornerBlocks(blockIds: number[]): number[][] {
   return [topLeft, bottomRight];
 }
 
-export { generateBlocksIconsCorrelation, findCornerBlocks };
+export {
+  getInitialTargetPosition,
+  generateBlocksIconsCorrelation,
+  findCornerBlocks,
+};

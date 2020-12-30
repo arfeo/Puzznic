@@ -37,7 +37,9 @@ function animateBlockMove(block: Block, nextX: number, nextY: number): void {
   }
 
   const ctx: CanvasRenderingContext2D = this.blocksCanvas.getContext('2d');
-  const isInstant: boolean = nextY === block.position[0];
+  const [blockY, blockX] = block.position;
+  const isInstant: boolean = nextY === blockY;
+  const [targetY, targetX] = this.level.target;
 
   this.level.blocks = [
     ...this.level.blocks.filter((item: Block) => item.id !== block.id),
@@ -48,16 +50,16 @@ function animateBlockMove(block: Block, nextX: number, nextY: number): void {
   ];
 
   if (
-    (nextX === this.level.target[1] - 1 || nextX === this.level.target[1] + 1 || nextX === this.level.target[1]) &&
-    (nextY === this.level.target[0] || nextY === this.level.target[0] + 1)
+    (nextX === targetX - 1 || nextX === targetX + 1 || nextX === targetX) &&
+    (nextY === targetY || nextY === targetY + 1)
   ) {
     this.level.target = [nextY, nextX];
   }
 
   if (isInstant) {
     ctx.clearRect(
-      this.cellSize * block.position[1],
-      this.cellSize * block.position[0],
+      this.cellSize * blockX,
+      this.cellSize * blockY,
       this.cellSize,
       this.cellSize,
     );
@@ -86,6 +88,14 @@ function animateBlockMove(block: Block, nextX: number, nextY: number): void {
     const animate = (): void => {
       if (step > BLOCK_FALL_SPEED) {
         cancelAnimationFrame(frame);
+
+        renderBlock.call(
+          this,
+          ctx,
+          block.type,
+          this.cellSize * nextX,
+          this.cellSize * nextY,
+        );
 
         if (!checkObstacle.call(this, nextX, nextY + 1)) {
           return animateBlockMove.call(this, block, nextX, nextY + 1);

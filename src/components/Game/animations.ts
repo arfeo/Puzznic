@@ -47,7 +47,12 @@ function animateBlockMove(block: Block, nextX: number, nextY: number): void {
     },
   ];
 
-  this.level.target = [nextY, nextX];
+  if (
+    (nextX === this.level.target[1] - 1 || nextX === this.level.target[1] + 1 || nextX === this.level.target[1]) &&
+    (nextY === this.level.target[0] || nextY === this.level.target[0] + 1)
+  ) {
+    this.level.target = [nextY, nextX];
+  }
 
   if (isInstant) {
     ctx.clearRect(

@@ -1,3 +1,5 @@
+import { PAGE_HEIGHT } from '../../constants/game';
+
 import { getRandomNum } from '../../core/utils/common';
 
 import { Block, BlockIcons, Level } from './types';
@@ -5,7 +7,7 @@ import { Block, BlockIcons, Level } from './types';
 function getInitialTargetPosition(level: Level): [number, number] {
   const topBlocksY: number = level.blocks.reduce((min: number, curr: Block) => {
     return curr.position[0] < min ? curr.position[0] : min;
-  }, 11);
+  }, PAGE_HEIGHT - 1);
 
   const topBlocksX: number = level.blocks.filter((block: Block) => {
     return block.position[0] === topBlocksY;

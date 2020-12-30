@@ -2241,7 +2241,7 @@ export const LEVELS: Level[] = [
       { id: 17, type: 6, position: [6, 3] },
       { id: 18, type: 6, position: [8, 2] },
     ],
-    password: 'ikounega',
+    password: 'ikuonega',
   },
   {
     id: 67,
@@ -2429,7 +2429,7 @@ export const LEVELS: Level[] = [
       { id: 17, type: 7, position: [7, 4] },
       { id: 18, type: 7, position: [7, 6] },
     ],
-    password: 'outokite',
+    password: 'outokute',
   },
   {
     id: 72,
@@ -4543,7 +4543,7 @@ export const LEVELS: Level[] = [
       { id: 11, type: 7, position: [6, 6] },
       { id: 12, type: 7, position: [7, 7] },
     ],
-    password: 'katukatu',
+    password: 'katutatu',
   },
   {
     id: 127,

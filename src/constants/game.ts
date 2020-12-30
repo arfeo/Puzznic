@@ -7,6 +7,7 @@ export const PAGE_WIDTH = 14;
 export const PAGE_HEIGHT = 12;
 export const GRID_WIDTH = 10;
 
+export const SPLASH_DELAY = 3000;
 export const TARGET_BLINK_DELAY = 300;
 export const BLOCK_FALL_SPEED = 10;
 

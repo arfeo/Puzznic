@@ -1,7 +1,7 @@
 import { PageComponent } from '../../core/components/Page';
 
 import { LEVELS } from '../../constants/levels';
-import { TARGET_BLINK_DELAY } from '../../constants/game';
+import { SPLASH_DELAY, TARGET_BLINK_DELAY } from '../../constants/game';
 import { CELL_SIZE_VMIN } from '../../constants/global';
 
 import { getCellSize } from '../../core/utils/game';
@@ -19,6 +19,7 @@ class Game extends PageComponent {
   private moves: number;
   private cellSize: number;
   private keysDown: KeysDown;
+  private splashCanvas: HTMLCanvasElement;
   private backgroundCanvas: HTMLCanvasElement;
   private elementsCanvas: HTMLCanvasElement;
   private gridCanvas: HTMLCanvasElement;
@@ -31,6 +32,7 @@ class Game extends PageComponent {
   private clearBonus: number;
   private blocksIcons: BlockIcons;
   private isIconModeOn: boolean;
+  private isSplashOn: boolean;
   private isLevelCompleted: boolean;
   private isGameOver: boolean;
 
@@ -38,7 +40,7 @@ class Game extends PageComponent {
     animateTarget: number;
   };
 
-  public init(level = 1, score = 0, isIconMode = true, icons: BlockIcons = {}): void {
+  public init(level = 1, isSplash = true, score = 0, isIconMode = true, icons: BlockIcons = {}): void {
     this.level = JSON.parse(JSON.stringify(LEVELS.find((item: Level) => item.id === level)));
     this.score = score;
     this.moves = 0;
@@ -49,6 +51,7 @@ class Game extends PageComponent {
     this.blocksIcons = Object.keys(icons).length > 0 ? icons : generateBlocksIconsCorrelation();
 
     this.appRoot = document.getElementById('root');
+    this.splashCanvas = document.createElement('canvas');
     this.backgroundCanvas = document.createElement('canvas');
     this.elementsCanvas = document.createElement('canvas');
     this.gridCanvas = document.createElement('canvas');
@@ -63,6 +66,7 @@ class Game extends PageComponent {
     this.clearBonus = 0;
 
     this.isIconModeOn = isIconMode;
+    this.isSplashOn = isSplash;
     this.isLevelCompleted = false;
     this.isGameOver = false;
 
@@ -93,6 +97,11 @@ class Game extends PageComponent {
   }
 
   public afterMount(): void {
+    window.setTimeout(() => {
+      this.isSplashOn = false;
+      this.splashCanvas.remove();
+    }, SPLASH_DELAY);
+
     animateTarget.call(this);
   }
 

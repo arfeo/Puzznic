@@ -35,6 +35,7 @@
       width: calc(#{$cellSize * ($pageWidth - 4)});
       height: calc(#{$cellSize * $pageHeight});
 
+      .-splash-canvas,
       .-grid-canvas,
       .-blocks-canvas,
       .-target-canvas,
@@ -44,6 +45,10 @@
         left: 0;
         width: calc(#{$cellSize * ($pageWidth - 4)});
         height: calc(#{$cellSize * $pageHeight});
+      }
+
+      .-splash-canvas {
+        z-index: 10;
       }
 
       .-grid-canvas {

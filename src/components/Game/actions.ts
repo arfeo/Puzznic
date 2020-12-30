@@ -54,7 +54,7 @@ function checkObstacle(x: number, y: number): boolean {
 function checkBlocksToFall(): void {
   const { blocks } = this.level;
 
-  if (!blocks) {
+  if (!blocks || this.isSplashOn) {
     return;
   }
 

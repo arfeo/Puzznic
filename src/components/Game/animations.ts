@@ -14,16 +14,18 @@ function animateTarget(): void {
       return cancelAnimationFrame(this.animations.animateTarget);
     }
 
-    if (time - start >= this.targetBlinkDelay) {
-      start = time;
-      state += 1;
+    if (!this.isSplashOn) {
+      if (time - start >= this.targetBlinkDelay) {
+        start = time;
+        state += 1;
 
-      if (state === 4) {
-        state = 1;
+        if (state === 4) {
+          state = 1;
+        }
       }
-    }
 
-    renderTarget.call(this, ELEMENTS_COLORS.target[`state${state}`]);
+      renderTarget.call(this, ELEMENTS_COLORS.target[`state${state}`]);
+    }
 
     this.animations.animateTarget = requestAnimationFrame(animate);
   };

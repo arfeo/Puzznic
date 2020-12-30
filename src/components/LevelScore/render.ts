@@ -37,8 +37,8 @@ function renderLevelScoreWindow(): HTMLElement {
     ctx,
     this.cellSize / 6,
     this.cellSize / 6,
-    this.cellSize * 14 - this.cellSize / 3,
-    this.cellSize * 12 - this.cellSize / 3,
+    this.cellSize * PAGE_WIDTH - this.cellSize / 3,
+    this.cellSize * PAGE_HEIGHT - this.cellSize / 3,
     {
       fillColor: 'rgb(255, 255, 255)',
       edgingWidth: this.cellSize / 12,
@@ -51,16 +51,16 @@ function renderLevelScoreWindow(): HTMLElement {
   ctx.textBaseline = 'middle';
   ctx.fillStyle = 'rgb(0, 0, 0)';
 
-  ctx.fillText('SCORE', this.cellSize * 7, this.cellSize * 2);
+  ctx.fillText('SCORE', this.cellSize * PAGE_WIDTH / 2, this.cellSize * 2);
   ctx.fillText(
     this.game.score.toString().padStart(8, '0'),
-    this.cellSize * 7,
+    this.cellSize * PAGE_WIDTH / 2,
     this.cellSize * 3.5,
   );
-  ctx.fillText('CLEAR BONUS', this.cellSize * 7, this.cellSize * 6);
+  ctx.fillText('CLEAR BONUS', this.cellSize * PAGE_WIDTH / 2, this.cellSize * 6);
   ctx.fillText(
     this.game.clearBonus.toString().padStart(8, '0'),
-    this.cellSize * 7,
+    this.cellSize * PAGE_WIDTH / 2,
     this.cellSize * 7.5,
   );
 

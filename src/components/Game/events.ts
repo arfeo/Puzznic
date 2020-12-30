@@ -9,6 +9,10 @@ import { checkBlockPosition, checkObstacle, checkTargetMove } from './actions';
 import { animateBlockMove } from './animations';
 
 function onKeyDown(event: KeyboardEvent): void {
+  if (this.isSplashOn) {
+    return;
+  }
+
   let key = '';
 
   switch (event.key) {
@@ -98,7 +102,7 @@ function onKeyDown(event: KeyboardEvent): void {
       if (!this.isLevelCompleted) {
         this.destroy();
 
-        new Game(this.level.id, this.score, this.isIconModeOn, this.blocksIcons);
+        new Game(this.level.id, false, this.score, this.isIconModeOn, this.blocksIcons);
       }
       break;
     }
@@ -111,6 +115,10 @@ function onKeyDown(event: KeyboardEvent): void {
 }
 
 function onKeyUp(): void {
+  if (this.isSplashOn) {
+    return;
+  }
+
   setActiveKey.call(this);
 
   this.targetBlinkDelay = TARGET_BLINK_DELAY;

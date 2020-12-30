@@ -9,7 +9,7 @@ function onKeyDown(event: KeyboardEvent): void {
       if (!this.game.isGameOver) {
         this.destroy();
 
-        new Game(this.game.level.id + 1, this.game.score, this.game.isIconModeOn);
+        new Game(this.game.level.id + 1, true, this.game.score, this.game.isIconModeOn);
       } else {
         this.destroy();
 

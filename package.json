@@ -1,6 +1,6 @@
 {
   "name": "puzznic",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.1",
   "description": "Puzznic is a tile-matching puzzle arcade game",
   "main": "index.js",
   "scripts": {

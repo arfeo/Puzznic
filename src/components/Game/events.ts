@@ -48,7 +48,7 @@ function onKeyDown(event: KeyboardEvent): void {
         if (!this.keysDown.catch && checkTargetMove.call(this, key)) {
           this.level.target = [nextY, nextX];
         } else {
-          if (!checkObstacle.call(this, nextX, nextY) && this.blocksMoving.length === 0) {
+          if (!checkObstacle.call(this, nextX, nextY)) {
             animateBlockMove.call(this, this.currentBlock, nextX, nextY);
           }
         }
@@ -75,7 +75,7 @@ function onKeyDown(event: KeyboardEvent): void {
         if (!this.keysDown.catch && checkTargetMove.call(this, key)) {
           this.level.target = [nextY, nextX];
         } else {
-          if (!checkObstacle.call(this, nextX, nextY) && this.blocksMoving.length === 0) {
+          if (!checkObstacle.call(this, nextX, nextY)) {
             animateBlockMove.call(this, this.currentBlock, nextX, nextY);
           }
         }

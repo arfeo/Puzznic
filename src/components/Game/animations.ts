@@ -52,6 +52,8 @@ function animateBlockMove(block: Block, nextX: number, nextY: number): void {
   ];
 
   if (
+    this.keysDown &&
+    this.keysDown.catch &&
     (nextX === targetX - 1 || nextX === targetX + 1 || nextX === targetX) &&
     (nextY === targetY || nextY === targetY + 1)
   ) {
